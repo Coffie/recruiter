@@ -36,6 +36,7 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=40, blank=True)
     last_name = models.CharField(_('last name'), max_length=40, blank=True)
+    phone = models.CharField(_('phone'), max_length=8, blank=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
 
