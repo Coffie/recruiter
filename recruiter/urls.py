@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
+
     url(r'^admin/', admin.site.urls),
     url(r'^', include('recruiter.apps.candidate.urls')),
+    url(r'^hr/', include('recruiter.apps.hr.urls')),
 ]
