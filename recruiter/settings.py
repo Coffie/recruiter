@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recruiter.apps.users',
+    'recruiter.apps.candidate',
+    'recruiter.apps.hr',
 ]
 
 MIDDLEWARE = [
