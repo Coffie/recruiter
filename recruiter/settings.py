@@ -25,13 +25,14 @@ SECRET_KEY = '4%+mqe^70z)kv+lorh2j^ob-+n=%5q@@i3t*my4x1b0q^(#b(b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.coffie.no']
+ALLOWED_HOSTS = ['.coffie.no', '127.0.0.1']
 
 AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'recruiter.apps.hr',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

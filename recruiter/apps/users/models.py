@@ -68,3 +68,5 @@ class User(AbstractUser):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+
+

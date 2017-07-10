@@ -1,0 +1,40 @@
+{% extends 'hr/basefile-styling.html' %}
+
+{% block base %}
+
+
+<div class="container-fluid">
+
+    <div class="col-sm-12 col-md-7">
+            <h2>DNB HR Login</h2>
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                        {%  include 'hr/login-template.html' %}
+
+                        <div class="form-group">
+
+                            <div class="col-sm-offset-2 col-sm-10">
+
+                                <button type="submit" class="btn btn-success">Login</button>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
