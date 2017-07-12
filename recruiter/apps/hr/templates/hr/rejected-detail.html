@@ -1,0 +1,40 @@
+<div class="caption">
+
+    {%  include 'hr/detail-base.html' %}
+
+    <div class="thumbnail" id="candidateInfoDiv">
+        <label id="candidateInfo">
+            Tekst om kandidaten osv
+
+        </label>
+    </div>
+
+    <form action="#" method="get" style="display: inline">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-default btn-sm" id="see_cv">
+            Se CV
+            <span class="glyphicon glyphicon-download-alt"></span>
+        </button>
+    </form>
+
+    <form action="#" method="post" style="display: inline">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-default btn-sm" id="give_rejection">
+            Gi avslag
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </form>
+
+    <form action="#" method="post" style="display: inline">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-default btn-sm" id="send_new_leader">
+            Send til ny leder
+            <span class="glyphicon glyphicon-send"></span>
+        </button>
+    </form>
+
+</div>
+

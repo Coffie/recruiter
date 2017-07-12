@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% extends 'hr/basefile-styling.html' %}
+
 {% block base %}
 
     {% if not user.is_authenticated  %}
@@ -11,29 +12,46 @@
 
 <body>
 
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;" id="main_navbar">
+
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+
+            <div class="container-field">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+
+                        <span class="icon-bar" style="background-color: #000000;"></span>
+                        <span class="icon-bar" style="background-color: #000000;"></span>
+                        <span class="icon-bar" style="background-color: #000000;"></span>
+
+                    </button>
+                    <a class="navbar-brand" href="">DNB Recruiter</a>
+                </div>
+                <div class="navbar-header">
+
+                    <a id="#user_header" class="navbar-brand" href="">{{ user.get_full_name }}</a>
+
+                </div>
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="">
+                        <a data-toggle="modal" data-target="#AddCandModal">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Ny kandidat
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+
 
         <div class="container-field">
 
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-
-                    <span class="icon-bar" style="background-color: #000000;"></span>
-                    <span class="icon-bar" style="background-color: #000000;"></span>
-                    <span class="icon-bar" style="background-color: #000000;"></span>
-
-                </button>
-                <a class="navbar-brand" href=#>DNB Recruiter</a>
-            </div>
-            <div class="navbar-header">
-
-                <a class="navbar-brand" href="">{{ user.email }}</a>
-
-            </div>
-        </div>
-
-
-        <div class="container-field">
+            <script> $("#main_navbar").on("click", function(){
+                $("#main_navbar").find(".active").removeClass("active");
+                $(this).parent().addClass("active");
+            });</script>
 
             <!-- Items on the navigation bar -->
 
@@ -41,33 +59,33 @@
 
                 <ul class="nav navbar-nav">
 
-                    <li class="">
+                    <li class="active">
 
-                        <a href="#">
+                        <a href="{% url 'hr:index' %}">
 
-                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Ubehandlede kandidater
+                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Ubehandlet ({{ user_list.1.0 }})
                         </a>
                     </li>
 
                     <li class="">
-                        <a href="#">
+                        <a href="{% url 'hr:inProcess' %}">
 
-                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Kandidater i prosess
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> I prosess ({{ user_list.1.1 }})
                         </a>
 
                     </li>
 
                     <li class="">
-                        <a href="#">
+                        <a href="{% url 'hr:approved' %}">
 
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Godkjent
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Godkjent ({{ user_list.1.2 }})
                         </a>
 
                     </li>
                     <li class="">
-                        <a href="#">
+                        <a href="{% url 'hr:rejected' %}">
 
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Avslått
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Avslått ({{ user_list.1.3 }})
                         </a>
 
                     </li>
@@ -93,9 +111,15 @@
         </div>
 
     </nav>
+
+    {%  include 'hr/new-candidate-modal.html' %}
+    {%  include 'hr/send-to-leader-modal.html' %}
+
+
 {% block body %}
 {% endblock %}
 </body>
+
 </html>
 
 {% endblock %}

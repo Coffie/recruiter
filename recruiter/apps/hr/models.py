@@ -6,9 +6,13 @@ from django.core.urlresolvers import reverse
 
 class HrProfile(models.Model):
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     position = models.CharField(max_length=100)
-    #models.OneToOneField(User, on_delete=models.CASCADE)
-    def get_absolute_url(self):
-        return reverse('hr:index', kwargs={'pk':self.pk})
+    #models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    #def get_absolute_url(self):
+     #   return reverse('hr:index', kwargs={'pk':self.pk})
 
+class CandidateRegistration(models.Model):
+
+    email = models.EmailField(max_length=100, primary_key=True)
+    registered_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

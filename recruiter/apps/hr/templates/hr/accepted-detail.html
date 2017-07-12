@@ -1,0 +1,24 @@
+<div class="caption">
+
+    {%  include 'hr/detail-base.html' %}
+
+    <div id="sent_to_leader">
+
+        <h6 id="sent_to_leader">Sendt til halvor lande</h6>
+    </div>
+    <div id="sent_to_leader_date">
+        <h6 id="sent_to_leader_date">26.06.17</h6>
+    </div>
+
+    <form action="#" method="get" style="display: inline">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-default btn-sm" id="see_cv">
+            Se CV
+            <span class="glyphicon glyphicon-download-alt"></span>
+        </button>
+    </form>
+
+    <br/>
+</div>
+

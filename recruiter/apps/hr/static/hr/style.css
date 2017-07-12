@@ -8,5 +8,63 @@
     border-radius: 0;
 }
 
+
 .navbar-brand {
-    font-family: 'Satisfy', cursive;}
+
+     font-family: 'Satisfy', cursive;
+}
+
+#candidateInfo {
+
+    font-size: small;
+    font-style: normal;
+    font-weight: 400;
+}
+
+#send_about_candidate {
+
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 0.5px #000;
+    border: 1px transparent;
+}
+
+#see_cv, #give_rejection, #send_leader, #send_hr {
+
+    width: 110px;
+    height: 30px;
+    margin-top: 5px;
+
+}
+
+#send_notification {
+
+    width: 130px;
+    height: 30px;
+    margin-top: 5px;
+
+}
+
+#send_new_leader {
+
+     width: 120px;
+     height: 30px;
+     margin-top: 5px;
+}
+
+#candidateInfoDiv {
+
+    overflow: scroll;
+    height: 60px;
+}
+
+#sent_to_leader, #sent_to_leader_date {
+
+    /*width: 50%;
+    margin: 0 auto;*/
+    font-weight: 400;
+}
+
+
+>>>>>>> 1c469fc0e08bc7fd5bdc7f1e0971a3cf758526ff
