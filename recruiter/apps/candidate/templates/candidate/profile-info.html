@@ -1,0 +1,18 @@
+{% extends 'candidate/profile.html' %}
+{% block info %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 col-md-6">
+			<h4</h4>
+			<div class="panel panel-default">
+				<div class="panel-heading">Velkommen {{ user.get_full_name }}</div>
+				<div class="panel-body">
+					<a href="" class="btn btn-info" role="button">Rediger info</a>
+					<a href="" class="btn btn-danger" role="button">Last opp CV</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+{% endblock %}
