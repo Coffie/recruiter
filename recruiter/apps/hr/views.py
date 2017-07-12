@@ -8,18 +8,16 @@ from django.contrib.auth import logout
 from django.core.mail import send_mail
 from .models import CandidateRegistration
 from .models import HrProfile
+from recruiter.apps.candidate.models import CandidateProfile
 
-
-#User = settings.AUTH_USER_MODEL
 
 def getAllNumbers():
 
-    ## Ikke ferdig
-    number_untreated = len(HrProfile.objects.filter(user__is_staff=False))
-    number_in_process = 0
-    number_accepted = 0
-    number_rejected = 0
-    return number_untreated,number_in_process,number_accepted, number_rejected
+    number_untreated = len(CandidateProfile.objects.filter(user__is_staff=False, status=1))
+    number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2))
+    number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3))
+    number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4))
+    return number_untreated, number_in_process, number_accepted, number_rejected
 
 class IndexView(generic.ListView):
 
@@ -34,37 +32,34 @@ class IndexView(generic.ListView):
 class UntreatedView(IndexView):
 
     id = 0
-    #ikke fullført, bare testdata
+
     def get_queryset(self):
 
         ##users = get_user_model().objects.filter(is_staff=False)
         ##hrprofiles = HrProfile.objects.filter(user__in=users.values('id'))
-        hrprofiles = HrProfile.objects.filter(user__is_staff=False)
+
         ## vanlig bruker atributter aksesseres ved: user.user.atributt
         ## hrprifl bruker aksesseres ved: user.attributt
-        return hrprofiles, getAllNumbers()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=1), getAllNumbers()
 
 
 class InProcessView(IndexView):
 
     id = 1
-    #ikke fullført
     def get_queryset(self):
-        return None, getAllNumbers()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=2), getAllNumbers()
 
 class ApprovedView(IndexView):
 
     id = 2
-    # ikke fullført
     def get_queryset(self):
-        return None, getAllNumbers()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=3), getAllNumbers()
 
 class RejectedView(IndexView):
 
     id = 3
-    # ikke fullført
     def get_queryset(self):
-        return None, getAllNumbers()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=4), getAllNumbers()
 
 ## User login view
 class UserFormView(View):
@@ -136,4 +131,3 @@ def sendTo(request):
     )
 
     return redirect('hr:index')
-
