@@ -2,6 +2,55 @@
 
 {% block body %}
 
+    <div class="albums-container container-fluid">
+
+        <div class="row">
+            <!-- user_list.0 gir listen med brukere som er queret. Se de forskjellige viewene i hr/views for å se hva annet som blir returnert -->
+            {% if user_list.0 %}
+
+                {% for user in user_list.0 %}
+
+                    <div class="col-sm-4 col-lg-2">
+
+                        <div class="thumbnail">
+
+                            {% if view.id == 0 %}
+
+                                {%  include 'hr/untreated-detail.html' %}
+
+                            {% elif view.id == 1 %}
+
+                                {%  include 'hr/in-process-detail.html' %}
+
+                            {% elif view.id == 2 %}
+
+                                {%  include 'hr/accepted-detail.html' %}
+
+                            {% elif view.id == 3 %}
+
+                                {%  include 'hr/rejected-detail.html' %}
+                            {% else %}
+
+                                <h3>En feil har oppstått</h3>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="col-sm-12">
+                    <br/>
+                    <h3>Ingen kandidater</h3>
+                </div>
+
+            {% endif %}
+        </div>
+
+    </div>
 
 
 {% endblock %}

@@ -6,9 +6,13 @@ app_name = 'hr'
 
 urlpatterns = [
 
-
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$', views.UntreatedView.as_view(), name='index'),
     url(r'^login/$', views.UserFormView.as_view(), name='login'),
-    url(r'^logout/$', views.logout_view, name="logout")
+    url(r'^logout/$', views.logoutView, name="logout"),
+    url(r'^newCandidate/$', views.regUser, name="newCandidate"),
+    url(r'^sendTo/$', views.sendTo, name="sendTo"),
+    url(r'^inProcess/$', views.InProcessView.as_view(), name="inProcess"),
+    url(r'^approved/$', views.ApprovedView.as_view(), name="approved"),
+    url(r'^rejected/$', views.RejectedView.as_view(), name="rejected"),
 
 ]
