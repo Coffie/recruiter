@@ -15,9 +15,10 @@ class CandidateProfile(models.Model):
             ('4', 'Rejected'),
             )
     status = models.CharField(max_length=1, choices=STATUS_FIELD, default=1)
+    cv = models.FileField(upload_to=user_directory_path)
 
     
 
 class UploadFile(models.Model):
-    upload = models.FileField(upload_to='uploads/')
-    tags = models.CharField(max_length=250, default="None")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+    upload = models.FileField(upload_to=user_directory_path)

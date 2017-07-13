@@ -13,7 +13,7 @@ class UserForm(forms.ModelForm):
 class UploadForm(forms.ModelForm):
     class Meta:
         model = UploadFile
-        fields = ['upload', 'tags']
+        fields = ['upload']
 
 class UserLoginForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -21,3 +21,8 @@ class UserLoginForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ['email', 'password']
+
+class CvForm(forms.ModelForm):
+    class Meta:
+        model = CandidateProfile
+        fields = ['cv']
