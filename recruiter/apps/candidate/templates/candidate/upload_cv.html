@@ -1,0 +1,15 @@
+{% extends 'candidate/profile.html' %}
+{% block info %}
+<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% include 'candidate/form_template.html' %}
+	<div class="form-group">	
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-secondary">Last opp</button>
+		</div>
+	</div>
+</form>
+<p><a href="{% url 'candidate:profile' %}">Tilbake</a></p>
+
+{% endblock %}
+

@@ -1,10 +1,11 @@
-from .forms import UserForm, UploadForm, UserLoginForm
+from .forms import UserForm, CvForm, UserLoginForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.views import generic
 from .models import CandidateProfile
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     form = UserForm(request.POST or None)
@@ -35,9 +36,10 @@ def register(request):
             }
     return render(request, 'candidate/register.html', context)
 
+# @login_required(login_url='/candidate/login')
 class ProfileView(generic.ListView):
     model = get_user_model()
-    template_name = 'candidate/profile-info.html'
+    template_name = 'candidate/profile_info.html'
 
     def get_queryset(self):
         return get_user_model().objects.all()
@@ -69,32 +71,22 @@ def logout_user(request):
     return redirect('candidate:login_user')
 
 
-
-# def login_user(request):
-#     form = UserLoginForm(request.POST or None)
-
+# def easy_upload(request):
+#     form = UploadForm(request.POST or None, request.FILES or None)
 #     if form.is_valid():
-#         email = request.POST['email']
-#         paswword = request.POST['password']
-#         user = authenticate(email=email, password=password)
+#         upload = form.save(commit=False)
+#         upload.upload = request.FILES['upload']
+#         upload.save()
+#         return HttpResponse("<h3>It's uploaded</h3>")
+#     context = {'form': form}
+#     return render(request, 'candidate/cv_upload.html', context)
 
-#         if user is not None:
-#             if user.is_active:
-#                 login(request, user)
-#                 return render(request, 'candidate/profile.html')
-#             else:
-#                 return render(request, 'candidate/login.html', {'error_message': "Your account has been disabled"})
-#         else:
-#             return render(request, 'candidate/login.html', {'error_message': "Invalid login"})
-#     return render(request, 'candidate/login.html')
-
-def easy_upload(request):
-    form = UploadForm(request.POST or None, request.FILES or None)
+# @login_required(login_url='/candidate/login')
+def upload_cv(request):
+    instance = get_object_or_404(CandidateProfile.objects.filter(pk=request.user.id))
+    form = CvForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
-        upload = form.save(commit=False)
-        upload.upload = request.FILES['upload']
-        upload.save()
-        return HttpResponse("<h3>It's uploaded</h3>")
+        form.save()
+        return redirect('candidate:profile')
     context = {'form': form}
-    return render(request, 'candidate/cv_upload.html', context)
-
+    return render(request, 'candidate/upload_cv.html', context)

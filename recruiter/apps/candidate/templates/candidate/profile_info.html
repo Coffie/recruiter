@@ -9,7 +9,7 @@
 				<div class="panel-heading">Velkommen {{ user.get_full_name }}</div>
 				<div class="panel-body">
 					<a href="" class="btn btn-info" role="button">Rediger info</a>
-					<a href="" class="btn btn-danger" role="button">Last opp CV</a>
+					<a href="{% url 'candidate:upload' %}" class="btn btn-danger" role="button">Last opp CV</a>
 				</div>
 			</div>
 		</div>
