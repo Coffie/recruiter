@@ -140,6 +140,7 @@ def sendTo(request):
 
 def rejectCandidate(request):
 
+    view_id = request.POST["page_id"]
     email_from = request.POST["from_email"]
     email_to = request.POST["to_email"]
     subject = request.POST["subject"]
@@ -154,6 +155,9 @@ def rejectCandidate(request):
         [email_to],
         fail_silently=False,
     )
+    if view_id == "3":
+
+        return redirect('hr:rejected')
     return redirect('hr:index')
 
 def notifyLeader(request):
