@@ -63,14 +63,14 @@
 
                         <a href="{% url 'hr:index' %}">
 
-                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Ubehandlet ({{ user_list.1.0 }})
+                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Ubehandlet ({{ query_set.1.0 }})
                         </a>
                     </li>
 
                     <li class="">
                         <a href="{% url 'hr:inProcess' %}">
 
-                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> I prosess ({{ user_list.1.1 }})
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> I prosess ({{ query_set.1.1 }})
                         </a>
 
                     </li>
@@ -78,14 +78,14 @@
                     <li class="">
                         <a href="{% url 'hr:approved' %}">
 
-                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Godkjent ({{ user_list.1.2 }})
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Godkjent ({{ query_set.1.2 }})
                         </a>
 
                     </li>
                     <li class="">
                         <a href="{% url 'hr:rejected' %}">
 
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Avslått ({{ user_list.1.3 }})
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Avslått ({{ query_set.1.3 }})
                         </a>
 
                     </li>
@@ -113,7 +113,6 @@
     </nav>
 
     {%  include 'hr/new-candidate-modal.html' %}
-    {%  include 'hr/send-to-leader-modal.html' %}
 
 
 {% block body %}

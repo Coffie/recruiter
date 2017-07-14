@@ -6,9 +6,9 @@
 
         <div class="row">
             <!-- user_list.0 gir listen med brukere som er queret. Se de forskjellige viewene i hr/views for å se hva annet som blir returnert -->
-            {% if user_list.0 %}
+            {% if query_set.0 %}
 
-                {% for user in user_list.0 %}
+                {% for candidate in query_set.0 %}
 
                     <div class="col-sm-4 col-lg-2">
 

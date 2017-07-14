@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^inProcess/$', views.InProcessView.as_view(), name="inProcess"),
     url(r'^approved/$', views.ApprovedView.as_view(), name="approved"),
     url(r'^rejected/$', views.RejectedView.as_view(), name="rejected"),
+    url(r'^reject$', views.rejectCandidate, name="reject-candidate"),
+    url(r'^notify', views.notifyLeader, name="notify"),
 
 ]

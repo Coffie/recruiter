@@ -136,3 +136,4 @@ MEDIA_URL = '/media/'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 8000
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

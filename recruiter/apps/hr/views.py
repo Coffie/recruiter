@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from .models import CandidateRegistration
 from .models import HrProfile
 from recruiter.apps.candidate.models import CandidateProfile
+from .models import LeaderProfile
 
 
 def getAllNumbers():
@@ -24,7 +25,7 @@ class IndexView(generic.ListView):
     model = get_user_model()
     template_name = 'hr/index.html'
     id = 0
-    context_object_name = 'user_list'
+    context_object_name = 'query_set'
 
     def get_queryset(self):
         return None
@@ -40,7 +41,7 @@ class UntreatedView(IndexView):
 
         ## vanlig bruker atributter aksesseres ved: user.user.atributt
         ## hrprifl bruker aksesseres ved: user.attributt
-        return CandidateProfile.objects.filter(user__is_staff=False, status=1), getAllNumbers()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None), getAllNumbers(), LeaderProfile.objects.all()
 
 
 class InProcessView(IndexView):
@@ -59,7 +60,7 @@ class RejectedView(IndexView):
 
     id = 3
     def get_queryset(self):
-        return CandidateProfile.objects.filter(user__is_staff=False, status=4), getAllNumbers()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=4), getAllNumbers(), LeaderProfile.objects.all()
 
 ## User login view
 class UserFormView(View):
@@ -117,9 +118,14 @@ def regUser(request):
 def sendTo(request):
 
     email_from = request.POST["send_from_email"]
-    email_to = request.POST["send_to_email"]
+    email_to = request.POST["leader"]
     subject = request.POST["subject"]
     text_candidate = request.POST["text_candidate"]
+    candidate_id = request.POST["candidate_id"]
+    candidate = CandidateProfile.objects.get(pk=candidate_id)
+    candidate.leader = LeaderProfile.objects.get(email=email_to)
+    candidate.status = 2
+    candidate.save()
 
     send_mail(
         subject,
@@ -131,3 +137,43 @@ def sendTo(request):
     )
 
     return redirect('hr:index')
+
+def rejectCandidate(request):
+
+    email_from = request.POST["from_email"]
+    email_to = request.POST["to_email"]
+    subject = request.POST["subject"]
+    text = request.POST["reject_candidate_text"]
+    user_to_delete = get_user_model().objects.get(pk=request.POST["id_candidate"])
+    user_to_delete.delete()
+
+    send_mail(
+        subject,
+        text,
+        email_from,
+        [email_to],
+        fail_silently=False,
+    )
+    return redirect('hr:index')
+
+def notifyLeader(request):
+
+    leader_email = request.POST["leader_email"]
+    candidate_name = request.POST["candidate_name"]
+    hr_email = request.POST["hr_email"]
+    hr_name = request.POST["hr_name"]
+    message = 'Hei, kandidaten ' + candidate_name + ' ligger fortsatt ubehandlet i systemet registrert på deg.' \
+                                                    'Vennligst ta en beslutning på vedkommende snarest. \nMvh\n' + hr_name
+    send_mail(
+        'Påminnelse om kandidat',
+        message,
+        hr_email,
+        [leader_email],
+        fail_silently=False,
+    )
+    return redirect('hr:inProcess')
+
+
+
+
+

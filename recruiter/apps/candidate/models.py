@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from recruiter.apps.hr.models import LeaderProfile
 from .validators import validate_file_extension
 
 def user_directory_path(instance, filename):

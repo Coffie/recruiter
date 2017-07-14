@@ -13,26 +13,28 @@
         {% csrf_token %}
 
         <button type="submit" class="btn btn-default btn-sm" id="see_cv">
-            Se CV
             <span class="glyphicon glyphicon-download-alt"></span>
+            Se CV
         </button>
     </form>
 
-    <form action="#" method="post" style="display: inline">
-        {% csrf_token %}
 
-        <button type="submit" class="btn btn-default btn-sm" id="give_rejection">
-            Gi avslag
-            <span class="glyphicon glyphicon-remove"></span>
-        </button>
-    </form>
+    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#reject{{ candidate.user.id }}" style="display: inline" id="give_rejection">
+        <span class="glyphicon glyphicon-remove"></span>
+        Gi avslag
+    </button>
 
-    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#SendToLeaderModal" style="display: inline" id="send_leader">
+
+    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#send{{ candidate.user.id }}" style="display: inline" id="send_leader">
         <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp; Send til leder
     </button>
 
-    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#SendToLeaderModal" style="display: inline" id="send_hr">
+    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#sendHr{{ candidate.user.id }}" style="display: inline" id="send_hr">
         <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp; Send til HR
     </button>
 
 </div>
+
+{%  include 'hr/reject-user-modal.html'%}
+{%  include 'hr/send-to-leader-modal.html' %}
+{%  include 'hr/send-hr-modal.html' %}

@@ -1,39 +1,33 @@
-<div id="send{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
+
+
+<div id="reject{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3>Send til leder</h3>
+                    <h3>Send avslag</h3>
                 </div>
                 <div class="modal-body">
 
-                    <form class="form-horizontal" action="{% url 'hr:sendTo' %}" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="{% url 'hr:reject-candidate' %}" method="post" enctype="multipart/form-data">
 
                         {% csrf_token %}
 
-                        <input type="hidden" name="candidate_id" value="{{ candidate.user.id }}">
                         <div class="thumbnail">
 
                             <div class="form-group">
                                 <div class="col-sm-offset-0 col-sm-10" style="display: inline">
                                     Fra:
-                                    <input id="from_hr_email" type="email" class="form-control" name="send_from_email" value="{{ user.email }}"/>
+                                    <input id="from_hr_email" type="email" class="form-control" name="from_email" value="{{ user.email }}"/>
                                 </div>
-                                <br/>
-                                <br/>
                                 <br/>
                                 <br/>
                                 <div class="col-sm-offset-0 col-sm-10" style="display: inline">
 
                                     Til:
-                                    <select name="leader" class="actionlist">
-                                        {% for leader in query_set.2 %}
-
-                                            <option name="{{ leader.email }}" value={{ leader.email }}>{{ leader.get_full_name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <!-- <input placeholder="til@email.no" id="to_leader_email" type="email" class="form-control" name="send_to_email" value=""/> -->
+                                    <input id="reject_cand_email" type="email" class="form-control" name="to_email" value="{{ candidate.user.email }}">
+                                    <input id="id_candidate" type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
                                 </div>
 
                             </div>
@@ -47,7 +41,7 @@
                             <br/>
 
 
-                            <textarea id="send_about_candidate" name="text_candidate">
+                            <textarea id="send_about_candidate" name="reject_candidate_text">
                             </textarea>
 
                         </div>
@@ -55,7 +49,7 @@
 
                             <div class="col-sm-offset-0 col-sm-10">
 
-                                <button id="buttonCandEmail" type="submit" class="btn btn-success">
+                                <button id="buttonRejectCand" type="submit" class="btn btn-success">
                                     <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp; Send
                                 </button>
                             </div>
