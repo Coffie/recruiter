@@ -8,7 +8,6 @@
     border-radius: 0;
 }
 
-
 .navbar-brand {
 
      font-family: 'Satisfy', cursive;
@@ -37,6 +36,17 @@
     margin-top: 5px;
 
 }
+
+#unflagged_candidate {
+
+    background-color: #ffffff;
+}
+
+#flagged_candidate {
+
+    background-color: #7dacba;
+}
+
 
 #send_notification {
 
