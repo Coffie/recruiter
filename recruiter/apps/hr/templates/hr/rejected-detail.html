@@ -9,14 +9,7 @@
         </label>
     </div>
 
-    <form action="#" method="get" style="display: inline">
-        {% csrf_token %}
-
-        <button type="submit" class="btn btn-default btn-sm" id="see_cv">
-            Se CV
-            <span class="glyphicon glyphicon-download-alt"></span>
-        </button>
-    </form>
+    {% include 'hr/showCV-form.html' %}
 
     <button data-toggle="modal" data-target="#reject{{ candidate.user.id }}" type="submit" class="btn btn-default btn-sm" id="give_rejection">
         Gi avslag

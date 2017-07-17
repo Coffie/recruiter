@@ -103,13 +103,16 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 def showCV(request):
-    new = 2  # open in a new tab, if possible
+
     # open a public URL, in this case, the webbrowser docs
     ##url = "http://docs.python.org/library/webbrowser.html"
     ##webbrowser.open(url, new=new)
     # open an HTML file on my own (Windows) computer
-    url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
-    webbrowser.open(url, new=new)
+    cv_path = request.GET["candidate_cv"]
+    if cv_path:
+        new = 2  # open in a new tab, if possible
+        url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
+        webbrowser.open(url, new=new)
     return redirect('hr:index')
 
 
