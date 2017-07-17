@@ -10,14 +10,20 @@ from .models import CandidateRegistration
 from .models import HrProfile
 from recruiter.apps.candidate.models import CandidateProfile
 from .models import LeaderProfile
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from easy_pdf.views import PDFTemplateView
+from django.conf import settings
+import webbrowser
 
 
-def getAllNumbers():
+def getAllNumbers(request):
 
-    number_untreated = len(CandidateProfile.objects.filter(user__is_staff=False, status=1))
-    number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2))
-    number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3))
-    number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4))
+    hr_user = HrProfile.objects.get(user__id=request.user.id)
+    number_untreated = len(CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None))
+    number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user))
+    number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user))
+    number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user))
     return number_untreated, number_in_process, number_accepted, number_rejected
 
 class IndexView(generic.ListView):
@@ -41,26 +47,29 @@ class UntreatedView(IndexView):
 
         ## vanlig bruker atributter aksesseres ved: user.user.atributt
         ## hrprifl bruker aksesseres ved: user.attributt
-        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None), getAllNumbers(), LeaderProfile.objects.all()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None).order_by('-flagged', 'user__date_joined'), getAllNumbers(self.request), LeaderProfile.objects.all()
 
 
 class InProcessView(IndexView):
 
     id = 1
     def get_queryset(self):
-        return CandidateProfile.objects.filter(user__is_staff=False, status=2), getAllNumbers()
+        hr_user = HrProfile.objects.get(user__id=self.request.user.id)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user), getAllNumbers(self.request)
 
 class ApprovedView(IndexView):
 
     id = 2
     def get_queryset(self):
-        return CandidateProfile.objects.filter(user__is_staff=False, status=3), getAllNumbers()
+        hr_user = HrProfile.objects.get(user__id=self.request.user.id)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user), getAllNumbers(self.request)
 
 class RejectedView(IndexView):
 
     id = 3
     def get_queryset(self):
-        return CandidateProfile.objects.filter(user__is_staff=False, status=4), getAllNumbers(), LeaderProfile.objects.all()
+        hr_user = HrProfile.objects.get(user__id=self.request.user.id)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user), getAllNumbers(self.request), LeaderProfile.objects.all()
 
 ## User login view
 class UserFormView(View):
@@ -93,6 +102,20 @@ class UserFormView(View):
 
         return render(request, self.template_name, {'form': form})
 
+def showCV(request):
+
+    # open a public URL, in this case, the webbrowser docs
+    ##url = "http://docs.python.org/library/webbrowser.html"
+    ##webbrowser.open(url, new=new)
+    # open an HTML file on my own (Windows) computer
+    cv_path = request.GET["candidate_cv"]
+    if cv_path:
+        new = 2  # open in a new tab, if possible
+        url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
+        webbrowser.open(url, new=new)
+    return redirect('hr:index')
+
+
 # logs out the user
 def logoutView(request):
 
@@ -124,6 +147,7 @@ def sendTo(request):
     candidate_id = request.POST["candidate_id"]
     candidate = CandidateProfile.objects.get(pk=candidate_id)
     candidate.leader = LeaderProfile.objects.get(email=email_to)
+    candidate.hr_responsible = HrProfile.objects.get(user__id=request.user.id)
     candidate.status = 2
     candidate.save()
 
@@ -140,6 +164,7 @@ def sendTo(request):
 
 def rejectCandidate(request):
 
+    view_id = request.POST["page_id"]
     email_from = request.POST["from_email"]
     email_to = request.POST["to_email"]
     subject = request.POST["subject"]
@@ -154,6 +179,9 @@ def rejectCandidate(request):
         [email_to],
         fail_silently=False,
     )
+    if view_id == "3":
+
+        return redirect('hr:rejected')
     return redirect('hr:index')
 
 def notifyLeader(request):
@@ -173,6 +201,18 @@ def notifyLeader(request):
     )
     return redirect('hr:inProcess')
 
+
+def flagCandidate(request):
+
+    candidate = CandidateProfile.objects.get(pk=request.POST["candidate_id"])
+    if candidate.flagged:
+        candidate.flagged = False
+    else:
+
+        candidate.flagged = True
+    candidate.save()
+
+    return redirect('hr:index')
 
 
 

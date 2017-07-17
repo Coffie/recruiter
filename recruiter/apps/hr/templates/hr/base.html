@@ -48,10 +48,12 @@
 
         <div class="container-field">
 
-            <script> $("#main_navbar").on("click", function(){
-                $("#main_navbar").find(".active").removeClass("active");
-                $(this).parent().addClass("active");
-            });</script>
+            <script> $(document).ready(function () {
+                $(".nav li").removeClass("active");//this will remove the active class from
+                                     //previously active menu item
+                $('#untreated').addClass('active'); });
+            </script>
+
 
             <!-- Items on the navigation bar -->
 
@@ -59,7 +61,7 @@
 
                 <ul class="nav navbar-nav">
 
-                    <li class="">
+                    <li id="untreated" class="active">
 
                         <a href="{% url 'hr:index' %}">
 
