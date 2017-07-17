@@ -4,10 +4,17 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12 col-md-6">
-			<h4</h4>
 			<div class="panel panel-default">
-				<div class="panel-heading">Velkommen {{ user.get_full_name }}</div>
+				<div class="panel-heading">Brukerinfo</div>
 				<div class="panel-body">
+					<dl>
+						<dt>Navn:</dt> 
+						<dd>{{ user.get_full_name }}</dd>
+						<dt>E-post:</dt>
+						<dd>{{ user.get_email }}</dd>
+						<dt>Telefon:</dt>
+						<dd>{{ user.get_phone }}</dd>
+					</dl>
 					<a href="" class="btn btn-info" role="button">Rediger info</a>
 					<a href="{% url 'candidate:upload' %}" class="btn btn-danger" role="button">Last opp CV</a>
 				</div>

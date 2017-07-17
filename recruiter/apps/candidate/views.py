@@ -6,34 +6,37 @@ from django.http import HttpResponse
 from django.views import generic
 from .models import CandidateProfile
 from django.contrib.auth.decorators import login_required
+from recruiter.apps.hr.models import CandidateRegistration
 
 def register(request):
     form = UserForm(request.POST or None)
-
-    if form.is_valid():
-        user = form.save(commit=False)
-        
-        form = UserForm(request.POST or None)
-
-        if form.is_valid():
-            user = form.save(commit=False)
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            phone = form.cleaned_data['phone']
-            user.set_password(password)
-            user.save()
-            user = authenticate(username=email, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    profile = CandidateProfile(user=request.user)
-                    profile.save()
-                    return redirect('candidate:profile')
     context = {
             'form': form,
             }
+
+    if form.is_valid():
+        user = form.save(commit=False)
+        email = form.cleaned_data['email']
+        password = form.cleaned_data['password']
+        password2 = form.cleaned_data['password2']
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
+        phone = form.cleaned_data['phone']
+        if not CandidateRegistration.objects.filter(email=email):
+            context = {
+                    'form': form,
+                    'error_message': "User not in approved list"
+                    }
+            return render(request, 'candidate/register.html', context)
+        user.set_password(password)
+        user.save()
+        user = authenticate(username=email, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                profile = CandidateProfile(user=request.user)
+                profile.save()
+                return redirect('candidate:profile')
     return render(request, 'candidate/register.html', context)
 
 # @login_required(login_url='/candidate/login')

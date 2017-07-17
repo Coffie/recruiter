@@ -65,6 +65,18 @@ class User(AbstractUser):
         """
         return self.first_name
 
+    def get_email(self):
+        """
+        Returns the email for the user.
+        """
+        return self.email
+
+    def get_phone(self):
+        """
+        Returns the phone number for the user.
+        """
+        return self.phone
+
     def email_user(self, subject, message, from_email=None, **kwargs):
         """
         Sends an email to this User.
