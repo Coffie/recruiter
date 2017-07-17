@@ -9,4 +9,5 @@ urlpatterns = [
         url(r'^candidate/login/$', views.UserFormView.as_view(), name='login_user'),
         url(r'^candidate/profile/$', views.ProfileView.as_view(), name='profile'),
         url(r'^candidate/logout/$', views.logout_user, name='logout_user'),
+        url(r'^(?P<cv>)$', views.cv_view, name='cv_view'),
         ]
