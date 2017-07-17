@@ -10,6 +10,11 @@ from .models import CandidateRegistration
 from .models import HrProfile
 from recruiter.apps.candidate.models import CandidateProfile
 from .models import LeaderProfile
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from easy_pdf.views import PDFTemplateView
+from django.conf import settings
+import webbrowser
 
 
 def getAllNumbers():
@@ -92,6 +97,17 @@ class UserFormView(View):
                 return redirect('hr:index')
 
         return render(request, self.template_name, {'form': form})
+
+def showCV(request):
+    new = 2  # open in a new tab, if possible
+    # open a public URL, in this case, the webbrowser docs
+    ##url = "http://docs.python.org/library/webbrowser.html"
+    ##webbrowser.open(url, new=new)
+    # open an HTML file on my own (Windows) computer
+    url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
+    webbrowser.open(url, new=new)
+    return redirect('hr:index')
+
 
 # logs out the user
 def logoutView(request):
@@ -176,7 +192,6 @@ def notifyLeader(request):
         fail_silently=False,
     )
     return redirect('hr:inProcess')
-
 
 
 

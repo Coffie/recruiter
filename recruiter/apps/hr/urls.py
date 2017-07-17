@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^rejected/$', views.RejectedView.as_view(), name="rejected"),
     url(r'^reject$', views.rejectCandidate, name="reject-candidate"),
     url(r'^notify', views.notifyLeader, name="notify"),
+    url(r'^showCV', views.showCV, name="showCV"),
 
 ]
