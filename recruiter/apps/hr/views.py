@@ -17,12 +17,13 @@ from django.conf import settings
 import webbrowser
 
 
-def getAllNumbers():
+def getAllNumbers(request):
 
-    number_untreated = len(CandidateProfile.objects.filter(user__is_staff=False, status=1))
-    number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2))
-    number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3))
-    number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4))
+    hr_user = HrProfile.objects.get(user__id=request.user.id)
+    number_untreated = len(CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None))
+    number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user))
+    number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user))
+    number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user))
     return number_untreated, number_in_process, number_accepted, number_rejected
 
 class IndexView(generic.ListView):
@@ -46,26 +47,29 @@ class UntreatedView(IndexView):
 
         ## vanlig bruker atributter aksesseres ved: user.user.atributt
         ## hrprifl bruker aksesseres ved: user.attributt
-        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None).order_by('-flagged', 'user__date_joined'), getAllNumbers(), LeaderProfile.objects.all()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None).order_by('-flagged', 'user__date_joined'), getAllNumbers(self.request), LeaderProfile.objects.all()
 
 
 class InProcessView(IndexView):
 
     id = 1
     def get_queryset(self):
-        return CandidateProfile.objects.filter(user__is_staff=False, status=2), getAllNumbers()
+        hr_user = HrProfile.objects.get(user__id=self.request.user.id)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user), getAllNumbers(self.request)
 
 class ApprovedView(IndexView):
 
     id = 2
     def get_queryset(self):
-        return CandidateProfile.objects.filter(user__is_staff=False, status=3), getAllNumbers()
+        hr_user = HrProfile.objects.get(user__id=self.request.user.id)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user), getAllNumbers(self.request)
 
 class RejectedView(IndexView):
 
     id = 3
     def get_queryset(self):
-        return CandidateProfile.objects.filter(user__is_staff=False, status=4), getAllNumbers(), LeaderProfile.objects.all()
+        hr_user = HrProfile.objects.get(user__id=self.request.user.id)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user), getAllNumbers(self.request), LeaderProfile.objects.all()
 
 ## User login view
 class UserFormView(View):
@@ -140,6 +144,7 @@ def sendTo(request):
     candidate_id = request.POST["candidate_id"]
     candidate = CandidateProfile.objects.get(pk=candidate_id)
     candidate.leader = LeaderProfile.objects.get(email=email_to)
+    candidate.hr_responsible = HrProfile.objects.get(user__id=request.user.id)
     candidate.status = 2
     candidate.save()
 
