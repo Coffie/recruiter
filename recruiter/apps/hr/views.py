@@ -46,7 +46,7 @@ class UntreatedView(IndexView):
 
         ## vanlig bruker atributter aksesseres ved: user.user.atributt
         ## hrprifl bruker aksesseres ved: user.attributt
-        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None), getAllNumbers(), LeaderProfile.objects.all()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None).order_by('-flagged', 'user__date_joined'), getAllNumbers(), LeaderProfile.objects.all()
 
 
 class InProcessView(IndexView):
@@ -192,6 +192,19 @@ def notifyLeader(request):
         fail_silently=False,
     )
     return redirect('hr:inProcess')
+
+
+def flagCandidate(request):
+
+    candidate = CandidateProfile.objects.get(pk=request.POST["candidate_id"])
+    if candidate.flagged:
+        candidate.flagged = False
+    else:
+
+        candidate.flagged = True
+    candidate.save()
+
+    return redirect('hr:index')
 
 
 

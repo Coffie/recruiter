@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^reject$', views.rejectCandidate, name="reject-candidate"),
     url(r'^notify', views.notifyLeader, name="notify"),
     url(r'^showCV', views.showCV, name="showCV"),
+    url(r'^flag', views.flagCandidate, name="flag"),
 
 ]

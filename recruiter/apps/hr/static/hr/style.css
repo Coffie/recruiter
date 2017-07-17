@@ -37,6 +37,17 @@
 
 }
 
+#unflagged_candidate {
+
+    background-color: #ffffff;
+}
+
+#flagged_candidate {
+
+    background-color: #7dacba;
+}
+
+
 #send_notification {
 
     width: 130px;

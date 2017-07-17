@@ -1,5 +1,18 @@
 <div class="caption">
 
+    <form action="{% url 'hr:flag' %}" method="post" style="float: right;">
+        {% csrf_token %}
+        <input type="hidden" name="candidate_id" value="{{ candidate.user.id }}">
+        <button type="submit" class="btn btn-default btn-sm"
+                {% if candidate.flagged %}
+                    id="flagged_candidate"
+                {% else %}
+                    id = "unflagged_candidate"
+                {% endif %}>
+            <span class="glyphicon glyphicon-flag"></span>
+        </button>
+    </form>
+
     {%  include 'hr/detail-base.html' %}
 
     <div class="thumbnail" id="candidateInfoDiv">
