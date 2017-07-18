@@ -11,7 +11,7 @@
                     <form class="form-horizontal" action="{% url 'hr:sendTo' %}" method="post" enctype="multipart/form-data">
 
                         {% csrf_token %}
-
+                        <input type="hidden" name="view_id" value="{{ view.id }}">
                         <input type="hidden" name="candidate_id" value="{{ candidate.user.id }}">
                         <div class="thumbnail">
 

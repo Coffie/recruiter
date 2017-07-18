@@ -12,6 +12,7 @@
                     <form class="form-horizontal" action="{% url 'hr:newCandidate' %}" method="post" enctype="multipart/form-data">
 
                         {% csrf_token %}
+                        <input type="hidden" name="view_id" value="{{ view.id }}">
                         <div class="form-group">
                             <div class="col-sm-offset-0 col-sm-10">
 

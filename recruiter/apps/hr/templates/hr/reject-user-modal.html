@@ -13,7 +13,7 @@
                     <form class="form-horizontal" action="{% url 'hr:reject-candidate' %}" method="post" enctype="multipart/form-data">
 
                         {% csrf_token %}
-                        <input type="hidden" name="page_id" value="{{ view.id }}">
+                        <input type="hidden" name="view_id" value="{{ view.id }}">
                         <div class="thumbnail">
 
                             <div class="form-group">
