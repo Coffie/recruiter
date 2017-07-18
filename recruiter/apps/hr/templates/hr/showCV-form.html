@@ -1,6 +1,7 @@
 <form action="{% url 'hr:showCV' %}" method="get" style="display: inline">
     {% csrf_token %}
     <input type="hidden" name="candidate_cv" value="{{ candidate.cv }}">
+    <input type="hidden" name="view_id" value="{{ view.id }}">
     <button type="submit" class="btn btn-default btn-sm" id="see_cv"
             {% if not candidate.cv %}
                 disabled

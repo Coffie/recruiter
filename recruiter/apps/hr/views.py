@@ -12,6 +12,7 @@ from recruiter.apps.candidate.models import CandidateProfile
 from .models import LeaderProfile
 from django.conf import settings
 import webbrowser
+import datetime
 
 
 def getAllNumbers(request):
@@ -52,7 +53,7 @@ class InProcessView(IndexView):
     id = 1
     def get_queryset(self):
         hr_user = HrProfile.objects.get(user__id=self.request.user.id)
-        return CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user), getAllNumbers(self.request)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user).order_by('date_sent'), getAllNumbers(self.request)
 
 class ApprovedView(IndexView):
 
@@ -106,11 +107,14 @@ def showCV(request):
     ##webbrowser.open(url, new=new)
     # open an HTML file on my own (Windows) computer
     cv_path = request.GET["candidate_cv"]
+    view_id = int(request.GET["view_id"])
+    views = ['hr:index', 'hr:inProcess', 'hr:approved', 'hr:rejected']
     if cv_path and request.user.is_staff:
         new = 2  # open in a new tab, if possible
         url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
         webbrowser.open(url, new=new)
-    return redirect('hr:index')
+
+    return redirect(views[view_id])
 
 # logs out the user
 def logoutView(request):
@@ -151,6 +155,7 @@ def sendTo(request):
     candidate.hr_responsible = HrProfile.objects.get(user__id=request.user.id)
     candidate.status = 2
     candidate.hr_comment = hr_comment
+    candidate.date_sent = datetime.datetime.now().date()
     candidate.save()
 
     send_mail(

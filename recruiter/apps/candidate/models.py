@@ -23,6 +23,7 @@ class CandidateProfile(models.Model):
     hr_responsible = models.ForeignKey(HrProfile, default=None, blank=True, null=True, related_name='hr_responsible')
     flagged = models.BooleanField(default=False)
     hr_comment = models.CharField(max_length=100, default="", blank=True, null=True)
+    date_sent = models.DateField(default=None, blank=True, null=True)
 
     def __str__(self):
         return self.user.get_full_name()

@@ -4,7 +4,12 @@
 
     <div class="thumbnail" id="candidateInfoDiv">
         <label id="candidateInfo">
-            Tekst om kandidaten osv
+            {% if candidate.hr_comment %}
+                {{ candidate.hr_comment }}
+
+            {% else %}
+                ...
+            {% endif %}
 
         </label>
     </div>
