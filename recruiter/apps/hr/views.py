@@ -10,9 +10,6 @@ from .models import CandidateRegistration
 from .models import HrProfile
 from recruiter.apps.candidate.models import CandidateProfile
 from .models import LeaderProfile
-from django.http import HttpResponse
-from reportlab.pdfgen import canvas
-from easy_pdf.views import PDFTemplateView
 from django.conf import settings
 import webbrowser
 
@@ -109,12 +106,11 @@ def showCV(request):
     ##webbrowser.open(url, new=new)
     # open an HTML file on my own (Windows) computer
     cv_path = request.GET["candidate_cv"]
-    if cv_path:
+    if cv_path and request.user.is_staff:
         new = 2  # open in a new tab, if possible
         url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
         webbrowser.open(url, new=new)
     return redirect('hr:index')
-
 
 # logs out the user
 def logoutView(request):
@@ -125,13 +121,17 @@ def logoutView(request):
 def regUser(request):
 
     email = request.POST['cand_email']
+    email_hr = request.user.email
+    message = request.POST["welcome_text"]
+    link = request.POST["register_link"]
+    message += "\nKlikk på følgende link for å registrere deg:\n" + link
     new_registration = CandidateRegistration(email=email, registered_by=request.user)
     new_registration.save()
 
     send_mail(
-        'Test',
-        'Dette er en test',
-        'no-reply@dnb.no',
+        'Registrering',
+         message,
+         email_hr,
         [email],
         fail_silently=False,
     )
@@ -145,10 +145,12 @@ def sendTo(request):
     subject = request.POST["subject"]
     text_candidate = request.POST["text_candidate"]
     candidate_id = request.POST["candidate_id"]
+    hr_comment = request.POST["hr_comment"]
     candidate = CandidateProfile.objects.get(pk=candidate_id)
     candidate.leader = LeaderProfile.objects.get(email=email_to)
     candidate.hr_responsible = HrProfile.objects.get(user__id=request.user.id)
     candidate.status = 2
+    candidate.hr_comment = hr_comment
     candidate.save()
 
     send_mail(

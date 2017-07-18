@@ -2,10 +2,23 @@
 
     {%  include 'hr/detail-base.html' %}
 
+    <div class="thumbnail" id="candidateInfoDiv">
+        <label id="candidateInfo">
+            {% if candidate.hr_comment %}
+                {{ candidate.hr_comment }}
+
+            {% else %}
+                ...
+            {% endif %}
+
+        </label>
+    </div>
+
     <div id="sent_to_leader">
 
         <h6 id="sent_to_leader">Sendt til {{ candidate.leader }}</h6>
     </div>
+
     <div id="sent_to_leader_date">
         <h6 id="sent_to_leader_date">26.06.17</h6>
     </div>

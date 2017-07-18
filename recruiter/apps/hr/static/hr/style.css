@@ -3,6 +3,8 @@
     background: white url("images/background2.png");
 }*/
 
+
+
 .navbar{
 
     border-radius: 0;
@@ -27,6 +29,9 @@
     border-radius: 10px;
     box-shadow: 0 0 0 0.5px #000;
     border: 1px transparent;
+    align-content: flex-end;
+    text-align-last: left;
+    text-align: justify;
 }
 
 #see_cv, #give_rejection, #send_leader, #send_hr {
@@ -69,6 +74,24 @@
     height: 60px;
 }
 
+#regUserDiv {
+
+    overflow: scroll;
+    height: 170px;
+}
+#regUserText {
+
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 0px #000;
+    border: 1px;
+    align-content: flex-end;
+    text-align-last: left;
+    text-align: justify;
+    white-space: nowrap;
+}
+
 #sent_to_leader, #sent_to_leader_date {
 
     /*width: 50%;
@@ -76,3 +99,11 @@
     font-weight: 400;
 }
 
+#hr_comment {
+
+    width:100%;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 0.5px #000;
+    border: 1px;
+}
