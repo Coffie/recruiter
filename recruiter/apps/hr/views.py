@@ -11,8 +11,6 @@ from .models import HrProfile
 from recruiter.apps.candidate.models import CandidateProfile
 from .models import LeaderProfile
 from django.http import HttpResponse
-from reportlab.pdfgen import canvas
-from easy_pdf.views import PDFTemplateView
 from django.conf import settings
 import webbrowser
 

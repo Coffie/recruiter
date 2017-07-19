@@ -1,4 +1,4 @@
-from .forms import UserForm, CvForm, UserLoginForm
+from .forms import UserForm, CvForm, UserLoginForm, EditForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
@@ -93,3 +93,22 @@ def upload_cv(request):
         return redirect('candidate:profile')
     context = {'form': form}
     return render(request, 'candidate/upload_cv.html', context)
+
+def edit_profile(request):
+    form = EditForm(request.POST or None, instance=get_user_model())
+    if request.method == "POST":
+        profile = form.save(commit=False)
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
+        phone = form.cleaned_data['phone']
+        profile.save()
+        return redirect(request('candidate:profile'))
+    context = {'form': form}
+    return render(request, 'candidate/edit_profile.html', context)
+
+@login_required
+def cv_view(request, cv_path):
+    response = HttpResponse()
+    response["Content-Disposition"] = ""
+    response['X-Accel-Redirect'] = "/media/{0}".format(cv_path)
+    return response
