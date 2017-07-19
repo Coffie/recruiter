@@ -5,6 +5,7 @@
 {% if not user.is_authenticated %}
 	<meta http-equiv="refresh" content"0; url={% url 'candidate:login_user' %}" />
 {% endif %}
+{% csrf_token %}
 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
 	<div class="container-field">
 		<div class="navbar-header">
@@ -23,9 +24,12 @@
 		<div class="collapse navbar-collapse" id="topNavBar">
 			<ul class="nav navbar-nav">
 				<li class="">
-					<a href="">
-						Min CV
-					</a>
+					<input type="hidden" name="candidate_cv" value="{{ candidate.cv }}">
+					{% if candidate.cv %}
+						<a href="{% url 'candidate:cv_view' %}">Min CV</a>
+					{% else %}
+						<a href="">Min CV</a>
+					{% endif %}
 				</li>
 				<li class="">
 					<a href="">

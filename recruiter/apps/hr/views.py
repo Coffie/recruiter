@@ -10,6 +10,7 @@ from .models import CandidateRegistration
 from .models import HrProfile
 from recruiter.apps.candidate.models import CandidateProfile
 from .models import LeaderProfile
+from django.http import HttpResponse
 from django.conf import settings
 import webbrowser
 import datetime

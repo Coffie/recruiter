@@ -15,7 +15,7 @@
 						<dt>Telefon:</dt>
 						<dd>{{ user.get_phone }}</dd>
 					</dl>
-					<a href="" class="btn btn-info" role="button">Rediger info</a>
+					<a href="{% url 'candidate:edit_profile' %}" class="btn btn-info" role="button">Rediger info</a>
 					<a href="{% url 'candidate:upload' %}" class="btn btn-danger" role="button">Last opp CV</a>
 				</div>
 			</div>
