@@ -130,8 +130,13 @@ def regUser(request):
     email = request.POST['cand_email']
     email_hr = request.user.email
     message = request.POST["welcome_text"]
-    link = request.POST["register_link"]
+    if not message:
+        message = "Velkommen til DNBs cv register. Vennligst følg linken for å lage bruker, eller logg inn om du allerede har laget bruker.\n\n"
+    # link = request.POST["register_link"]
+    link = "https://coffie.no/register/" + email
+    log_link = "https://coffie.no/candidate/login"
     message += "\nKlikk på følgende link for å registrere deg:\n" + link
+    message += "\nFor å logge inn:\n" + log_link
     new_registration = CandidateRegistration(email=email, registered_by=request.user)
     new_registration.save()
 
