@@ -1,0 +1,159 @@
+body{
+
+}
+
+#regint{
+	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif*/;
+	font-family: "Segoe UI",Arial,sans-serif;
+	font-size: 30px;
+	font-weight: 400
+	color: #008789;
+	text-indent: 200px;
+}
+
+#inform{
+	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+	font-family: "Segoe UI",Arial,sans-serif;
+	font-size: 15px;
+	font-weight: 470;
+}
+
+#fill{
+		font-family: "Segoe UI",Arial,sans-serif;
+	font-size: 13px;
+	font-weight: 300;
+}
+
+.panel-heading{
+	font-family: "Segoe UI",Arial,sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+/*#registrerknapp{
+	font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;*/
+	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+	/*font-size: 10px;
+	line-height: 0.1;
+    background-color: #008789;
+    border: none;
+    color: white;
+    padding: 13px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+}*/
+#registrer_interesse{
+	content: center;
+	width: 150%;
+	font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+	font-size: 30px;
+	line-height: 0.1;
+    background-color: #FFFFFF;
+    color: #008789;
+    text-indent: 230px;
+}
+#usboks1{
+	content: center;
+	width: 150%;
+	font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+	font-size: 11px;
+	line-height: 0.1;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+#inputfield{
+	border-radius: 30px;
+	padding: 5px 20px;
+	border-width: 1px;
+}
+
+
+.navbar-header, #topNavBar, #headtekst{
+	background-color: #FFFFFF;
+	color: #008789;
+}
+
+#butt{
+	font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+	font-size: 11px;
+	line-height: 0.1;
+    background-color: #FFFFFF;
+    color: #008789;
+    border: solid #C0C0C0 1px;
+    padding: 13px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+}
+
+#butt_green{
+	font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+	font-size: 11px;
+	line-height: 0.1;
+    background-color: #008789;
+    color: #FFFFFF;
+    border: solid #008789 1px;
+    padding: 13px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+}
+
+
+#omriss{
+    border: solid #C0C0C0 1px;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+    width: 1000px;
+}
+
+#brukinf{
+	border: solid #C0C0C0 1px bottom;
+	background-color: #FFFFFF;
+}
+
+#login_kandidat{
+	width: 150%;
+	font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+	font-size: 30px;
+	line-height: 0.1;
+    background-color: #FFFFFF;
+    color: #008789;
+    text-indent: 230px;
+}
+
+div#wrapperHeader {
+ width: 50%;
+ height: 110px; 
+ background:url(dnblogo.png) no-repeat; 
+ text-align:right;
+}
+
+div#wrapperHeader div#header {
+ width: 100px;
+ height: 80px;
+ margin: 0 auto;
+}
+
+div#wrapperHeader div#header img {
+ width: 200%; 
+ height: 100px; 
+ margin: 0 auto;
+}
+
+
+
+

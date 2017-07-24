@@ -1,10 +1,10 @@
 <div id="send{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
 
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" id="omriss_mail">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3>Send til leder</h3>
+                    <h3 id="send_til_leder">Send til leder</h3>
                 </div>
                 <div class="modal-body">
 
@@ -16,7 +16,7 @@
                         <div class="thumbnail">
 
                             <div class="form-group">
-                                <div class="col-sm-offset-0 col-sm-10" style="display: inline">
+                                <div class="col-sm-offset-0 col-sm-10" style="display: inline" id="fra_til">
                                     Fra:
                                     <input id="from_hr_email" type="email" class="form-control" name="send_from_email" value="{{ user.email }}"/>
                                 </div>
@@ -24,13 +24,13 @@
                                 <br/>
                                 <br/>
                                 <br/>
-                                <div class="col-sm-offset-0 col-sm-10" style="display: inline">
+                                <div class="col-sm-offset-0 col-sm-10" style="display: inline" id="fra_til">
 
                                     Til:
                                     <select name="leader" class="actionlist">
                                         {% for leader in query_set.2 %}
 
-                                            <option name="{{ leader.email }}" value={{ leader.email }}>{{ leader.get_full_name }}</option>
+                                            <option name="{{ leader.email }}" value={{ leader.email }} id="informasjonsfelt_mail">{{ leader.get_full_name }}</option>
                                         {% endfor %}
                                     </select>
                                     <!-- <input placeholder="til@email.no" id="to_leader_email" type="email" class="form-control" name="send_to_email" value=""/> -->
@@ -39,7 +39,7 @@
                             </div>
                             <br/>
                             <div class="form-group">
-                                <div class="col-sm-offset-0 col-sm-10">
+                                <div class="col-sm-offset-0 col-sm-10" id="informasjonsfelt_mail">
 
                                     <input placeholder="Emne: " id="emne" type="text" class="form-control" name="subject" value=""/>
                                 </div>
@@ -59,7 +59,7 @@
 
                             <div class="col-sm-offset-0 col-sm-10">
 
-                                <button id="buttonCandEmail" type="submit" class="btn btn-success">
+                                <button id="butt_green" type="submit" class="btn btn-success">
                                     <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp; Send
                                 </button>
                             </div>
@@ -69,7 +69,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Avbryt</button>
                 </div>
             </div>
         </div>

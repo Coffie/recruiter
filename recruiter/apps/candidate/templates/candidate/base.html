@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+	<div id="wrapperHeader">
+		<div id="header">
+			<p><a href="{% url 'candidate:profile' %}" id="header" img src="dnblogo.png"></a></p>
+		</div>
+	</div>
 	<head>
 		<meta charset="UTF-8">
 		<title>{% block title %}DNB Recruiter{% endblock %}</title>
 		{% load staticfiles %}
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'candidate/style.css' %}" />
 	</head>
 	<body>
 		{% block body %}

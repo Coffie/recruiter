@@ -3,10 +3,10 @@
 <div id="reject{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
 
         <div class="modal-dialog">
-            <div class="modal-content">
+			<div class="modal-content" id="omriss_mail">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3>Send avslag</h3>
+                    <h3 id="send_til_leder">Send avslag</h3>
                 </div>
                 <div class="modal-body">
 
@@ -17,13 +17,13 @@
                         <div class="thumbnail">
 
                             <div class="form-group">
-                                <div class="col-sm-offset-0 col-sm-10" style="display: inline">
+								<div class="col-sm-offset-0 col-sm-10" style="display: inline" id="fra_til">
                                     Fra:
                                     <input id="from_hr_email" type="email" class="form-control" name="from_email" value="{{ user.email }}"/>
                                 </div>
                                 <br/>
                                 <br/>
-                                <div class="col-sm-offset-0 col-sm-10" style="display: inline">
+								<div class="col-sm-offset-0 col-sm-10" style="display: inline" id="fra_til">
 
                                     Til:
                                     <input id="reject_cand_email" type="email" class="form-control" name="to_email" value="{{ candidate.user.email }}">
@@ -49,7 +49,7 @@
 
                             <div class="col-sm-offset-0 col-sm-10">
 
-                                <button id="buttonRejectCand" type="submit" class="btn btn-success">
+                                <button id="butt_green" type="submit" class="btn btn-success">
                                     <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp; Send
                                 </button>
                             </div>
@@ -59,7 +59,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Avbryt</button>
                 </div>
             </div>
         </div>

@@ -5,16 +5,14 @@
 {% if not user.is_authenticated %}
 	<meta http-equiv="refresh" content"0; url={% url 'candidate:login_user' %}" />
 {% endif %}
-{% csrf_token %}
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-light" style="background-color: #C0C0C0;">
 	<div class="container-field">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-				<span class="icon-bar" style="background-color: #000000;"></span>
-				<span class="icon-bar" style="background-color: #000000;"></span>
-				<span class="icon-bar" style="background-color: #000000;"></span>
+				<span class="icon-bar" style="background-color: #F5F5F5;"></span>
+				<span class="icon-bar" style="background-color: #F5F5F5;"></span>
+				<span class="icon-bar" style="background-color: #F5F5F5;"></span>
 			</button>
-			<a class="navbar-brand" href="">DNB</a>
 		</div>
 	</div>
 	<div class="containter-field">
@@ -24,24 +22,21 @@
 		<div class="collapse navbar-collapse" id="topNavBar">
 			<ul class="nav navbar-nav">
 				<li class="">
-					<input type="hidden" name="candidate_cv" value="{{ candidate.cv }}">
-					{% if candidate.cv %}
-						<a href="{% url 'candidate:cv_view' %}">Min CV</a>
-					{% else %}
-						<a href="">Min CV</a>
-					{% endif %}
+					<a href="{% url 'candidate:cv_view' user_id=user.id %}" id="headtekst">
+						My CV
+					</a>
 				</li>
 				<li class="">
-					<a href="">
-						Rediger profil
+					<a href="" id="headtekst">
+						Edit Profile
 					</a>
 				</li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li class="">
-					<a href="{% url 'candidate:logout_user' %}">
-						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logg ut
+					<a href="{% url 'candidate:logout_user' %}" id="headtekst">
+						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Log out
 					</a>
 				</li>
 			</ul>

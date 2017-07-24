@@ -1,12 +1,12 @@
 <div id="notify{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
 
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" id="omriss_mail">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3>Send påminnelse?</h3>
+                    <h3 id="send_paminnelse">Send påminnelse?</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="paminnelse_kandidat">
                     <form class="form-horizontal" action="{% url 'hr:notify' %}" method="post" enctype="multipart/form-data">
 
                         {% csrf_token %}
@@ -35,7 +35,7 @@
 
                             <div class="col-sm-offset-0 col-sm-10">
 
-                                <button id="buttonCandEmail" type="submit" class="btn btn-success">
+                                <button id="butt_green" type="submit" class="btn btn-success">
                                     <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp; Ok, send påminnelse
                                 </button>
                             </div>
@@ -45,7 +45,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Avbryt</button>
                 </div>
             </div>
         </div>

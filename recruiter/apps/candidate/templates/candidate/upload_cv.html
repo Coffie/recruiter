@@ -5,11 +5,11 @@
 	{% include 'candidate/form_template.html' %}
 	<div class="form-group">	
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-secondary">Last opp</button>
+			<button type="submit" class="btn btn-secondary" id="butt">Upload</button>
 		</div>
 	</div>
 </form>
-<p><a href="{% url 'candidate:profile' %}">Tilbake</a></p>
+<p><a href="{% url 'candidate:profile' %}" id="butt">Back</a></p>
 
 {% endblock %}
 
