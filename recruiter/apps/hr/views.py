@@ -110,11 +110,13 @@ def showCV(request):
     # open an HTML file on my own (Windows) computer
     cv_path = request.GET["candidate_cv"]
     view_id = int(request.GET["view_id"])
-
     if cv_path and request.user.is_staff:
-        new = 2  # open in a new tab, if possible
-        url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
-        webbrowser.open(url, new=new)
+        url = "media/" + cv_path
+        pdf = open(url, "rb").read()
+        # new = 2  # open in a new tab, if possible
+        # url = "file://"+ settings.MEDIA_ROOT + "/" + request.GET["candidate_cv"]
+        # webbrowser.open(url, new=new)
+        return HttpResponse(pdf, content_type='application/pdf')
 
     return redirect(views[view_id])
 
