@@ -1,4 +1,4 @@
-<div class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
+<div id="showTerms" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
 	<div class="modal-dialog">
 		<div class="modal-content" id="omriss_mail">
 			<div class="modal-header">
@@ -7,12 +7,12 @@
 			</div>
 			<div class="modal-body" id="personvern_tekst">
 				{% csrf_token %}
-				<p>Her er personvernstekst</p>
+				<p>Her er personvernstekst.....</p>
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Decline</button>
-				<button type="button" class="btn btn-default" id="butt_green" action="">Accept</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Lukk</button>
+				<!-- <button type="button" class="btn btn-default" id="butt_green" action="">Accept</button> -->
 			</div>
 		</div>
 	</div>

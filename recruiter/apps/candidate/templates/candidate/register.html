@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<div class="container-fluid">
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
 	<div class="row">
 		<div id="usboks">
 			<div class="panel panel-default">
@@ -13,19 +13,52 @@
 						<p><strong>{{ error_message }}</strong></p>
 					{% endif %}
 					<br>
+
 					<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data" 
 					id="usboks1">
 						{% csrf_token %}
 						{% include 'candidate/form_template.html' %}
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+
+                                <form action="">
+                                    <input onchange="valueChanged()" onclick="valueChanged()" type="checkbox" name="approve" id="approved" value="approve"> <label> Jeg godtar DNB´s</label>
+                                    <a href="" data-target="#showTerms" data-toggle="modal" type="submit"> personvernerklæring </a>
+                                    {% include 'candidate/terms.html' %}
+                                </form>
+
+                                <br/>
+                            </div>
+                        </div>
+
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-success" id="butt_green">Register</button>
+							<div class="col-sm-offset-3 col-sm-10">
+
+								<button name="button_reg" type="submit" class="btn btn-success" id="butt_green">Register</button>
+
 							</div>
+
 						</div>
+
+                        <script type="text/javascript">
+
+                            function valueChanged() {
+                                if($('#approved').is(":checked"))
+                                    $("#butt_green").show();
+
+                                else
+                                    $("#butt_green").hide();
+                            }
+                        </script>
+                        <body onload="valueChanged()"></body>
+
 					</form>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 {% endblock %}
