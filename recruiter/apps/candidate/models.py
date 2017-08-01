@@ -18,7 +18,7 @@ class CandidateProfile(models.Model):
             ('4', 'Rejected'),
             )
     status = models.CharField(max_length=1, choices=STATUS_FIELD, default=1)
-    cv = models.FileField(upload_to=user_directory_path, blank=True, null=True)
+    cv = models.FileField(upload_to=user_directory_path, null=True)
     leader = models.ForeignKey(LeaderProfile, default=None, blank=True, null=True)
     hr_responsible = models.ForeignKey(HrProfile, default=None, blank=True, null=True, related_name='hr_responsible')
     flagged = models.BooleanField(default=False)

@@ -154,6 +154,23 @@ div#wrapperHeader div#header img {
  margin: 0 auto;
 }
 
+#privacyPolicy {
+    width: 110px;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 30px;
+}
 
+#personvern_tekst {
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    display: table;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    line-height:1.5em;
+}
 
 
