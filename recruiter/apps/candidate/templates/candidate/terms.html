@@ -7,7 +7,84 @@
 			</div>
 			<div class="modal-body" id="personvern_tekst">
 				{% csrf_token %}
-				<p>Her er personvernstekst.....</p>
+				<p id="">
+                    Opplysningene i søknaden og CV-en din blir lagret i vår database kun for å kunne vurdere deg for en potensiell rekrutteringsprosessen.
+                    Vi garanterer at personlige opplysninger ikke vil bli benyttet i andre sammenhenger eller av andre organisasjoner.
+                    Vi garanterer også at DNB vil benytte opplysningene kun i forbindelse med screening i forkant av en eventuell rekrutteringsprosess.
+
+                    Opplysningene vil ikke bli lagret lenger enn nødvendig for at vi skal kunne oppfylle våre kontraktsmessige forpliktelser overfor deg.
+
+                    Vennligst vær oppmerksom på at alle søkere må godkjenne vår personvernerklæring før de sender inn sin CV og interesse for DNB.
+
+                </p>
+                <br/>
+                <h4>Begrunnelse for innsamling av info</h4>
+                <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    <label>Samtykke eller annet rettslig grunnlag:</label>
+                    <br/>
+                    Behandling av personopplysninger skal være basert på frivillig, uttrykkelig og informert samtykke.
+                    Derfor bes hver enkelt kandidat som registrerer seg i systemet om å godkjenne personvernserklæringen.
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    <label>Formålsbestemthet:</label>
+                    <br/>
+                    Personopplysninger skal bare samles inn for bestemte formål og disse må være legitime.
+                    Dessuten må formålene for den videre behandling av opplysningene ikke være uforenlige med de formål opplysningene opprinnelig ble samlet inn for.
+                    Personopplys­ninger skal heller ikke utleveres til andre uten at det foreligger samtykke eller et annet rettslig grunnlag for utlevering.
+                    Derfor opplyses alle kandidater som registreres i systemet om at opplysningene deres vil brukes for rekrutteringsmessige formål, og at de ikke vil lagres lenger enn nødvendig.
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    <label>Relevans og minimalitet:</label>
+                    <br/>
+                    Personopplysninger skal bare innhentes, lagres og behandles i den grad det er nødvendig for å oppnå formålet.
+                    Derfor er informasjonen som innsamles om kandidatene minimal.
+                    Dessuten vil innsamlede data som ikke lenger er nødvendige for det angitte formål må slettes eller anonymiseres.
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    <label>Fullstendighet og kvalitet:</label>
+                    <br/>
+                    Personopplysninger må være relevante, korrekte og fullstendige ut fra formål de skal benyttes til.
+                    Dette innebærer at opplysninger som behandles skal være oppdaterte og nøyaktige, og ikke inneholde irrelevant informasjon.
+                    Opplysninger som er lagret i et register brukes ofte som grunnlag til å fatte beslutninger om de registrerte.
+                    Dette prinsippet sikrer at beslutningene ikke blir fattet på et ufullstendig eller feilaktig grunnlag.
+                </p>
+
+                <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    <label>Informasjon og innsyn:</label>
+                    <br/>
+                    Som registrert har du rett til å bli informert om innsamling og bruk av dine personopplysninger.
+                    Du har også rett til kostnadsfritt å få innsyn i de opplysninger som er registrert.
+                    Du skal også gis mulighet til å få slettet eller korrigert opplysninger som er feilaktige eller misvisende.
+                </p>
+                <br/>
+                <h4>Sletterutiner:</h4>
+                <p>
+                    Instruks fra datatilsynet; “For å unngå at det samles inn unødvendige personopplysninger,
+                    særlig i automatiserte systemer, må virksomheten allerede i designfasen være bevisst på å ta personvernhensyn.
+                    Det vil si at kun de opplysningene som er nødvendig ut fra formålet med den enkelte behandling samles inn.
+                    Virksomheten må også sørge for å ha gode rutiner for sletting av personopplysninger den ikke lenger trenger.”
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    Når HR gir “avslag” til en kandidat, blir dette det samme som å slette kandidatene fra systemet.
+                    All informasjon om kandidaten vil da slettes fra databasen.
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    Når HR overfører kandidat til Successfactors, vil kandidaten slettes helt fra systemet.
+                </p>
+                 <p>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    Etter 6 mnd inaktivitet på en kandidat, vil det komme opp et pushvarsel hos HR hvor HR kan godkjenne at kandidat slettes.
+                </p>
+
+
+
 
 			</div>
 			<div class="modal-footer">
