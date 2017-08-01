@@ -9,50 +9,67 @@ from .models import CandidateProfile
 from django.contrib.auth.decorators import login_required
 from recruiter.apps.hr.models import CandidateRegistration
 from django.core.mail import send_mail
+from django.db import transaction
 
 def register(request, mail):
     reg_mail = get_object_or_404(CandidateRegistration, email=mail)
-    form = UserForm(request.POST or None)
-    context = {
-            'form': form,
+    data = {
+            'email': reg_mail.email,
+            'first_name': reg_mail.first_name,
+            'last_name': reg_mail.last_name,
             }
-    if form.is_valid():
-        user = form.save(commit=False)
-        email = form.cleaned_data['email']
-        # password = form.cleaned_data['password']
-        # password2 = form.cleaned_data['password2']
-        first_name = form.cleaned_data['first_name']
-        last_name = form.cleaned_data['last_name']
-        phone = form.cleaned_data['phone']
-        if not reg_mail:
-            context = {
-                    'form': form,
-                    'error_message': "User not in approved list"
-                    }
-            return render(request, 'candidate/register.html', context)
-        password = BaseUserManager().make_random_password()
-        user.set_password(password)
-        message = "Thank you for registering. If you have not uploaded your cv or need to edit your information, please follow the link below. Use the email you registered with and the following password:\n"
-        message += password
-        message += "\n\nhttps://coffie.no/candidate/login"
-        send_mail(
-                'DNB profil',
-                message,
-                "no-reply@coffie.no",
-                [email],
-                fail_silently=False,
-                )
-        user.save()
-        user = authenticate(username=email, password=password)
-        if user is not None:
-            if user.is_active:
+    
+    form_cv_initial = CvForm(prefix="cv")
+    form_initial = UserForm(initial=data)
+    context = {
+            'form': form_initial,
+            'cv_form': form_cv_initial,
+            }
+
+    # Validate form when a user is trying to register and save the data
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        cv_form = CvForm(request.POST, request.FILES, prefix="cv")
+        if form.is_valid():
+            user = form.save(commit=False)
+
+            email = form.cleaned_data['email']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+
+            # Check that the user uses the email registered earlier
+            if email != reg_mail.email:
+                context['error_message'] = "Error validating email."
+                return render(request, 'candidate/register.html', context)
+
+            # Generate random password for user
+            password = BaseUserManager().make_random_password()
+            user.set_password(password)
+
+            user.save()
+            # user = authenticate(username=email, password=password)
+            if user is not None and user.is_active:
                 login(request, user)
-                profile = CandidateProfile(user=request.user)
+                profile = cv_form.save(commit=False)
+                profile.user = user
                 profile.save()
-                return redirect('candidate:upload')
+
+
+            # Email user the password and a registration confirmation
+            message = "Thank you for registering. If you have not uploaded your cv or need to edit your information, please follow the link below. Use the email you registered with and the following password:\n"
+            message += password
+            message += "\n\nhttps://coffie.no/candidate/login"
+            send_mail(
+                    'DNB profil',
+                    message,
+                    "no-reply@coffie.no",
+                    [email],
+                    fail_silently=False,
+                    )
+            return redirect('candidate:profile')
+    
     return render(request, 'candidate/register.html', context)
 
-# @login_required(login_url='/candidate/login')
 class ProfileView(generic.ListView):
     model = get_user_model()
     template_name = 'candidate/profile_info.html'
@@ -88,18 +105,6 @@ def logout_user(request):
     logout(request)
     return redirect('candidate:login_user')
 
-
-# def easy_upload(request):
-#     form = UploadForm(request.POST or None, request.FILES or None)
-#     if form.is_valid():
-#         upload = form.save(commit=False)
-#         upload.upload = request.FILES['upload']
-#         upload.save()
-#         return HttpResponse("<h3>It's uploaded</h3>")
-#     context = {'form': form}
-#     return render(request, 'candidate/cv_upload.html', context)
-
-# @login_required(login_url='/candidate/login')
 def upload_cv(request):
     instance = get_object_or_404(CandidateProfile.objects.filter(pk=request.user.id))
     form = CvForm(request.POST or None, request.FILES or None, instance=instance)
@@ -108,18 +113,6 @@ def upload_cv(request):
         return redirect('candidate:profile')
     context = {'form': form}
     return render(request, 'candidate/upload_cv.html', context)
-
-def edit_profile(request):
-    form = EditForm(request.POST or None, instance=get_user_model())
-    if request.method == "POST":
-        profile = form.save(commit=False)
-        first_name = form.cleaned_data['first_name']
-        last_name = form.cleaned_data['last_name']
-        phone = form.cleaned_data['phone']
-        profile.save()
-        return redirect(request('candidate:profile'))
-    context = {'form': form}
-    return render(request, 'candidate/edit_profile.html', context)
 
 @login_required
 def cv_view(request, user_id):

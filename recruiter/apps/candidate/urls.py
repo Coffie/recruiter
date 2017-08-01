@@ -11,5 +11,4 @@ urlpatterns = [
         url(r'^candidate/profile/$', views.ProfileView.as_view(), name='profile'),
         url(r'^candidate/logout/$', views.logout_user, name='logout_user'),
         url(r'^media/cvdir/users/(?P<user_id>[0-9]+)/.*$', views.cv_view, name='cv_view'),
-        url(r'^candidate/edit_profile/$', views.edit_profile, name='edit_profile'),
         ]

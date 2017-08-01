@@ -24,6 +24,7 @@ class CandidateProfile(models.Model):
     flagged = models.BooleanField(default=False)
     hr_comment = models.CharField(max_length=100, default="", blank=True, null=True)
     date_sent = models.DateField(default=None, blank=True, null=True)
+    comment = models.CharField(max_length=500, default="", blank=True, null=True)
 
     def __str__(self):
         return self.user.get_full_name()
