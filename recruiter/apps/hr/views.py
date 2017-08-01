@@ -102,6 +102,12 @@ class UserFormView(View):
 
         return render(request, self.template_name, {'form': form})
 
+def leaderCV(request):
+    cv_path = request.GET["candidate_cv"]
+    url = "media/" + cv_path
+    pdf = open(url, "rb").read()
+    return HttpResponse(pdf, content_type='application/pdf')
+
 def showCV(request):
 
     # open a public URL, in this case, the webbrowser docs
@@ -130,6 +136,8 @@ def regUser(request):
 
     view_id = int(request.POST["view_id"])
     email = request.POST['cand_email']
+    first_name = request.POST['first_name']
+    last_name = request.POST['last_name']
     email_hr = request.user.email
     message = request.POST["welcome_text"]
     if not message:
@@ -139,7 +147,7 @@ def regUser(request):
     log_link = "https://coffie.no/candidate/login"
     message += "\nKlikk på følgende link for å registrere deg:\n" + link
     message += "\nFor å logge inn:\n" + log_link
-    new_registration = CandidateRegistration(email=email, registered_by=request.user)
+    new_registration = CandidateRegistration(email=email, first_name=first_name, last_name=last_name, registered_by=request.user)
     new_registration.save()
 
     send_mail(
@@ -231,5 +239,21 @@ def flagCandidate(request):
     return redirect('hr:index')
 
 
-
+def candidate_leader(request, mail):
+    if request.method == 'POST':
+        selected_candidate = CandidateProfile.objects.get(pk=request.POST["id_candidate"])
+        if 'accept' in request.POST:
+            selected_candidate.status = 3
+            selected_candidate.save()
+        if 'reject' in request.POST:
+            selected_candidate.status = 4
+            selected_candidate.save()
+            
+    leaders = LeaderProfile.objects.all()
+    candidates = CandidateProfile.objects.filter(leader_id=mail).filter(status=2).order_by('date_sent')
+    context = {
+            'candidates': candidates,
+            'leaders': leaders,
+            }
+    return render(request, 'hr/leader_view.html', context)
 

@@ -1,9 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-
-# Create your models here.
-
 class HrProfile(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -17,6 +14,8 @@ class HrProfile(models.Model):
 class CandidateRegistration(models.Model):
 
     email = models.EmailField(max_length=100, primary_key=True)
+    first_name = models.CharField(max_length=40, null=True)
+    last_name = models.CharField(max_length=40, null=True)
     registered_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     def __str__(self):
         return self.email

@@ -1,0 +1,28 @@
+{% extends 'hr/basefile-styling.html' %}
+
+{% block base %}
+
+{% for candidate in candidates %}
+<div class="candidateProfile">
+	<div class="container">
+		<h5>{{ candidate.user.get_full_name }}</h5>
+		<p>{{ candidate.hr_comment }}</p>
+		<form action="{% url 'hr:leaderCV' %}" method="get" style="display: inline">
+			{% csrf_token %}
+			<input type="hidden" name="candidate_cv" value="{{ candidate.cv }}">
+			<button type="submit" class="btn btn-default btn-sm" id="see_cv">
+				<span class="glyphicon glyphicon-download-alt"></span>
+				Se CV
+			</button>
+		</form>
+		<form class="form-horizontal" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input id="id_candidate" type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
+			<button id="butt_green" name="accept" type="submit" class="btn btn-success">Godta kandidat</button>
+			<button id="butt_green" name="reject" type="submit" class="btn btn-success">Avslå kandidat</button>
+		</form>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
