@@ -24,6 +24,7 @@ def register(request, mail):
     context = {
             'form': form_initial,
             'cv_form': form_cv_initial,
+            'name': reg_mail.first_name,
             }
 
     # Validate form when a user is trying to register and save the data
@@ -66,7 +67,7 @@ def register(request, mail):
                     [email],
                     fail_silently=False,
                     )
-            return redirect('candidate:profile')
+            return redirect('candidate:finished')
     
     return render(request, 'candidate/register.html', context)
 
@@ -123,3 +124,7 @@ def cv_view(request, user_id):
     # response["Content-Disposition"] = ""
     # response['X-Accel-Redirect'] = "media/{0}".format(url)
     # return response
+
+def finished(request):
+    context = {}
+    return render(request, 'candidate/finished_registration.html', context)
