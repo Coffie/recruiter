@@ -19,8 +19,8 @@ urlpatterns = [
     url(r'^showCV', views.showCV, name="showCV"),
     url(r'^leaderCV', views.leaderCV, name="leaderCV"),
     url(r'^flag', views.flagCandidate, name="flag"),
-    url(r'^(?P<mail>.*\@.*$)', views.candidate_leader, name="leader_view"),
     url(r'^home/$', views.homeView, name="home"),
     url(r'^homeRegCand/$', views.homeRegCand, name="homeRegCand"),
-
+    url(r'^(?P<mail>.*@.*)/$', views.candidate_leader, name="leader_new"),
+    url(r'^leader/reject/$', views.leader_reject, name="leader_reject"),
 ]
