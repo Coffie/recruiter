@@ -1,0 +1,50 @@
+<div id="leaderReject{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
+	
+	<div class="modal-dialog">
+		<div class="modal-content" id="omriss_mail">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 id="send_til_leder">Ikke aktuell kandidat</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" action="{% url 'hr:leader_reject' %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
+					<input type="hidden" name="mail" value="{{ mail }}">
+
+					<div class="thumbnail">
+						
+						<div class="form-group">
+							<div class="col-sm-offset-0 col-sm-10" style="display: inline" id="kommentar">
+								Kommentar:
+								<input id="leader_comment" type="text" class="form-control" name="leader_comment" value=""/>
+							</div>
+						</div>
+	<script>
+$('leader_comment').keyup(function() {
+	if(filled()) $('#butt_green').removeAttr('disabled');
+});
+
+function filled() {
+	var isFilled = true;
+	$('input').each(function() {
+		if($(this).val() == '') isFilled = false;
+	});
+	return isFilled;
+}
+	</script>
+						<br/>
+						<div class="form-group">
+							<div class="col-sm-offset-0 col-sm-10">
+								<button id="butt_green" type="submit" class="btn btn-success" name="reject" disabled="disabled" />
+									Send tilbakemelding
+								</button>
+							</div>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

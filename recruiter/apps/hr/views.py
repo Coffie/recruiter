@@ -244,16 +244,41 @@ def candidate_leader(request, mail):
         selected_candidate = CandidateProfile.objects.get(pk=request.POST["id_candidate"])
         if 'accept' in request.POST:
             selected_candidate.status = 3
+            if request.POST["comment"]:
+                selected_candidate.comment = request.POST["comment"]
             selected_candidate.save()
-        if 'reject' in request.POST:
-            selected_candidate.status = 4
+        if 'other_leader' in request.POST:
+            selected_candidate.status = 1
+            if request.POST["comment"]:
+                selected_candidate.comment = request.POST["comment"]
+            if selected_candidate.comment == None:
+                selected_candidate.comment = ""
+            selected_candidate.comment += "\nVideresendt av {0}".format(selected_candidate.leader_id)
+            selected_candidate.leader_id = None
             selected_candidate.save()
             
-    leaders = LeaderProfile.objects.all()
+    # leaders = LeaderProfile.objects.all()
     candidates = CandidateProfile.objects.filter(leader_id=mail).filter(status=2).order_by('date_sent')
+    approved = CandidateProfile.objects.filter(leader_id=mail).filter(status=3).order_by('date_sent')
     context = {
             'candidates': candidates,
-            'leaders': leaders,
+            'approved': approved,
+            'mail': mail,
             }
     return render(request, 'hr/leader_view.html', context)
+
+# def leader_approved(request, mail):
+#     candidates = CandidateProfile.objects.filter(leader_id=mail).filter(status=3).order_by('date_sent')
+#     context = {
+#             'candidates': candidates,
+#             'mail': mail,
+#             }
+#     return render(request, 'hr/leader_approved.html', context)
+
+def leader_reject(request):
+    selected_candidate = CandidateProfile.objects.get(pk=request.POST["id_candidate"])
+    selected_candidate.comment = request.POST["leader_comment"]
+    selected_candidate.status = 4
+    selected_candidate.save()
+    return redirect('hr:leader_new', mail=request.POST["mail"])
 
