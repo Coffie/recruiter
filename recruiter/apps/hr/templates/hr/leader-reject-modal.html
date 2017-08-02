@@ -20,23 +20,10 @@
 								<input id="leader_comment" type="text" class="form-control" name="leader_comment" value=""/>
 							</div>
 						</div>
-	<script>
-$('leader_comment').keyup(function() {
-	if(filled()) $('#butt_green').removeAttr('disabled');
-});
-
-function filled() {
-	var isFilled = true;
-	$('input').each(function() {
-		if($(this).val() == '') isFilled = false;
-	});
-	return isFilled;
-}
-	</script>
 						<br/>
 						<div class="form-group">
 							<div class="col-sm-offset-0 col-sm-10">
-								<button id="butt_green" type="submit" class="btn btn-success" name="reject" disabled="disabled" />
+								<button id="butt_green" type="submit" class="btn btn-success" name="reject"/>
 									Send tilbakemelding
 								</button>
 							</div>
