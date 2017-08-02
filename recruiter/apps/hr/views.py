@@ -257,3 +257,33 @@ def candidate_leader(request, mail):
             }
     return render(request, 'hr/leader_view.html', context)
 
+def homeView(request):
+    return render(request, 'hr/home-view.html')
+
+def homeRegCand(request):
+
+    first_name = request.POST["first_name"]
+    last_name = request.POST["last_name"]
+    cand_phone = request.POST["cand_phone"]
+    cand_email = request.POST["cand_email"]
+    comment_why = request.POST["comment_why"]
+    is_proff = request.POST.get("is_proff", False)
+    if is_proff == "on":
+        is_proff = True
+
+    is_tips = request.POST.get("tips", False)
+    if is_tips == "on":
+        is_tips = True
+
+    mail_from = request.POST["tips_mail_from"]
+
+    if (is_tips and len(mail_from) == 0) or len(cand_email) == 0:
+        return HttpResponse("<html><body><h3> Kandidat-mail må fylles ut. Dersom tips er aktivert må dette mailfeltet også fylles ut </h3></body></html>")
+
+    candidate_reg = CandidateRegistration(email=cand_email, first_name=first_name, last_name=last_name,
+                                          registered_by=None, is_tips=is_tips, is_proff=is_proff,
+                                          whytext=comment_why, from_mail=mail_from, phone=cand_phone)
+
+    candidate_reg.save()
+
+    return render(request, 'hr/reg-confirm-modal.html')

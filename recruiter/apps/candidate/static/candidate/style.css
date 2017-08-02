@@ -175,4 +175,10 @@ div#wrapperHeader div#header img {
     line-height:1.5em;
 }
 
+#kand_personalia {
+
+    width: 100%;
+    border-top: solid #008789 1px;
+    height: auto;
+}
 

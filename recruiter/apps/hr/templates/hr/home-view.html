@@ -1,0 +1,142 @@
+{% extends 'hr/basefile-styling.html' %}
+
+
+{% block base %}
+
+    <div style="margin-left: 40px">
+        {% include 'candidate/base.html' %}
+
+    </div>
+
+    <br/>
+
+    <div class="modal-content" style="margin-left: 40px;margin-right: 40px;" id="omriss_reg_candidate">
+
+        <div class="modal-header">
+
+            <h3 id="home_reg_header">Registrer kandidat</h3>
+
+        </div>
+        <div class="modal-body">
+
+            <br/>
+
+            <form class="form-horizontal" action="{% url 'hr:homeRegCand' %}" method="post">
+
+                {% csrf_token %}
+                <input type="hidden" name="view_id" value="{{ view.id }}">
+                <h4 id="home_reg_header">Personalia til kandidat</h4>
+                <div id="kand_personalia">
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-0 col-sm-10">
+                            <br id="small_space"/>
+                            <input placeholder="Fornavn" id="home_firstname" type="text" class="form-control" name="first_name" value=""/>
+                            <br id="small_space"/>
+                            <input placeholder="Etternavn" id="home_lastname" type="text" class="form-control" name="last_name" value=""/>
+                            <br id="small_space"/>
+                            <input placeholder="Telefon" id="home_tlfkand" type="text" maxlength="8" class="form-control" name="cand_phone" value=""/>
+                            <br id="small_space"/>
+                            <input placeholder="Kandidat-email" id="home_candemail" type="email" class="form-control" name="cand_email" value=""/>
+
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <h4 id="home_reg_header">Hvorfor</h4>
+                <div id="kand_personalia">
+                    <br id="small_space"/>
+                    <label>Fortell oss om hvorfor du tipser om denne kandidaten:</label>
+                    <div class="thumbnail" id="comment_why_div">
+                        <textarea id="comment_why" name="comment_why">
+                        </textarea>
+                    </div>
+                    <input type="checkbox" name="is_proff" id="proff"> <label id="check_label">Kandidaten er profesjonell</label>
+                </div>
+
+                <br/>
+                <h4 id="home_reg_header">Tips</h4>
+                <div id="kand_personalia">
+
+                    <br/>
+
+                    <input type="checkbox" name="tips" id="tips"> <label id="check_label">Tips</label>
+
+                    <div id="mail_div">
+
+                        <br id="small_space"/>
+                        <input placeholder="Hvem-tipser-mail" id="tips_mail_from" type="email" class="form-control" name="tips_mail_from" value=""/>
+                        <br id="small_space"/>
+                        <!--<input placeholder="Til-mail" id="tips_mail_to" type="email" class="form-control" name="tips_mail_to" value=""/>
+                        <br id="small_space"/>
+                        <div id="div_mail_bottom"></div>
+                        <br id="small_space"/>
+                        <div class="thumbnail">
+                            <textarea id="comment_why"></textarea>
+                        </div>-->
+
+                    </div>
+
+                </div>
+                <br/>
+
+                <h4 id="home_reg_header">Hva skjer videre?</h4>
+                <div id="kand_personalia">
+                    <br/>
+                    <p>Du hører fra oss!</p>
+
+                </div>
+                <br/>
+                <div class="form-group">
+
+                    <div class="col-sm-offset-0 col-sm-10">
+
+                        <button id="butt_green" type="submit" value="submit">Registrer</button>
+                    </div>
+
+                </div>
+                <br/>
+
+            </form>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <form action={% url 'hr:login' %}>
+
+                <button id="button_home_login" type="submit">Logg inn</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function triggerChange(){
+            $("#tips").trigger("change");
+        }
+
+        $("#tips").change(function() {
+
+            var isChecked = document.getElementById("tips").checked;
+
+            if(isChecked) {
+
+                document.getElementById("mail_div").style.visibility = 'visible';
+                document.getElementById("mail_div").style.height = "100%";
+
+            } else {
+
+                document.getElementById("mail_div").style.height = "0%";
+                document.getElementById("mail_div").style.visibility = 'hidden';
+                $("#mail_div").height(0);
+            }
+        });
+
+        triggerChange();
+    </script>
+
+{% endblock %}

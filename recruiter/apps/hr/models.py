@@ -16,7 +16,13 @@ class CandidateRegistration(models.Model):
     email = models.EmailField(max_length=100, primary_key=True)
     first_name = models.CharField(max_length=40, null=True)
     last_name = models.CharField(max_length=40, null=True)
-    registered_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=8, default="", blank=True, null=True)
+    registered_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    is_tips = models.BooleanField(default=False)
+    is_proff = models.BooleanField(default=False)
+    whytext = models.CharField(max_length=400, default="", blank=True, null=True)
+    from_mail = models.EmailField(max_length=100, default="", blank=True, null=True)
+
     def __str__(self):
         return self.email
 
