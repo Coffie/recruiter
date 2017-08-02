@@ -35,3 +35,8 @@ class EditForm(forms.ModelForm):
     class Meta: 
         model = get_user_model()
         fields = ['first_name', 'last_name', 'phone']
+
+class EditCvForm(forms.ModelForm):
+    class Meta:
+        model = CandidateProfile
+        fields = ['cv',]

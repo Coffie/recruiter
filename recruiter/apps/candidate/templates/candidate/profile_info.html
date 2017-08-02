@@ -1,5 +1,8 @@
 {% extends 'candidate/profile.html' %}
 {% block info %}
+{% if not user.is_authenticated %}
+<meta http-equiv="refresh" content="0; url={% url 'candidate:login_user' %}" />
+{% endif %}
 
 <div class="container-fluid">
 	<!--<div class="row">-->
@@ -18,8 +21,12 @@
 						<dd id="fill">{{ user.get_phone }}</dd>
 						<br>
 					</dl>
-					<a href="" class="btn btn-info" role="button" id="butt">Edit Info</a>
-					<a href="{% url 'candidate:upload' %}" class="btn btn-danger" role="button" id="butt">Upload CV</a>
+					<button class="btn btn-info" id="butt" data-toggle="modal" data-target="#deleteProfile{{ user.id }}">
+						Delete Profile
+					</button>
+					{% include 'candidate/delete-user-modal.html' %}
+					<!-- <a href="" class="btn btn-info" role="button" id="butt">Delete Profile</a> -->
+					<a href="{% url 'candidate:upload' %}" class="btn btn-danger" role="button" id="butt">Change CV</a>
 				</div>
 			</div>
 		</div>
