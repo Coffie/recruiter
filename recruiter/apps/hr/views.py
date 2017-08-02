@@ -19,12 +19,16 @@ views = ['hr:index', 'hr:inProcess', 'hr:approved', 'hr:rejected']
 
 def getAllNumbers(request):
 
-    hr_user = HrProfile.objects.get(user__id=request.user.id)
-    number_untreated = len(CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None))
-    number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user))
-    number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user))
-    number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user))
-    return number_untreated, number_in_process, number_accepted, number_rejected
+    try:
+        hr_user = HrProfile.objects.get(user__id=request.user.id)
+        number_untreated = len(CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None))
+        number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user))
+        number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user))
+        number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user))
+        return number_untreated, number_in_process, number_accepted, number_rejected
+    except:
+
+        return 0,0,0,0
 
 class IndexView(generic.ListView):
 

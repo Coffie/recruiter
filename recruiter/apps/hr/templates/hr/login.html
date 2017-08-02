@@ -2,39 +2,43 @@
 
 {% block base %}
 
-
-<div class="container-fluid">
-
-    <div class="col-sm-12 col-md-7">
-            <h2>DNB HR Login</h2>
-            <div class="panel panel-default">
-
-                <div class="panel-body">
-
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-
-                        {% csrf_token %}
-                        {%  include 'hr/login-template.html' %}
-
-                        <div class="form-group">
-
-                            <div class="col-sm-offset-2 col-sm-10">
-
-                                <button type="submit" class="btn btn-success">Login</button>
-                            </div>
-
-                        </div>
-
-                    </form>
-                </div>
-
-            </div>
+    <div style="margin-left: 35px">
+        {% include 'candidate/base.html' %}
 
     </div>
+    <br/>
+    <br id="small_space"/>
+    <div class="container-fluid">
 
-</div>
+        <div class="col-sm-12 col-md-7">
+                <h4 style="margin-left: 1%" id="home_reg_header">HR Login</h4>
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+
+                        {% if error_message %}
+                            <p><strong>{{ error_message }}</strong></p>
+                        {% endif %}
+                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+                            {%  include 'hr/login-template.html' %}
+
+                            <div class="form-group">
+
+                                <div class="col-sm-offset-2 col-sm-10">
+
+                                    <button id="butt_green" type="submit" class="btn btn-success">Login</button>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
 
 {% endblock %}
