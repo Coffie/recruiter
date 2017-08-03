@@ -1,0 +1,71 @@
+<div id="detailCand{{ candidate.id }}" class="modal fade" role="dialog">
+
+        <div class="modal-dialog">
+			<div class="modal-content" id="omriss_mail">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 id="send_til_leder">
+                        {% if candidate.is_tips %}
+                            Detaljer om tips
+                        {% else %}
+                            Detaljer om kandidat
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="modal-body">
+
+                    <label style="float: left">Kandidat email:  <label id="check_label">{{ candidate.email }}</label>  </label>
+                    <br/>
+                    <br/>
+                    <label style="float: left">Fornavn:  <label id="check_label">{{ candidate.first_name }}</label>  </label>
+                    <br/>
+                    <br/>
+                    <label style="float: left">Etternavn:  <label id="check_label">{{ candidate.last_name }}</label>  </label>
+                    <br/>
+                    <br/>
+                    <label style="float: left">Telefon:  <label id="check_label">{{ candidate.phone }}</label>  </label>
+                    <br/>
+                    <br/>
+                    {% if candidate.is_proff %}
+                        <label style="float: left">Profesjonell  <span class="glyphicon glyphicon-ok"></span>  </label>
+                    {% else %}
+                        <label style="float: left">Ikke profesjonell  <span class="glyphicon glyphicon-remove"></span>  </label>
+                    {% endif %}
+                    <br/>
+                    <br/>
+                    <label style="float: left">Sendt inn av:  <label id="check_label">{{ candidate.from_mail }}</label>  </label>
+                    <br/>
+                    <br/>
+                    <label id="home_reg_header">Hvorfor tips</label>
+                    <div id="div_mail_bottom"></div>
+                    <br id="small_space"/>
+
+                    <div class="candidateDetailWhyDiv">
+
+                        <label id="check_label">
+                            {{ candidate.whytext }}
+                        </label>
+                    </div>
+
+                    <br/>
+                    <label id="home_reg_header">Mail til kandidat</label>
+                    <div id="div_mail_bottom"></div>
+                    <br id="small_space"/>
+
+                    <div class="candidateDetailWhyDiv">
+
+                        <label id="check_label">
+                            {{ candidate.current_mail_to_cand }}
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Ok</button>
+                </div>
+            </div>
+        </div>
+
+
+</div>

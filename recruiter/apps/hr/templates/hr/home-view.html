@@ -43,6 +43,21 @@
                     </div>
                 </div>
                 <br/>
+                <h4 id="home_reg_header">Sendt fra</h4>
+
+                <div id="kand_personalia">
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-0 col-sm-10">
+
+                            <br id="small_space"/>
+                            <input placeholder="Din mail" id="home_candemail" type="email" class="form-control" name="mail_from" value=""/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br/>
                 <h4 id="home_reg_header">Hvorfor</h4>
                 <div id="kand_personalia">
                     <br id="small_space"/>
@@ -54,28 +69,29 @@
                     <input type="checkbox" name="is_proff" id="proff"> <label id="check_label">Kandidaten er profesjonell</label>
                 </div>
 
+                <input type="checkbox" name="is_contact" id="is_contact"> <labe id="check_label">Jeg har vært i kontakt med kandidaten</labe>
+
+                <div id="mail_div">
+
+                    <br id="small_space"/>
+                    <br id="small_space"/>
+                    <label>Mail til kandidat</label>
+                    <div id="div_mail_bottom"></div>
+                    <br id="small_space"/>
+                    <div class="thumbnail">
+                        <textarea id="comment_why" name="mail_to_cand"></textarea>
+                    </div>
+
+                </div>
+
                 <br/>
                 <h4 id="home_reg_header">Tips</h4>
                 <div id="kand_personalia">
 
                     <br/>
 
-                    <input type="checkbox" name="tips" id="tips"> <label id="check_label">Tips</label>
-
-                    <div id="mail_div">
-
-                        <br id="small_space"/>
-                        <input placeholder="Hvem-tipser-mail" id="tips_mail_from" type="email" class="form-control" name="tips_mail_from" value=""/>
-                        <br id="small_space"/>
-                        <!--<input placeholder="Til-mail" id="tips_mail_to" type="email" class="form-control" name="tips_mail_to" value=""/>
-                        <br id="small_space"/>
-                        <div id="div_mail_bottom"></div>
-                        <br id="small_space"/>
-                        <div class="thumbnail">
-                            <textarea id="comment_why"></textarea>
-                        </div>-->
-
-                    </div>
+                    <input type="checkbox" name="tips" id="tips"> <label id="check_label">Jeg tipser om kandidaten</label>
+                    <br/>
 
                 </div>
                 <br/>
@@ -116,12 +132,12 @@
     <script>
 
         function triggerChange(){
-            $("#tips").trigger("change");
+            $("#is_contact").trigger("change");
         }
 
-        $("#tips").change(function() {
+        $("#is_contact").change(function() {
 
-            var isChecked = document.getElementById("tips").checked;
+            var isChecked = document.getElementById("is_contact").checked;
 
             if(isChecked) {
 

@@ -1,0 +1,42 @@
+<div class="caption" id="her_detaljer">
+
+    {%  include 'hr/tips-detail-base.html' %}
+
+    <div class="thumbnail" id="candidateInfoDiv">
+        <label id="candidateInfo">
+            {% if candidate.whytext %}
+                {{ candidate.whytext }}
+
+            {% else %}
+                ...
+            {% endif %}
+
+        </label>
+    </div>
+
+    <div id="sent_to_leader">
+
+        <h6 id="sent_to_leader">Sendt inn av: {{ candidate.from_mail }}</h6>
+    </div>
+
+    <button data-target="#regUser{{ candidate.id }}" type="submit" class="btn btn-default btn-sm" id="butt_paminnelse" data-toggle="modal">
+        Registrer
+        <span class="glyphicon glyphicon-user"></span>
+    </button>
+
+    <button data-target="#detailCand{{ candidate.id }}" type="submit" class="btn btn-default btn-sm" id="butt_paminnelse" data-toggle="modal">
+        Se detaljer
+        <span class="glyphicon glyphicon-list-alt"></span>
+    </button>
+
+    <button data-target="#deleteTips{{ candidate.id }}" type="submit" class="btn btn-default btn-sm" id="butt_paminnelse" data-toggle="modal">
+        Slett
+        <span class="glyphicon glyphicon-trash"></span>
+    </button>
+
+    <br/>
+</div>
+
+{% include 'hr/register-user-modal.html' %}
+{% include 'hr/detail-user-modal.html' %}
+{% include 'hr/delete-tips-modal.html' %}

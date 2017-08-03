@@ -1,0 +1,40 @@
+<div id="deleteTips{{ candidate.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
+
+    <div class="modal-dialog">
+        <div class="modal-content" id="omriss_mail">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 id="send_til_leder">
+                    {% if candidate.is_tips %}
+                        Slett tips?
+                    {% else %}
+                        Slett kandidat?
+                    {% endif %}
+                </h3>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" action="{% url 'hr:deleteTips' %}" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    <input type="hidden" name="view_id" value="{{ view.id }}">
+                    <input type="hidden" name="pk" value="{{ candidate.pk }}">
+                    {% include 'hr/tips-detail-base.html' %}
+                    <div class="form-group">
+
+                        <button id="butt_green" type="submit" class="btn btn-success">
+                            Slett <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Avbryt</button>
+            </div>
+        </div>
+    </div>
+
+</div>

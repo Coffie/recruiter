@@ -29,6 +29,15 @@
                             {% elif view.id == 3 %}
 
                                 {%  include 'hr/rejected-detail.html' %}
+
+                            {% elif view.id == 4 %}
+
+                                {%  include 'hr/tips-detail.html' %}
+
+                            {% elif view.id == 5 %}
+
+                                {%  include 'hr/unregistered-detail.html' %}
+
                             {% else %}
 
                                 <h3>En feil har oppstått</h3>
@@ -51,6 +60,5 @@
         </div>
 
     </div>
-
 
 {% endblock %}

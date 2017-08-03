@@ -23,4 +23,8 @@ urlpatterns = [
     url(r'^homeRegCand/$', views.homeRegCand, name="homeRegCand"),
     url(r'^(?P<mail>.*@.*)/$', views.candidate_leader, name="leader_new"),
     url(r'^leader/reject/$', views.leader_reject, name="leader_reject"),
+    url(r'^tips/$', views.TipsView.as_view(), name="tips"),
+    url(r'^unregistered/$', views.UnregisteredView.as_view(), name="unregistered"),
+    url(r'^registerTips/$', views.registerTips, name="registerTips"),
+    url(r'^deleteTips/$', views.deleteTips, name="deleteTips"),
 ]
