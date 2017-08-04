@@ -4,60 +4,92 @@
 {% block body %}
 
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
-	<div class="row">
+	<div id="behind" class="row">
 		<div id="usboks">
-			<div class="panel panel-default">
+			<div class="panel panel-default" id="wrap">
+
+				<!-- BACKGROUND PICTURE -->
+				<div>
+					<img id="back_picture" src="/static/candidate/barcode2.jpg">
+				</div>
+
+				<!-- GREEN BOX -->
 				<div class="panel-body">
-					<h3 id="registrer_interesse">Register Profile</h3>
-					{% if error_message %}
+
+					<!-- UPPER HALF-->
+					<img src="/static/candidate/75_prosent.png" id="upload_image">
+					<hr id="mid_line">
+					<div id="registrer_interesse"><h3 >Upload your CV</h3></div>
+
+
+					<!-- LOWER HALF -->
+					<div style="margin: 5% 0 0 15%;">
+						{% if name %}
+						<p>Hello {{ name }}!</p>
+						{% else %}
+						<p>Hello!</p>
+						{% endif %}
+						<p> Du er snart ferdig med søknaden din! Last opp CV'en din her og kontroller at navn og e-postadresse er riktig.</p>
+					</div>
+
+					<div id="prefilled_text">
+						{% if error_message %}
 						<p><strong>{{ error_message }}</strong></p>
-					{% endif %}
-					<br>
+						{% endif %}
 
-					<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data" 
-					id="usboks1">
-						{% csrf_token %}
-						{% include 'candidate/form_template.html' %}
-						{% for field in cv_form %}
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<span class="text-danger small">{{ field.error }}</span>
+						<form role="form" method="post" enctype="multipart/form-data">
+							<!--  PREFLLED: NAME, EMAIL -->
+							{% for field in form %}
+							<div class="row">
+								<div>
+									<span class="text-danger small">{{ field.error }}</span>
+								</div>
+								<label class="control-label col-sm-6">{{ field.label_tag }}</label>
+								<div class="input col-sm-3">{{ field }}</div>
 							</div>
-							<label class="control-label col-sm-2">{{ field.label_tag }}</label>
-							<div class="col-sm-10">{{ field }}</div>
-						</div>
-						{% endfor %}
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-success" id="butt_green" >Register</button>
+							{% endfor %}
+
+
+							<!-- UPLOAD CV -->
+							{% for field in cv_form %}
+							<div class="row" style="margin-top: 10px;">
+								<label class="control-label col-sm-6">{{ field.label_tag }}</label>
+								<div class="input col-sm-3">{{ field }}</div>
 							</div>
-						</div>
+							{% endfor %}
 
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
 
-                                <form action="">
-                                    <input onchange="valueChanged()" onclick="valueChanged()" type="checkbox" name="approve" id="approved" value="approve"> <label> Jeg godtar DNB´s</label>
-                                    <a href="" data-target="#showTerms" data-toggle="modal" type="submit"> personvernerklæring </a>
-                                    {% include 'candidate/terms.html' %}
-                                </form>
+							<!-- REGISTER BUTTON -->
+							<div class="col-sm-4" style="margin-top: 15px;">
+								<div>
+									<button type="submit" class="btn btn-success" id="butt_green" >Register</button>
+								</div>
+							</div>
 
-                                <br/>
-                            </div>
-                        </div>
-                        <script type="text/javascript">
+							<!-- PERSONVERN-->
+							<div id="personvern">
+			                    <div class="col-sm-12">
+			                        <form action="">
+			                            <input onchange="valueChanged()" onclick="valueChanged()" type="checkbox" name="approve" id="approved" value="approve"> <label> Jeg godtar DNB´s</label>
+			                            <a href="" data-target="#showTerms" data-toggle="modal" type="submit" style="color:#fcfcfc;"> personvernerklæring </a>
+			                            {% include 'candidate/terms.html' %}
+			                        </form>
+			                        <script type="text/javascript">
+			                            function valueChanged() {
+			                                if($('#approved').is(":checked"))
+			                                    $("#butt_green").show();
 
-                            function valueChanged() {
-                                if($('#approved').is(":checked"))
-                                    $("#butt_green").show();
+			                                else
+			                                    $("#butt_green").hide();
+			                            }
+			                        </script>
+			                        <body onload="valueChanged()"></body>
+			                    </div>
+		                	</div>
 
-                                else
-                                    $("#butt_green").hide();
-                            }
-                        </script>
-                        <body onload="valueChanged()"></body>
 
-					</form>
+						</form>
+                     </div>
 
 				</div>
 			</div>
