@@ -12,4 +12,5 @@ urlpatterns = [
         url(r'^candidate/logout/$', views.logout_user, name='logout_user'),
         url(r'^media/cvdir/users/(?P<user_id>[0-9]+)/.*$', views.cv_view, name='cv_view'),
         url(r'^candidate/finished/$', views.finished, name='finished'),
+        url(r'^candidate/deleteprofile/$', views.delete_profile, name="delete-profile"),
         ]

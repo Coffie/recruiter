@@ -1,4 +1,4 @@
-from .forms import UserForm, CvForm, UserLoginForm, EditForm
+from .forms import UserForm, CvForm, UserLoginForm, EditForm, EditCvForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import BaseUserManager
@@ -108,7 +108,7 @@ def logout_user(request):
 
 def upload_cv(request):
     instance = get_object_or_404(CandidateProfile.objects.filter(pk=request.user.id))
-    form = CvForm(request.POST or None, request.FILES or None, instance=instance)
+    form = EditCvForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
         form.save()
         return redirect('candidate:profile')
@@ -121,10 +121,15 @@ def cv_view(request, user_id):
     url = "media/" + candidate.cv.name
     pdf = open(url, "rb").read()
     return HttpResponse(pdf, content_type='application/pdf')
-    # response["Content-Disposition"] = ""
-    # response['X-Accel-Redirect'] = "media/{0}".format(url)
-    # return response
 
 def finished(request):
     context = {}
     return render(request, 'candidate/finished_registration.html', context)
+
+def delete_profile(request):
+    if request.method == 'POST':
+        context = {}
+        user_id = request.POST["id_user"]
+        user = get_user_model().objects.get(pk=user_id)
+        user.delete()
+        return render(request, 'candidate/deleted.html', context)
