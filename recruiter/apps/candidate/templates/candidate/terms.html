@@ -3,11 +3,12 @@
 		<div class="modal-content" id="omriss_mail">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h3 id="personvern">Privacy Policy</h3>
+				<h3 id="home_reg_header">Privacy Policy</h3>
 			</div>
 			<div class="modal-body" id="personvern_tekst">
 				{% csrf_token %}
-				<p id="">
+                <br/>
+				<label id="home_reg_header">
                     Opplysningene i søknaden og CV-en din blir lagret i vår database kun for å kunne vurdere deg for en potensiell rekrutteringsprosessen.
                     Vi garanterer at personlige opplysninger ikke vil bli benyttet i andre sammenhenger eller av andre organisasjoner.
                     Vi garanterer også at DNB vil benytte opplysningene kun i forbindelse med screening i forkant av en eventuell rekrutteringsprosess.
@@ -16,8 +17,9 @@
 
                     Vennligst vær oppmerksom på at alle søkere må godkjenne vår personvernerklæring før de sender inn sin CV og interesse for DNB.
 
-                </p>
+                </label>
                 <br/>
+                <!--
                 <h4>Begrunnelse for innsamling av info</h4>
                 <p>
                     <span class="glyphicon glyphicon-asterisk"></span>
@@ -81,7 +83,7 @@
                  <p>
                     <span class="glyphicon glyphicon-asterisk"></span>
                     Etter 6 mnd inaktivitet på en kandidat, vil det komme opp et pushvarsel hos HR hvor HR kan godkjenne at kandidat slettes.
-                </p>
+                </p>-->
 
 
 
