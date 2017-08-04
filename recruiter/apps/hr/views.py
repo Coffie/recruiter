@@ -25,9 +25,8 @@ def getAllNumbers(request):
         number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user))
         number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user))
         number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user))
-        number_tips = len(CandidateRegistration.objects.filter(is_tips=True, registered_by=None))
-        number_unregistered = len(CandidateRegistration.objects.filter(is_tips=False, registered_by=None))
-        return number_untreated, number_in_process, number_accepted, number_rejected, number_tips, number_unregistered
+        number_tips = len(CandidateRegistration.objects.filter(registered_by=None))
+        return number_untreated, number_in_process, number_accepted, number_rejected, number_tips
     except:
 
         return 0,0,0,0
@@ -81,13 +80,8 @@ class TipsView(IndexView):
 
     id = 4
     def get_queryset(self):
-        return CandidateRegistration.objects.filter(is_tips=True, registered_by=None), getAllNumbers(self.request)
+        return CandidateRegistration.objects.filter(registered_by=None).order_by('date_reg'), getAllNumbers(self.request)
 
-class UnregisteredView(IndexView):
-
-    id = 5
-    def get_queryset(self):
-        return CandidateRegistration.objects.filter(is_tips=False, registered_by=None), getAllNumbers(self.request)
 
 
 ## User login view
@@ -299,26 +293,36 @@ def homeRegCand(request):
 
     first_name = request.POST["first_name"]
     last_name = request.POST["last_name"]
-    cand_phone = request.POST["cand_phone"]
     cand_email = request.POST["cand_email"]
+    #cand_phone = request.POST["cand_phone"]
 
     from_email = request.POST["mail_from"]
+    bm = boolVal(request.POST.get("bm", False))
+    pm = boolVal(request.POST.get("pm", False))
+    itop = boolVal(request.POST.get("itop", False))
+    kom = boolVal(request.POST.get("kom", False))
+
+    work_fields = ""
+
+    if bm:
+        work_fields += "BM"
+    if pm:
+        work_fields += ", PM"
+    if itop:
+        work_fields += ", ITOP"
+    if kom:
+        work_fields += ", KOM"
+
     comment_why = request.POST["comment_why"]
     is_proff = boolVal(request.POST.get("is_proff", False))
-    is_contact = boolVal(request.POST.get("is_contact", False))
-
-    mail_to_cand = request.POST["mail_to_cand"]
-
-    is_tips = boolVal(request.POST.get("tips", False))
     #date_registered = datetime.datetime.now().date()
 
-    if (is_contact and len(mail_to_cand) == 0) or len(cand_email) == 0 or len(from_email) == 0:
-        return HttpResponse("<html><body><h3> Kandidat mail og din mail må fylles ut. Dersom du har vært i kontakt med kandidaten må mailfeltet også fylles </h3></body></html>")
-
+    if len(cand_email) == 0 or len(from_email) == 0:
+        return HttpResponse("<html><body><h3> Din mail-adresse må fylles ut i tilegg til kandidatens epost </h3></body></html>")
+    time_now = datetime.datetime.now().time()
     candidate_reg = CandidateRegistration(email=cand_email, first_name=first_name, last_name=last_name,
-                                          phone=cand_phone, from_mail=from_email, whytext=comment_why,
-                                          is_proff=is_proff, current_mail_to_cand=mail_to_cand,
-                                          registered_by=None, is_tips=is_tips)
+                                          from_mail=from_email, whytext=comment_why,
+                                          is_proff=is_proff, registered_by=None, work_field=work_fields, date_reg=time_now)
     candidate_reg.save()
 
     return render(request, 'hr/reg-confirm-modal.html')
@@ -339,14 +343,9 @@ def registerTips(request):
     ##last_name = request.POST['last_name']
     ##phone_cand = request.POST['phone']
     sent_from = request.POST['from_mail']
-    message = request.POST["cand_email_tips"]
-    custom_message = request.POST['mail_to_cand']
-    is_custom_email = boolVal(request.POST.get("custom_mail", False))
-    if is_custom_email:
-        message = custom_message
-        sent_from = request.user.email
-        if not custom_message:
-            message = "Velkommen til DNBs cv register. Vennligst følg linken for å lage bruker, eller logg inn om du allerede har laget bruker.\n\n"
+    message = request.POST['mail_to_cand']
+    if not message:
+        message = "Velkommen til DNBs cv register. Vennligst følg linken for å lage bruker, eller logg inn om du allerede har laget bruker.\n\n"
 
     link = "https://coffie.no/register/" + email
     log_link = "https://coffie.no/candidate/login"
@@ -377,5 +376,15 @@ def deleteTips(request):
 
     view_id = int(request.POST['view_id'])
     pk = request.POST['pk']
+    email = request.POST['email']
     CandidateRegistration.objects.get(pk=pk).delete()
+
+    send_mail(
+        'Ditt tips',
+        'Kandidaten du tipset om var dessverre ikke aktuell for DNB for øyeblikket',
+        request.user.email,
+        [email],
+        fail_silently=False,
+    )
+
     return redirect(views[view_id])
