@@ -5,11 +5,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 id="send_til_leder">
-                    {% if candidate.is_tips %}
-                        Slett tips?
-                    {% else %}
-                        Slett kandidat?
-                    {% endif %}
+                    Slett tips?
                 </h3>
             </div>
             <div class="modal-body">
@@ -19,11 +15,12 @@
                     {% csrf_token %}
                     <input type="hidden" name="view_id" value="{{ view.id }}">
                     <input type="hidden" name="pk" value="{{ candidate.pk }}">
+                    <input type="hidden" name="email" value="{{ candidate.from_mail }}">
                     {% include 'hr/tips-detail-base.html' %}
                     <div class="form-group">
 
                         <button id="butt_green" type="submit" class="btn btn-success">
-                            Slett <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            Slett <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </button>
 
                     </div>

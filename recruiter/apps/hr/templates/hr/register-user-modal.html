@@ -21,9 +21,7 @@
                                 <br/>
                                 <br/>
                                 <label style="float: left">Etternavn:  <label id="check_label">{{ candidate.last_name }}</label>  </label>
-                                <br/>
-                                <br/>
-                                <label style="float: left">Telefon:  <label id="check_label">{{ candidate.phone }}</label>  </label>
+
 
                                 <input id="candEmail" type="hidden" class="form-control" name="cand_email" value="{{ candidate.email }}"/>
 								<input id="firstName" type="hidden" class="form-control" name="first_name" value="{{ candidate.first_name }}"/>
@@ -38,7 +36,7 @@
 
                         <br id="small_space"/>
 
-                        <label>Mail til kandidat</label>
+                        <label id="home_reg_header">Mail til kandidat</label>
                         <div id="div_mail_bottom"></div>
                         <br id="small_space"/>
 
@@ -49,29 +47,14 @@
                             <label>Til:  <label id="check_label">{{ candidate.email }}</label></label>
                         </div>
 
-                        <div class="thumbnail" id="candidateMailDiv{{ candidate.id }}">
-
-                            <div class="candidateMailDiv" id="candidateMailDiv{{ candidate.id }}">
-                                 <label>Innhold:</label>
-                                 <label id="check_label">
-                                     {{ candidate.current_mail_to_cand }}
-                                 </label>
-                            </div>
-                        </div>
-
-
-
                         <div id="mail_div_tips{{ candidate.id }}">
-                            <label>Din mail:</label>
+                            <label>Innhold:</label>
                             <br id="small_space"/>
                             <div class="thumbnail">
                                 <textarea class="tips_mail_custom" id="tips_mail_custom{{ candidate.id }}" name="mail_to_cand"></textarea>
                             </div>
 
                         </div>
-
-                        <input type="checkbox" name="custom_mail" id="custom_mail{{ candidate.id }}"/>  <label id="check_label">Skriv mailen selv</label>
-                        <br/>
                         <br/>
                         <div class="form-group">
 

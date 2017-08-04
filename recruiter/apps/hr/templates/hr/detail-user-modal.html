@@ -23,20 +23,18 @@
                     <label style="float: left">Etternavn:  <label id="check_label">{{ candidate.last_name }}</label>  </label>
                     <br/>
                     <br/>
-                    <label style="float: left">Telefon:  <label id="check_label">{{ candidate.phone }}</label>  </label>
-                    <br/>
-                    <br/>
+
                     {% if candidate.is_proff %}
-                        <label style="float: left">Profesjonell  <span class="glyphicon glyphicon-ok"></span>  </label>
+                        <label style="float: left">Erfaren  <span class="glyphicon glyphicon-ok"></span>  </label>
                     {% else %}
-                        <label style="float: left">Ikke profesjonell  <span class="glyphicon glyphicon-remove"></span>  </label>
+                        <label style="float: left">Nyutdannet/student  <span class="glyphicon glyphicon-education"></span>  </label>
                     {% endif %}
                     <br/>
                     <br/>
                     <label style="float: left">Sendt inn av:  <label id="check_label">{{ candidate.from_mail }}</label>  </label>
                     <br/>
                     <br/>
-                    <label id="home_reg_header">Hvorfor tips</label>
+                    <label id="home_reg_header">Hvorfor er tipset sendt inn</label>
                     <div id="div_mail_bottom"></div>
                     <br id="small_space"/>
 
@@ -48,17 +46,20 @@
                     </div>
 
                     <br/>
-                    <label id="home_reg_header">Mail til kandidat</label>
-                    <div id="div_mail_bottom"></div>
-                    <br id="small_space"/>
 
-                    <div class="candidateDetailWhyDiv">
+                    {% if candidate.work_field %}
 
-                        <label id="check_label">
-                            {{ candidate.current_mail_to_cand }}
-                        </label>
-                    </div>
+                        <label id="home_reg_header">Kandidaten passer for:</label>
+                        <div id="div_mail_bottom"></div>
+                        <br id="small_space"/>
 
+                        <div class="candidateDetailWhyDiv">
+
+                            <label id="check_label">
+                                {{ candidate.work_field }}
+                            </label>
+                        </div>
+                    {% endif %}
 
                 </div>
                 <div class="modal-footer">

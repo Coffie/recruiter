@@ -35,15 +35,13 @@
                             <br id="small_space"/>
                             <input placeholder="Etternavn" id="home_lastname" type="text" class="form-control" name="last_name" value=""/>
                             <br id="small_space"/>
-                            <input placeholder="Telefon" id="home_tlfkand" type="text" maxlength="8" class="form-control" name="cand_phone" value=""/>
-                            <br id="small_space"/>
-                            <input placeholder="Kandidat-email" id="home_candemail" type="email" class="form-control" name="cand_email" value=""/>
+                            <input placeholder="Kandidat-mail" id="home_candemail" type="email" class="form-control" name="cand_email" value=""/>
 
                         </div>
                     </div>
                 </div>
                 <br/>
-                <h4 id="home_reg_header">Sendt fra</h4>
+                <h4 id="home_reg_header">Informasjon om tipset</h4>
 
                 <div id="kand_personalia">
 
@@ -52,13 +50,28 @@
 
                             <br id="small_space"/>
                             <input placeholder="Din mail" id="home_candemail" type="email" class="form-control" name="mail_from" value=""/>
+                            <br/>
+                            <input type="checkbox" name="is_proff" id="proff"> <label id="check_label">Kandidaten er nyutdannet/student</label>
+                            <br/>
+                            <br id="small_space"/>
+                            <label>Hvor mener du kandidaten passer best?</label>
+                            <br/>
+                            <input type="checkbox" name="bm" id="bm"> <label id="check_label">BM</label>
+                            <br/>
+                            <input type="checkbox" name="pm" id="pm"> <label id="check_label">PM</label>
+                            <br/>
+                            <input type="checkbox" name="itop" id="itop"> <label id="check_label">ITOP</label>
+                            <br/>
+                            <input type="checkbox" name="kom" id="kom"> <label id="check_label">KOM</label>
+
+
                         </div>
                     </div>
 
                 </div>
 
                 <br/>
-                <h4 id="home_reg_header">Hvorfor</h4>
+                <h4 id="home_reg_header">Kort kommentar</h4>
                 <div id="kand_personalia">
                     <br id="small_space"/>
                     <label>Fortell oss om hvorfor du tipser om denne kandidaten:</label>
@@ -66,12 +79,11 @@
                         <textarea id="comment_why" name="comment_why">
                         </textarea>
                     </div>
-                    <input type="checkbox" name="is_proff" id="proff"> <label id="check_label">Kandidaten er profesjonell</label>
                 </div>
 
-                <input type="checkbox" name="is_contact" id="is_contact"> <labe id="check_label">Jeg har vært i kontakt med kandidaten</labe>
+                <!--<input type="checkbox" name="is_contact" id="is_contact"> <labe id="check_label">Jeg har vært i kontakt med kandidaten</labe>-->
 
-                <div id="mail_div">
+                <!--<div id="mail_div">
 
                     <br id="small_space"/>
                     <br id="small_space"/>
@@ -82,24 +94,12 @@
                         <textarea id="comment_why" name="mail_to_cand"></textarea>
                     </div>
 
-                </div>
-
-                <br/>
-                <h4 id="home_reg_header">Tips</h4>
-                <div id="kand_personalia">
-
-                    <br/>
-
-                    <input type="checkbox" name="tips" id="tips"> <label id="check_label">Jeg tipser om kandidaten</label>
-                    <br/>
-
-                </div>
-                <br/>
+                </div>-->
 
                 <h4 id="home_reg_header">Hva skjer videre?</h4>
                 <div id="kand_personalia">
                     <br/>
-                    <p>Du hører fra oss!</p>
+                    <p>Kandidat vil motta en epost med beskjed om å laste opp CV når DNB har godkjent tipset</p>
 
                 </div>
                 <br/>
@@ -107,7 +107,7 @@
 
                     <div class="col-sm-offset-0 col-sm-10">
 
-                        <button id="butt_green" type="submit" value="submit">Registrer</button>
+                        <button id="butt_green" type="submit" value="submit">Send inn tips</button>
                     </div>
 
                 </div>
