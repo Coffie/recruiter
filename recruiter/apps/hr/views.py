@@ -319,10 +319,10 @@ def homeRegCand(request):
 
     if len(cand_email) == 0 or len(from_email) == 0:
         return HttpResponse("<html><body><h3> Din mail-adresse må fylles ut i tilegg til kandidatens epost </h3></body></html>")
-    time_now = datetime.datetime.now().time()
+    time_now = datetime.datetime.now()
     candidate_reg = CandidateRegistration(email=cand_email, first_name=first_name, last_name=last_name,
                                           from_mail=from_email, whytext=comment_why,
-                                          is_proff=is_proff, registered_by=None, work_field=work_fields, date_reg=time_now)
+                                          is_proff=is_proff, registered_by=None, work_field=work_fields, date_reg=str(time_now), is_tips=True)
     candidate_reg.save()
 
     return render(request, 'hr/reg-confirm-modal.html')

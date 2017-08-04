@@ -24,9 +24,9 @@ class CandidateRegistration(models.Model):
     is_proff = models.BooleanField(default=False)
     #current_mail_to_cand = models.CharField(max_length=500, default="", blank=True, null=True)
     registered_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    #is_tips = models.BooleanField(default=False)
     work_field = models.CharField(max_length=100, null=True)
     date_reg = models.DateTimeField(default=None, blank=True, null=True)
+    is_tips = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email
