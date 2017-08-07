@@ -124,6 +124,14 @@ body{
 
 }
 
+#login_candidate{
+
+    margin: auto;
+
+    padding: 10px;
+
+}
+
 #inputfield{
 	border-radius: 30px;
 	padding: 5px 20px;
@@ -191,7 +199,12 @@ body{
 	line-height: 0.1;
     background-color: #FFFFFF;
     color: #008789;
-    text-indent: 230px;
+    margin-left: 32%;
+}
+
+#form_group_login {
+
+    margin-left: 30%;
 }
 
 div#wrapperHeader {

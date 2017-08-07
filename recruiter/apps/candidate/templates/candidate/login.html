@@ -5,19 +5,20 @@
 <br>
 <div class="containter-fluid">
 	<!--<div class="row">-->
-		<div class="col-sm-12 col-md-6">
+		<div >
 			<div class="panel panel-default" id="omriss">
 				<div class="panel-body">
-					<h3 id="login_kandidat">Log In</h3> 
+
+					<h3 id="login_kandidat">Logg Inn</h3>
 					{% if error_message %}
 						<p><strong>{{ error_message }}</strong></p> 
 					{% endif %}
 					<br>
-					<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data" id="usboks1">
+					<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 						{% csrf_token %}
 						{% include 'candidate/form_template.html' %}
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
+							<div id="login_kandidat">
 								<button type="submit" class="btn btn-success" id="butt_green">Login</button>
 							</div>
 						</div>
