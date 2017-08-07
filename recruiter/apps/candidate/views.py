@@ -31,7 +31,7 @@ def register(request, mail):
     if request.method == 'POST':
         form = UserForm(request.POST)
         cv_form = CvForm(request.POST, request.FILES, prefix="cv")
-        if form.is_valid():
+        if form.is_valid() and cv_form.is_valid():
             user = form.save(commit=False)
 
             email = form.cleaned_data['email']
