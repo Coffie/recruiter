@@ -27,10 +27,7 @@
     {% include 'hr/showCV-form.html' %}
 	</div>
 
-    <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#reject{{ candidate.user.id }}" style="display: inline" id="give_rejection">
-        <span class="glyphicon glyphicon-remove"></span>
-        Gi avslag
-    </button>
+    {% include 'hr/feeback_button.html' %}
 
     <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#send{{ candidate.user.id }}" style="display: inline" id="send_leader">
         <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp; Send til leder
