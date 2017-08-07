@@ -57,11 +57,18 @@ def register(request, mail):
 
 
             # Email user the password and a registration confirmation
-            message = "Thank you for registering. If you have not uploaded your cv or need to edit your information, please follow the link below. Use the email you registered with and the following password:\n"
-            message += password
-            message += "\n\nhttps://coffie.no/candidate/login"
+            message = "Hei {0},\n\n".format(first_name)
+            message += (
+                    "Takk for at du la inn CVen din i vårt system. Vi vil holde deg oppdatert dersom vi har ledige stillinger "
+                    "som passer din profil.\n\nDersom du vil laste opp ny CV eller endre opplysninger vennligst følg denne "
+                    "https://coffie.no/candidate/login.\n\n"
+                    "Logg inn med e-postadresse og følgende passord {0}"
+                    "\n\nMed vennlig hilsen,\n"
+                    "{1}".format(password, from_mail)
+                    )
+
             send_mail(
-                    'DNB profil',
+                    'DNB: Takk for din registrering',
                     message,
                     "no-reply@coffie.no",
                     [email],

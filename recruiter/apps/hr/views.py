@@ -152,19 +152,15 @@ def regUser(request):
     first_name = request.POST['first_name']
     last_name = request.POST['last_name']
     email_hr = request.user.email
-    message = request.POST["welcome_text"]
-    if not message:
-        message = "Velkommen til DNBs cv register. Vennligst følg linken for å lage bruker, eller logg inn om du allerede har laget bruker.\n\n"
-    # link = request.POST["register_link"]
-    link = "https://coffie.no/register/" + email
-    log_link = "https://coffie.no/candidate/login"
-    message += "\nKlikk på følgende link for å registrere deg:\n" + link
-    message += "\nFor å logge inn:\n" + log_link
+    message = "Hei {0},\n\n".format(first_name)
+    message += request.POST["welcome_text"]
+    message += "\nVi gleder oss til å se din CV og håper du vil laste den opp gjennom denne linken https://coffie.no/register/{0}".format(email)
+    message += "\n\nMed vennlig hilsen,\n{0} {1}".format(request.user.first_name, request.user.last_name)
     new_registration = CandidateRegistration(email=email, first_name=first_name, last_name=last_name, registered_by=request.user)
     new_registration.save()
 
     send_mail(
-        'Registrering',
+        'DNB: Registrer din CV',
          message,
          email_hr,
         [email],
@@ -177,13 +173,24 @@ def sendTo(request):
 
     email_from = request.POST["send_from_email"]
     email_to = request.POST["leader"]
+
     subject = request.POST["subject"]
-    text_candidate = request.POST["text_candidate"]
+
+    leader = LeaderProfile.objects.get(email=email_to)
+    num_of_cand = len(CandidateProfile.objects.filter(leader_id=email_to).filter(status=1)) + 1
+    text_candidate = "Hei {0},\n\n".format(leader.first_name)
+    text_candidate += request.POST["text_candidate"]
+    text_candidate += "\n\nhttps://coffie.no/{0}".format(email_to)
+    text_candidate += "\n\nStatus: Du har {0} ubehandlede kandidater.".format(num_of_cand)
+    text_candidate += "\n\nHører fra deg,\nMed vennlig hilsen,\n{0} {1}".format(request.user.first_name, request.user.last_name)
+
     candidate_id = request.POST["candidate_id"]
     hr_comment = request.POST["hr_comment"]
+
     view_id = int(request.POST["view_id"])
+
     candidate = CandidateProfile.objects.get(pk=candidate_id)
-    candidate.leader = LeaderProfile.objects.get(email=email_to)
+    candidate.leader = leader
     candidate.hr_responsible = HrProfile.objects.get(user__id=request.user.id)
     candidate.status = 2
     candidate.hr_comment = hr_comment
@@ -249,10 +256,21 @@ def notifyLeader(request):
     candidate_name = request.POST["candidate_name"]
     hr_email = request.POST["hr_email"]
     hr_name = request.POST["hr_name"]
-    message = 'Hei, kandidaten ' + candidate_name + ' ligger fortsatt ubehandlet i systemet registrert på deg.' \
-                                                    'Vennligst ta en beslutning på vedkommende snarest. \nMvh\n' + hr_name
+    leader = LeaderProfile.objects.get(email=leader_email)
+    num_of_cand = len(CandidateProfile.objects.filter(leader_id=leader_email).filter(status=2))
+    link = "https://coffie.no/hr/{0}".format(leader_email)
+    message = "Hei {0},".format(leader.first_name)
+    message += (
+            "\n\nDu har ikke vurdert kandidaten(e) du har blitt tilsendt. Vennligst følg linken under og vurder kandidaten "
+            "så fort som mulig.\n\n{0}\n\n"
+            "Status: Du har {1} ubehandlede kandidater.\n\n"
+            "Hører fra deg,\n\n"
+            "Med vennlig hilsen,"
+            "\n{2} {3}".format(link, num_of_cand, request.user.first_name, request.user.last_name)
+            )
+
     send_mail(
-        'Påminnelse om kandidat',
+        "Du har ikke vurdert kandidaten din",
         message,
         hr_email,
         [leader_email],
@@ -365,14 +383,11 @@ def registerTips(request):
     ##last_name = request.POST['last_name']
     ##phone_cand = request.POST['phone']
     sent_from = request.POST['from_mail']
-    message = request.POST['mail_to_cand']
-    if not message:
-        message = "Velkommen til DNBs cv register. Vennligst følg linken for å lage bruker, eller logg inn om du allerede har laget bruker.\n\n"
-
-    link = "https://coffie.no/register/" + email
-    log_link = "https://coffie.no/candidate/login"
-    message += "\nKlikk på følgende link for å registrere deg:\n" + link
-    message += "\nFor å logge inn:\n" + log_link
+    link = "https://coffie.no/register/{0}".format(email)
+    message = "Hei {0},\n\n".format(request.POST['first_name'])
+    message += request.POST['mail_to_cand']
+    message += "\nVi gleder oss til å se din CV og håper du vil laste den opp gjennom denne linken {0}.".format(link)
+    message += "\n\nMed vennlig hilsen,\n{0}".format(request.user.get_full_name())
 
     print("\n\n\n\n")
     print("SENDT FRA:" + sent_from)
@@ -385,7 +400,7 @@ def registerTips(request):
     candReg.save()
 
     send_mail(
-        'Registrering',
+        'DNB: Registrer din CV',
         message,
         sent_from,
         [email],

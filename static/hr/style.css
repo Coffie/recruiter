@@ -16,7 +16,8 @@
      font-size: 20px;
 }
 #send_til_leder, #send_paminnelse {
-    font-family: "Segoe UI",Arial,sans-serif;
+
+     font-family: "Segoe UI",Arial,sans-serif;
      color: #008789;
      font-size: 20px;
 }
@@ -26,7 +27,7 @@
      color: #008789;
      font-size: 14px;   
 }
-#candidateInfo #informasjonsfelt_mail, #paminnelse_kandidat{
+#candidateInfo, #informasjonsfelt_mail, #paminnelse_kandidat{
 
     font-size: 12px;
     font-family: "Segoe UI",Arial,sans-serif;
@@ -108,6 +109,26 @@
     border-radius: 20px;
 }
 
+.candidateMailDiv {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    overflow: scroll;
+    height: 120px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.candidateDetailWhyDiv {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    overflow: scroll;
+    height: auto;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
 #sent_to_leader, #sent_to_leader_date {
 
     /*width: 50%;
@@ -160,6 +181,16 @@
     width: 600px
 }
 
+#omriss_reg_candidate {
+
+    border: solid #C0C0C0 1px;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+    width: 800px;
+}
+
 #inputfield{
     border-radius: 30px;
     padding: 5px 20px;
@@ -190,7 +221,7 @@
     font-size: 12px;
 }
 
-#sent_to_leader_date{
+#sent_to_leader_date {
     border-radius: 50px;
     /*padding: 5px 20px;*/
     border-width: 1px;
@@ -228,6 +259,43 @@
     border-radius: 30px;
 }
 
+#button_home_login {
+
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 0.1;
+    background-color: #FFFFFF;
+    color: #008789;
+    border: solid #C0C0C0 1px;
+    padding: 13px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+    width: 95px;
+
+}
+
+#button_ok_regCand {
+
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 0.1;
+    background-color: #FFFFFF;
+    color: #008789;
+    border: solid #C0C0C0 1px;
+    padding: 13px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 30px;
+    position:absolute;
+    left:3%;
+    bottom: 6%;
+
+}
+
 #butt_paminnelse {
 
     background-color: #FFFFFF;
@@ -240,6 +308,71 @@
     font-size: 12px;
     margin-top: 5px;
 }
+
+#home_reg_header {
+
+    font-family: "Segoe UI",Arial,sans-serif;
+    color: #008789;
+
+}
+
+#small_space {
+
+    display: block;
+    margin: 8px 0;
+    line-height:2px;
+    content: "";
+}
+
+#comment_why_div {
+
+    width: 70%;
+}
+
+#comment_why {
+
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    border: 30px transparent;
+}
+
+.tips_mail_custom {
+
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    border: 30px transparent;
+}
+
+#check_label {
+
+    font-weight: 400;
+
+}
+
+#mail_div {
+
+    width: 70%;
+}
+
+#mail_div_tips {
+
+    height:150px;
+}
+
+#div_mail_bottom {
+
+    width: 100%;
+    border-top: solid #008789 1px;
+    height: auto;
+}
+
+#home_firstname, #home_lastname, #home_tlfkand, #home_candemail {
+
+    width: 70%;
+}
+
 
 
 /*#butt_paminnelse{
