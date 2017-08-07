@@ -55,7 +55,7 @@ def register(request, mail):
                 profile.user = user
                 profile.save()
 
-
+            from_email = 'abs@dd.no'
             # Email user the password and a registration confirmation
             message = "Hei {0},\n\n".format(first_name)
             message += (
@@ -64,7 +64,7 @@ def register(request, mail):
                     "https://coffie.no/candidate/login.\n\n"
                     "Logg inn med e-postadresse og følgende passord {0}"
                     "\n\nMed vennlig hilsen,\n"
-                    "{1}".format(password, from_mail)
+                    "{1}".format(password, from_email)
                     )
 
             send_mail(
