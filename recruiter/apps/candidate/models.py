@@ -28,3 +28,12 @@ class CandidateProfile(models.Model):
 
     def __str__(self):
         return self.user.get_full_name()
+
+class FieldofWork(models.Model):
+    name_of_field = models.CharField(max_length=30)
+    short_name = models.CharField(max_length=10)
+    profile = models.ManyToManyField(CandidateProfile, blank=True, null=True)
+
+    def __str__(self):
+        return self.name_of_field
+
