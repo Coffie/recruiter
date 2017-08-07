@@ -55,22 +55,8 @@ def register(request, mail):
                 profile.user = user
                 profile.save()
 
-            if reg_mail.from_mail:
-                from_mail = reg_mail.from_mail
-            else:
-                from_mail = "DNB"
-            # Email user the password and a registration confirmation
-            messagelol = "Hei {0},\n\n".format(first_name)
-            messagelol += ("For at vi skal kunne holde orden på CVer som vi er interessert i utenfor våre utlyste stillinger, "
-                    "har vi implementert en smart løsning som gjør prosessen for å matche deg med en aktuell avdeling mye mer "
-                    "effektiv. Alt vi trenger fra deg er CV. Informasjonen du legger inn vil deles med personer fra HR, samt "
-                    "aktuelle ledere.\n\n"
-                    "Vi gleder oss til å se din CV og håper du vil leste den opp gjennom denne "
-                    "<a href='https://coffie.no/register/{0}'>linken</a>"
-                    "\n\nMed vennlig hilsen,\n"
-                    "{0}".format(from_mail)
-                    )
 
+            # Email user the password and a registration confirmation
             message = "Hei {0},\n\n".format(first_name)
             message += (
                     "Takk for at du la inn CVen din i vårt system. Vi vil holde deg oppdatert dersom vi har ledige stillinger "
@@ -80,8 +66,9 @@ def register(request, mail):
                     "\n\nMed vennlig hilsen,\n"
                     "{1}".format(password, from_mail)
                     )
+
             send_mail(
-                    'DNB profil',
+                    'DNB: Takk for din registrering',
                     message,
                     "no-reply@coffie.no",
                     [email],
