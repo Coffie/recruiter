@@ -60,7 +60,7 @@ class InProcessView(IndexView):
     id = 1
     def get_queryset(self):
         hr_user = HrProfile.objects.get(user__id=self.request.user.id)
-        return CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user).order_by('date_sent'), getAllNumbers(self.request)
+        return CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user).order_by('date_sent'), getAllNumbers(self.request), LeaderProfile.objects.all()
 
 class ApprovedView(IndexView):
 
@@ -409,4 +409,19 @@ def deleteTips(request):
         fail_silently=False,
     )
 
+    return redirect(views[view_id])
+
+def overrideLeader(request):
+
+    view_id = int(request.POST['view_id'])
+    selected_candidate = CandidateProfile.objects.get(pk=request.POST["id_candidate"])
+
+    if 'accept' in request.POST:
+
+        selected_candidate.status = 3
+
+    elif 'reject' in request.POST:
+        selected_candidate.status = 4
+
+    selected_candidate.save()
     return redirect(views[view_id])

@@ -1,0 +1,46 @@
+<div id="override{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
+
+        <div class="modal-dialog">
+            <div class="modal-content" id="omriss_mail">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 id="send_paminnelse">Ta ledervalget</h3>
+                </div>
+                <div class="modal-body" id="paminnelse_kandidat">
+                    <form class="form-horizontal" action="{% url 'hr:overrideLeader' %}" method="post" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                        <input type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
+                        <input type="hidden" name="leader_email" value="{{ candidate.leader.email }}">
+                        <input type="hidden" name="candidate_name" value="{{ candidate.user.get_full_name }}">
+                        <input type="hidden" name="hr_email" value="{{ user.email }}">
+                        <input type="hidden" name="hr_name" value="{{ user.get_full_name }}">
+                        <input type="hidden" name="view_id" value="{{ view.id }}">
+
+                        <div class="form-group">
+                            <h5 id="home_reg_header">Gjelder kandidat: {{ candidate.user.get_full_name }}</h5>
+                            <input id="id_candidate" type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
+
+                            <br/>
+                            &nbsp;
+                            <button id="butt_green" name="accept" type="submit" class="btn btn-success">Aktuell kandidat</button>
+                            &nbsp;
+                            <button id="butt_green" name="reject" style="display: inline;float: left">Ikke aktuell kandidat</button>
+                            &nbsp;
+                            <button data-dismiss="modal" data-toggle="modal" id="butt_green" data-target="#send{{ candidate.user.id }}" name="other_leader" class="btn btn-success">Aktuell for annen leder</button>
+
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="butt">Avbryt</button>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+{% include 'hr/leader-reject-modal.html' %}
+{% include 'hr/send-to-leader-modal.html' %}
