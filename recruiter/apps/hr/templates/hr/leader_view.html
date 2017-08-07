@@ -3,7 +3,7 @@
 {% for candidate in candidates %}
 <div class="candidateView">
 	<div class="container">
-		<div class="panel panel-default">
+		<div class="panel panel-default" style="border-radius: 12px;width: 60%" >
 			<div class="panel-body">
 				<h4>{{ candidate.user.get_full_name }}</h4>
 				<p>{{ candidate.hr_comment }}</p>
@@ -17,17 +17,27 @@
 				</form>
 				<br/>
 				<br/>
-				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					{% csrf_token %}
-					<input id="id_candidate" type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
-					<input id="comment" name="comment" type="text" placeholder="Kommentar">
-					<br/>
-					<br/>
-					<button id="butt_green" name="accept" type="submit" class="btn btn-success">Aktuell kandidat</button>
-					<button id="butt_green" name="other_leader" type="submit" class="btn btn-success">Aktuell for andre</button>
-				</form>
-					<br/>
-					<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#leaderReject{{ candidate.user.id }}" style="display: inline" id="not_applicable">Ikke aktuell kandidat</button>
+                <div id="container">
+
+                    <div id="left">
+                        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input id="id_candidate" type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
+                            <input style="width: 500px;height: 50px" id="comment" name="comment" type="text" placeholder="Kommentar">
+                            <br/>
+                            <br/>
+                            <button id="butt_green_leader" name="accept" type="submit" class="btn btn-success">Aktuell kandidat</button>
+                            <button id="butt_green_leader" name="other_leader" type="submit" class="btn btn-success">Aktuell for annen leder</button>
+                        </form>
+                    </div>
+                    <br/>
+                    <div id="right">
+
+                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#leaderReject{{ candidate.user.id }}" style="display: inline;float: left" id="not_applicable">Ikke aktuell kandidat</button>
+
+                    </div>
+                </div>
+
 			</div>
 		</div>
 	</div>

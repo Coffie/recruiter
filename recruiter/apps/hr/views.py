@@ -208,23 +208,45 @@ def sendTo(request):
 
     return redirect(views[view_id])
 
-def rejectCandidate(request):
+def feedback(request):
 
     view_id = int(request.POST["view_id"])
     email_from = request.POST["from_email"]
-    email_to = request.POST["to_email"]
-    subject = request.POST["subject"]
-    text = request.POST["reject_candidate_text"]
-    user_to_delete = get_user_model().objects.get(pk=request.POST["id_candidate"])
-    user_to_delete.delete()
+    email_to_cand = request.POST["to_email"]
+    subject_cand = request.POST["subject_cand"]
+    text = request.POST["feedback_candidate_text"]
 
-    send_mail(
-        subject,
-        text,
-        email_from,
-        [email_to],
-        fail_silently=False,
-    )
+    email_to_tips = request.POST['to_email_tips']
+    subject_tips = request.POST['subject_tips']
+    text_tips = request.POST["feedback_tips_text"]
+
+    delete_cand = boolVal(request.POST.get("delete_cand", False))
+    send_mail_cand = boolVal(request.POST.get("feedback_cand", False))
+    send_mail_tips = boolVal(request.POST.get("feedback_tips", False))
+    if delete_cand:
+        user_to_delete = get_user_model().objects.get(pk=request.POST["cand_id"])
+        user_to_delete.delete()
+
+    if send_mail_cand:
+
+        send_mail(
+            subject_cand,
+            text,
+            email_from,
+            [email_to_cand],
+            fail_silently=False,
+        )
+
+    if send_mail_tips:
+
+        send_mail(
+
+            subject_tips,
+            text_tips,
+            email_from,
+            [email_to_tips],
+            fail_silently=False,
+        )
 
     return redirect(views[view_id])
 
