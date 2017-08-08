@@ -39,6 +39,7 @@
 
 						<form role="form" method="post" enctype="multipart/form-data">
 							<!--  PREFLLED: NAME, EMAIL -->
+                            {% csrf_token %}
 							{% for field in form %}
 							<div class="row">
 								<div>
@@ -58,35 +59,24 @@
 							</div>
 							{% endfor %}
 
-
-							<!-- REGISTER BUTTON -->
-							<div class="col-sm-4" style="margin-top: 15px;">
+                             <!-- REGISTER BUTTON -->
+                            <div class="col-sm-4" style="margin-top: 15px;">
 								<div>
-									<button type="submit" class="btn btn-success" id="butt_green" >Register</button>
+									<button type="submit" class="btn btn-success" id="butt" >Register</button>
 								</div>
 							</div>
 
 							<!-- PERSONVERN-->
+
 							<div id="personvern">
-			                    <div class="col-sm-12">
-			                        <form action="">
-			                            <input onchange="valueChanged()" onclick="valueChanged()" type="checkbox" name="approve" id="approved" value="approve"> <label> Jeg godtar DNB´s</label>
-			                            <a href="" data-target="#showTerms" data-toggle="modal" type="submit" style="color:#fcfcfc;"> personvernerklæring </a>
-			                            {% include 'candidate/terms.html' %}
-			                        </form>
-			                        <script type="text/javascript">
-			                            function valueChanged() {
-			                                if($('#approved').is(":checked"))
-			                                    $("#butt_green").show();
 
-			                                else
-			                                    $("#butt_green").hide();
-			                            }
-			                        </script>
-			                        <body onload="valueChanged()"></body>
-			                    </div>
+
+                                <input onchange="valueChanged()" onclick="valueChanged()" type="checkbox" name="approve" id="approved" value="approve"> <label> Jeg godtar DNB´s</label>
+                                <a href="" data-target="#showTerms" data-toggle="modal" type="submit" style="color:#fcfcfc;"> personvernerklæring </a>
+
+                                <body onload="valueChanged()"></body>
+
 		                	</div>
-
 
 						</form>
                      </div>
@@ -96,5 +86,38 @@
 		</div>
 	</div>
 </div>
+    {% include 'candidate/terms.html' %}
+    <script>
+
+        $(":file").change(function(){
+            //alert($(":file").val());
+            //upload_image
+            if($('#approved').is(":checked")) {
+                document.getElementById("upload_image").src="/static/candidate/100.svg";
+            } else {
+                document.getElementById("upload_image").src="/static/candidate/98.svg";
+            }
+        });
+
+        function valueChanged() {
+            if($('#approved').is(":checked") && $(":file").val() != "") {
+
+                document.getElementById("upload_image").src="/static/candidate/100.svg";
+                $("#butt").show();
+            }
+            else if(!$('#approved').is(":checked") && $(":file").val() != "") {
+
+                document.getElementById("upload_image").src="/static/candidate/98.svg";
+                $("#butt").hide();
+            } else if($('#approved').is(":checked")) {
+                $("#butt").show();
+            }
+            else
+                $("#butt").hide();
+        }
+
+    </script>
+
+
 
 {% endblock %}
