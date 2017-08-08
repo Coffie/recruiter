@@ -150,10 +150,15 @@ def regUser(request):
     first_name = request.POST['first_name']
     last_name = request.POST['last_name']
     email_hr = request.user.email
+
+    # REPLACE URL WITH CORRECT DOMAIN
+    url = "https://coffie.no/register/"
+
     message = "Hei {0},\n\n".format(first_name)
     message += request.POST["welcome_text"]
-    message += "\nVi gleder oss til å se din CV og håper du vil laste den opp gjennom denne linken https://coffie.no/register/{0}".format(email)
-    message += "\n\nMed vennlig hilsen,\n{0} {1}".format(request.user.first_name, request.user.last_name)
+    message += "\nVi gleder oss til å se din CV og håper du vil laste den opp gjennom denne linken {0}{1}".format(url, email)
+    message += "\n\nMed vennlig hilsen,\n{0}".format(request.user.get_full_name())
+
     new_registration = CandidateRegistration(email=email, first_name=first_name, last_name=last_name, registered_by=request.user)
     new_registration.save()
 
@@ -174,13 +179,17 @@ def sendTo(request):
 
     subject = request.POST["subject"]
 
+    # REPLACE URL WITH CORRECT DOMAIN
+    url = "https://coffie.no/hr/"
+
     leader = LeaderProfile.objects.get(email=email_to)
     num_of_cand = len(CandidateProfile.objects.filter(leader_id=email_to).filter(status=1)) + 1
+
     text_candidate = "Hei {0},\n\n".format(leader.first_name)
     text_candidate += request.POST["text_candidate"]
-    text_candidate += "\n\nhttps://coffie.no/{0}".format(email_to)
+    text_candidate += "\n\n{0}{1}".format(url, email_to)
     text_candidate += "\n\nStatus: Du har {0} ubehandlede kandidater.".format(num_of_cand)
-    text_candidate += "\n\nHører fra deg,\nMed vennlig hilsen,\n{0} {1}".format(request.user.first_name, request.user.last_name)
+    text_candidate += "\n\nHører fra deg,\nMed vennlig hilsen,\n{0} {1}".format(request.user.get_full_name())
 
     candidate_id = request.POST["candidate_id"]
     hr_comment = request.POST["hr_comment"]
@@ -208,22 +217,25 @@ def sendTo(request):
 
 def feedback(request):
 
+    candidate = get_user_model().objects.get(pk=request.POST["cand_id"])
     view_id = int(request.POST["view_id"])
     email_from = request.POST["from_email"]
     email_to_cand = request.POST["to_email"]
     subject_cand = request.POST["subject_cand"]
-    text = request.POST["feedback_candidate_text"]
+    text = "Hei {0},".format(candidate.get_short_name())
+    text += request.POST["feedback_candidate_text"]
+    text += "\n\nMed vennlig hilsen,\n{0}".format(request.user.get_full_name())
 
     email_to_tips = request.POST['to_email_tips']
     subject_tips = request.POST['subject_tips']
     text_tips = request.POST["feedback_tips_text"]
+    text_tips += "\n\nMed vennlig hilsen,\n{0}".format(request.user.get_full_name())
 
     delete_cand = boolVal(request.POST.get("delete_cand", False))
     send_mail_cand = boolVal(request.POST.get("feedback_cand", False))
     send_mail_tips = boolVal(request.POST.get("feedback_tips", False))
     if delete_cand:
-        user_to_delete = get_user_model().objects.get(pk=request.POST["cand_id"])
-        user_to_delete.delete()
+        candidate.delete()
 
     if send_mail_cand:
 
@@ -256,7 +268,10 @@ def notifyLeader(request):
     hr_name = request.POST["hr_name"]
     leader = LeaderProfile.objects.get(email=leader_email)
     num_of_cand = len(CandidateProfile.objects.filter(leader_id=leader_email).filter(status=2))
+
+    # CHANGE URL TO ACTUAL DOMAIN
     link = "https://coffie.no/hr/{0}".format(leader_email)
+
     message = "Hei {0},".format(leader.first_name)
     message += (
             "\n\nDu har ikke vurdert kandidaten(e) du har blitt tilsendt. Vennligst følg linken under og vurder kandidaten "
@@ -264,7 +279,7 @@ def notifyLeader(request):
             "Status: Du har {1} ubehandlede kandidater.\n\n"
             "Hører fra deg,\n\n"
             "Med vennlig hilsen,"
-            "\n{2} {3}".format(link, num_of_cand, request.user.first_name, request.user.last_name)
+            "\n{2}".format(link, num_of_cand, request.user.get_full_name())
             )
 
     send_mail(
