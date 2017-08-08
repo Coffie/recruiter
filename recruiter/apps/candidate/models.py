@@ -8,6 +8,13 @@ from .validators import validate_file_extension
 def user_directory_path(instance, filename):
     return 'cvdir/users/{0}/{1}'.format(instance.user.id, filename)
 
+class FieldofWork(models.Model):
+    name_of_field = models.CharField(max_length=30)
+    short_name = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.name_of_field
+
 class CandidateProfile(models.Model):
     """ CandidateProfile uses the user created as primary key and a user can only have one profile """
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
@@ -25,6 +32,9 @@ class CandidateProfile(models.Model):
     hr_comment = models.CharField(max_length=100, default="", blank=True, null=True)
     date_sent = models.DateField(default=None, blank=True, null=True)
     comment = models.CharField(max_length=500, default="", blank=True, null=True)
+    fieldofwork = models.ManyToManyField(FieldofWork, blank=True)
 
     def __str__(self):
         return self.user.get_full_name()
+
+

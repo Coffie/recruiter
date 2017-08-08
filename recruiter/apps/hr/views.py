@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 from django.core.mail import send_mail
 from .models import CandidateRegistration
 from .models import HrProfile
-from recruiter.apps.candidate.models import CandidateProfile
+from recruiter.apps.candidate.models import CandidateProfile, FieldofWork
 from .models import LeaderProfile
 from django.http import HttpResponse
 from django.conf import settings
@@ -48,7 +48,7 @@ class UntreatedView(IndexView):
 
     def get_queryset(self):
         HrProfile.objects.get(user__id=self.request.user.id)
-        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None).order_by('-flagged', 'user__date_joined'), getAllNumbers(self.request), LeaderProfile.objects.all()
+        return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None).order_by('-flagged', 'user__date_joined'), getAllNumbers(self.request), LeaderProfile.objects.all(), FieldofWork.objects.all()
 
 
 class InProcessView(IndexView):
@@ -439,3 +439,19 @@ def overrideLeader(request):
     selected_candidate.save()
     return redirect(views[view_id])
 
+def work_field(request):
+    view_id = int(request.POST["view_id"])
+    candidate = CandidateProfile.objects.get(pk=request.POST["candidate_id"])
+    active_fields = candidate.fieldofwork.all()
+    fields = FieldofWork.objects.all()
+
+    for field in fields:
+        is_checked = boolVal(request.POST.get(field.short_name, False))
+        if is_checked:
+            if field not in active_fields:
+                candidate.fieldofwork.add(field)
+        else:
+            if field in active_fields:
+                candidate.fieldofwork.remove(field)
+    candidate.save()
+    return redirect(views[view_id])

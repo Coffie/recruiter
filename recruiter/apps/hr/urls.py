@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^registerTips/$', views.registerTips, name="registerTips"),
     url(r'^deleteTips/$', views.deleteTips, name="deleteTips"),
     url(r'^overrideLeader/$', views.overrideLeader, name="overrideLeader"),
+    url(r'^workField/$', views.work_field, name="workField"),
 ]
