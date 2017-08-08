@@ -17,6 +17,7 @@ import datetime
 
 views = ['hr:index', 'hr:inProcess', 'hr:approved', 'hr:rejected', 'hr:tips', 'hr:notRegistered']
 
+
 def getAllNumbers(request):
 
     try:
@@ -25,7 +26,7 @@ def getAllNumbers(request):
         number_in_process = len(CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user))
         number_accepted = len(CandidateProfile.objects.filter(user__is_staff=False, status=3, hr_responsible=hr_user))
         number_rejected = len(CandidateProfile.objects.filter(user__is_staff=False, status=4, hr_responsible=hr_user))
-        number_tips = len(CandidateRegistration.objects.filter(registered_by=None))
+        number_tips = len(CandidateRegistration.objects.filter(registered_by=None, is_tips=True))
         return number_untreated, number_in_process, number_accepted, number_rejected, number_tips
     except:
 
@@ -46,18 +47,14 @@ class UntreatedView(IndexView):
     id = 0
 
     def get_queryset(self):
-
-        ##users = get_user_model().objects.filter(is_staff=False)
-        ##hrprofiles = HrProfile.objects.filter(user__in=users.values('id'))
-
-        ## vanlig bruker atributter aksesseres ved: user.user.atributt
-        ## hrprifl bruker aksesseres ved: user.attributt
+        HrProfile.objects.get(user__id=self.request.user.id)
         return CandidateProfile.objects.filter(user__is_staff=False, status=1, leader=None).order_by('-flagged', 'user__date_joined'), getAllNumbers(self.request), LeaderProfile.objects.all()
 
 
 class InProcessView(IndexView):
 
     id = 1
+
     def get_queryset(self):
         hr_user = HrProfile.objects.get(user__id=self.request.user.id)
         return CandidateProfile.objects.filter(user__is_staff=False, status=2, hr_responsible=hr_user).order_by('date_sent'), getAllNumbers(self.request), LeaderProfile.objects.all()
@@ -80,7 +77,8 @@ class TipsView(IndexView):
 
     id = 4
     def get_queryset(self):
-        return CandidateRegistration.objects.filter(registered_by=None).order_by('date_reg'), getAllNumbers(self.request)
+        HrProfile.objects.get(user__id=self.request.user.id)
+        return CandidateRegistration.objects.filter(registered_by=None, is_tips=True).order_by('date_reg'), getAllNumbers(self.request)
 
 
 
@@ -440,3 +438,4 @@ def overrideLeader(request):
 
     selected_candidate.save()
     return redirect(views[view_id])
+

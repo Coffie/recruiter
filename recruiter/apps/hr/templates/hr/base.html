@@ -4,7 +4,7 @@
 
 {% block base %}
 
-    {% if not user.is_authenticated  %}
+    {% if not user.is_authenticated %}
 
         <meta http-equiv="refresh" content="0; url={% url 'hr:login' %}" />
 
