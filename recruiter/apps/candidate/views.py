@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.db import transaction
 
 def register(request, mail):
+    """ Get registrated for check and make context for prefill of fields """
     reg_mail = get_object_or_404(CandidateRegistration, email=mail)
     data = {
             'email': reg_mail.email,
@@ -38,7 +39,7 @@ def register(request, mail):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
 
-            # Check that the user uses the email registered earlier
+            """ Check that the correct email is used for registration, return error if not """
             if email != reg_mail.email:
                 context['error_message'] = "Error validating email."
                 return render(request, 'candidate/register.html', context)
@@ -48,29 +49,33 @@ def register(request, mail):
             user.set_password(password)
 
             user.save()
-            # user = authenticate(username=email, password=password)
+
+            """ User must be created before cv and candidate profile is created for dependencies """
             if user is not None and user.is_active:
                 login(request, user)
                 profile = cv_form.save(commit=False)
                 profile.user = user
                 profile.save()
 
-            from_email = 'abs@dd.no'
-            # Email user the password and a registration confirmation
+            """ Send registration mail to the candidate with password """
+            # EDIT VARIABLES FOR CORRECT DOMAIN WHEN SET IN PRODUCTION
+            from_email = "noreply@coffie.no"
+            login_url = "https://coffie.no/candidate/login"
+
             message = "Hei {0},\n\n".format(first_name)
             message += (
                     "Takk for at du la inn CVen din i vårt system. Vi vil holde deg oppdatert dersom vi har ledige stillinger "
                     "som passer din profil.\n\nDersom du vil laste opp ny CV eller endre opplysninger vennligst følg denne "
-                    "https://coffie.no/candidate/login.\n\n"
-                    "Logg inn med e-postadresse og følgende passord {0}"
+                    "{0}.\n\n"
+                    "Logg inn med e-postadresse og følgende passord {1}."
                     "\n\nMed vennlig hilsen,\n"
-                    "{1}".format(password, from_email)
+                    "DNB".format(login_url, password)
                     )
 
             send_mail(
                     'DNB: Takk for din registrering',
                     message,
-                    "no-reply@coffie.no",
+                    from_email,
                     [email],
                     fail_silently=False,
                     )
@@ -130,7 +135,8 @@ def cv_view(request, user_id):
     return HttpResponse(pdf, content_type='application/pdf')
 
 def finished(request):
-    context = {}
+    name = get_user_model().get_short_name()
+    context = {'name': name}
     return render(request, 'candidate/finished_registration.html', context)
 
 def delete_profile(request):
