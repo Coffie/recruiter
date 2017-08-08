@@ -2,14 +2,14 @@
 {% block info %}
 <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	{% include 'candidate/form_template.html' %}
-	<div class="form-group">	
-		<div class="col-sm-offset-2 col-sm-10">
+    {% include 'candidate/form_template.html' %}
+	<div class="form-group" style="margin-left: 5%">
+		<div>
 			<button type="submit" class="btn btn-secondary" id="butt">Upload</button>
 		</div>
 	</div>
 </form>
-<p><a href="{% url 'candidate:profile' %}" id="butt">Back</a></p>
+<p style="margin-left: 5%"><a href="{% url 'candidate:profile' %}" id="butt">Back</a></p>
 
 {% endblock %}
 
