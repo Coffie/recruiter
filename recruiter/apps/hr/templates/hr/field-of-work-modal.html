@@ -1,0 +1,40 @@
+<div id="fieldOfWork{{ candidate.user.id }}" class="modal fade" role="dialog" xmlns="http://www.w3.org/1999/html">
+	
+	<div class="modal-dialog">
+		<div class="modal-content" id="omriss_mail">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 id="send_til_leder">Legg til arbeids felt</h3>
+			</div>
+			<div class="modal-body">
+				
+				<form class="form-horizontal" action="{% url 'hr:workField' %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="hidden" name="view_id" value="{{ view.id }}">
+					<input type="hidden" name="candidate_id" value="{{ candidate.user.id }}">
+					<div class="form-group">
+						<div class="col-sm-offset-0 col-sm-10">
+							{% for field in query_set.3 %}
+							{% if field in candidate.fieldofwork.all %}
+							<input type="checkbox" name="{{ field.short_name }}" id="{{ field.short_name }}" checked><label id="check_label">
+								{{ field.name_of_field }}
+							</label>
+							{% else %}
+							<input type="checkbox" name="{{ field.short_name }}" id="{{ field.short_name }}"><label id="check_label">
+								{{ field.name_of_field }}
+							</label>
+							{% endif %}
+							{% endfor %}
+
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-0 col-sm-10">
+								<button id="butt_green" type="submit" class="btn btn-success">Lagre</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

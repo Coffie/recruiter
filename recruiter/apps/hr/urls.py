@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^tips/$', views.TipsView.as_view(), name="tips"),
     url(r'^registerTips/$', views.registerTips, name="registerTips"),
     url(r'^deleteTips/$', views.deleteTips, name="deleteTips"),
+    url(r'^workField/$', views.work_field, name="workField"),
 ]
