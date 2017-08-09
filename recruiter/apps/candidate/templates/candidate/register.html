@@ -37,26 +37,44 @@
                             <p><strong>{{ error_message }}</strong></p>
                             {% endif %}
 
-                                <!--  PREFLLED: NAME, EMAIL -->
-                                {% csrf_token %}
-                                {% for field in form %}
-                                    <div id="register_fields" class="row">
-                                        <div>
-                                            <span class="text-danger small">{{ field.error }}</span>
+                            <!--  PREFLLED: NAME, EMAIL -->
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <div id="register_fields" class="row">
+                                    <div>
+                                        <span class="text-danger small">{{ field.error }}</span>
+                                    </div>
+                                    <label id="reg_label_fields" class="control-label col-sm-4">{{ field.label_tag }}</label>
+                                    <div class="input col-sm-3">{{ field }}</div>
+                                </div>
+                            {% endfor %}
+
+                            <!-- UPLOAD CV -->
+
+                            <div id="register_fields" class="row" style="margin-top: 10px;">
+                                <label id="reg_label_fields" class="control-label col-sm-4">{{ cv_form.cv.label_tag }}</label>
+                                <div class="input col-sm-3">
+                                    <span title="Hei" id="button_upload_cv" style="border-radius: 20px;color: #008789;text-align: center;height: 34px" class="btn btn-default btn-file">
+                                        <div id="cv_file_title" style="display: inline-block;max-width: 200px">
+                                            {{ cv_form.cv }}
                                         </div>
-                                        <label id="reg_label_fields" class="control-label col-sm-4">{{ field.label_tag }}</label>
-                                        <div class="input col-sm-3">{{ field }}</div>
-                                    </div>
-                                {% endfor %}
+
+                                        <label id="label_upload_cv">
+                                            <span style="margin-top: 0" class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                                            Velg fil
+                                        </label>
+
+                                    </span>
+                                </div>
+                            </div>
 
 
-                                <!-- UPLOAD CV -->
-                                {% for field in cv_form %}
-                                    <div id="register_fields" class="row" style="margin-top: 10px;">
-                                        <label id="reg_label_fields" class="control-label col-sm-4">{{ field.label_tag }}</label>
-                                        <div class="input col-sm-3">{{ field }}</div>
-                                    </div>
-                                {% endfor %}
+                            <div id="register_fields" class="row" style="margin-top: 10px;">
+                                <label id="reg_label_fields" class="control-label col-sm-4">{{ cv_form.comment.label_tag }}</label>
+                                <div class="input col-sm-3">
+                                     {{ cv_form.comment }}
+                                </div>
+                            </div>
 
 
                          </div>
@@ -101,18 +119,42 @@
         $(":file").change(function(){
             //alert($(":file").val());
             //upload_image
+            document.getElementById("label_upload_cv").innerHTML = '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' + " Fil valgt";
             if($('#approved').is(":checked")) {
                 document.getElementById("upload_image").src="/static/candidate/100.svg";
             } else {
                 document.getElementById("upload_image").src="/static/candidate/98.svg";
             }
+
+            if($(":file").val() == "") {
+
+                document.getElementById("label_upload_cv").innerHTML = '<span class="glyphicon glyphicon-file" aria-hidden="true"></span>' + " Velg fil";
+                document.getElementById("upload_image").src="/static/candidate/75_prosent.png";
+            }
+
+            if($(":file").val() != "" && $('#approved').is(":checked")) {
+
+                document.getElementById("upload_image").src="/static/candidate/100.svg";
+                document.getElementById("button_register").style.opacity = "1.0";
+                $('#button_register').addClass('button_register_completed');
+
+            }
+
+            if($(":file").val() == "" && $('#approved').is(":checked")) {
+
+                document.getElementById("upload_image").src="/static/candidate/75_prosent.png";
+                document.getElementById("button_register").style.opacity = "0.5";
+                $('#button_register').removeClass("button_register_completed");
+
+            }
+
+            //$('#cv_glyicon').hide()
         });
 
         function valueChanged() {
             if($('#approved').is(":checked") && $(":file").val() != "") {
 
                 document.getElementById("upload_image").src="/static/candidate/100.svg";
-
                 document.getElementById("button_register").style.opacity = "1.0";
                 $('#button_register').addClass('button_register_completed');
             }
