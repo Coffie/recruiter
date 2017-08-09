@@ -1,6 +1,15 @@
 <div class="caption" id="her_detaljer">
-
-    {%  include 'hr/tips-detail-base.html' %}
+    {% if candidate.is_proff %}
+        <div><img id="is_proff" src="/static/hr/erfaring.svg"></div>
+    {% else %}
+        <div><img class="is_proff_pic" src="/static/hr/nyutdannet.svg"></div>
+    {% endif %}
+    <label>{{ candidate.get_full_name }}</label>
+    <h6>{{ candidate.email }}</h6>
+    <h6>{{ candidate.phone }}</h6>
+    <h6>{{ candidate.text }}</h6>
+    
+    <br/>
 
     <div class="thumbnail" id="candidateInfoDiv">
         <label id="candidateInfo">
