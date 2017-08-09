@@ -15,15 +15,16 @@
 					<div class="form-group">
 						<div class="col-sm-offset-0 col-sm-10">
 							{% for field in query_set.3 %}
-							{% if field in candidate.fieldofwork.all %}
-							<input type="checkbox" name="{{ field.short_name }}" id="{{ field.short_name }}" checked><label id="check_label">
-								{{ field.name_of_field }}
-							</label>
-							{% else %}
-							<input type="checkbox" name="{{ field.short_name }}" id="{{ field.short_name }}"><label id="check_label">
-								{{ field.name_of_field }}
-							</label>
-							{% endif %}
+                                <br/>
+                                {% if field in candidate.fieldofwork.all %}
+                                    <input type="checkbox" name="{{ field.short_name }}" id="{{ field.short_name }}" checked><label id="check_label">
+                                        {{ field.name_of_field }}
+                                    </label>
+                                {% else %}
+                                    <input type="checkbox" name="{{ field.short_name }}" id="{{ field.short_name }}"><label id="check_label">
+                                        {{ field.name_of_field }}
+                                    </label>
+                                {% endif %}
 							{% endfor %}
 
 						</div>

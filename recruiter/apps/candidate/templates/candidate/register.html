@@ -15,77 +15,86 @@
 
 				<!-- GREEN BOX -->
 				<div class="panel-body" id="panel_body_register">
-
+                    <form role="form" method="post" enctype="multipart/form-data">
 					<!-- UPPER HALF-->
-					<img src="/static/candidate/75_prosent.png" id="upload_image">
-					<hr id="mid_line">
-					<div id="registrer_interesse"><h3 >Upload your CV</h3></div>
+                        <img src="/static/candidate/75_prosent.png" id="upload_image">
+                        <hr id="mid_line">
+                        <div id="registrer_interesse"><h3 >Kun CV gjenstår</h3></div>
+
+                        <br/>
+                        <!-- LOWER HALF -->
+                        <div id="register_welcome_text">
+                            {% if name %}
+                            <p>Hei {{ name }}!</p>
+                            {% else %}
+                            <p>Hei!</p>
+                            {% endif %}
+                            <p> Du er snart ferdig med søknaden din! Last opp CV'en din her og kontroller at navn og e-postadresse er riktig.</p>
+                        </div>
+
+                        <div id="prefilled_text">
+                            {% if error_message %}
+                            <p><strong>{{ error_message }}</strong></p>
+                            {% endif %}
+
+                                <!--  PREFLLED: NAME, EMAIL -->
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    <div id="register_fields" class="row">
+                                        <div>
+                                            <span class="text-danger small">{{ field.error }}</span>
+                                        </div>
+                                        <label id="reg_label_fields" class="control-label col-sm-4">{{ field.label_tag }}</label>
+                                        <div class="input col-sm-3">{{ field }}</div>
+                                    </div>
+                                {% endfor %}
 
 
-					<!-- LOWER HALF -->
-					<div style="margin: 5% 0 0 15%;">
-						{% if name %}
-						<p>Hello {{ name }}!</p>
-						{% else %}
-						<p>Hello!</p>
-						{% endif %}
-						<p> Du er snart ferdig med søknaden din! Last opp CV'en din her og kontroller at navn og e-postadresse er riktig.</p>
-					</div>
-
-					<div id="prefilled_text">
-						{% if error_message %}
-						<p><strong>{{ error_message }}</strong></p>
-						{% endif %}
-
-						<form role="form" method="post" enctype="multipart/form-data">
-							<!--  PREFLLED: NAME, EMAIL -->
-                            {% csrf_token %}
-							{% for field in form %}
-							<div class="row">
-								<div>
-									<span class="text-danger small">{{ field.error }}</span>
-								</div>
-								<label class="control-label col-sm-6">{{ field.label_tag }}</label>
-								<div class="input col-sm-3">{{ field }}</div>
-							</div>
-							{% endfor %}
+                                <!-- UPLOAD CV -->
+                                {% for field in cv_form %}
+                                    <div id="register_fields" class="row" style="margin-top: 10px;">
+                                        <label id="reg_label_fields" class="control-label col-sm-4">{{ field.label_tag }}</label>
+                                        <div class="input col-sm-3">{{ field }}</div>
+                                    </div>
+                                {% endfor %}
 
 
-							<!-- UPLOAD CV -->
-							{% for field in cv_form %}
-							<div class="row" style="margin-top: 10px;">
-								<label class="control-label col-sm-6">{{ field.label_tag }}</label>
-								<div class="input col-sm-3">{{ field }}</div>
-							</div>
-							{% endfor %}
+                         </div>
+                        <br/>
+                        <div id="bottom_bar_top">
 
-                             <!-- REGISTER BUTTON -->
-                            <div class="col-sm-4" style="margin-top: 15px;">
-								<div>
-									<button type="submit" class="btn btn-success" id="butt" >Register</button>
-								</div>
-							</div>
+                            <!-- PERSONVERN-->
 
-							<!-- PERSONVERN-->
-
-							<div id="personvern">
+                            <div id="personvern" style="margin-top: -2.5%;margin-left: 5%">
 
 
-                                <input onchange="valueChanged()" onclick="valueChanged()" type="checkbox" name="approve" id="approved" value="approve"> <label> Jeg godtar DNB´s</label>
-                                <a href="" data-target="#showTerms" data-toggle="modal" type="submit" style="color:#fcfcfc;"> personvernerklæring </a>
+                                <input onchange="valueChanged()" onclick="valueChanged()" type="checkbox" name="approve" id="approved" value="approve"> <label id="reg_label"> Jeg godtar DNB´s</label>
+                                <a href="" data-target="#showTerms" data-toggle="modal" type="submit" id="home_reg_header"> personvernerklæring </a>
 
                                 <body onload="valueChanged()"></body>
 
-		                	</div>
+                            </div>
 
-						</form>
-                     </div>
+                        </div>
+                        <div id="bottom_bar_bottom">
 
+                            <!-- REGISTER BUTTON -->
+                            <div style="margin-top: 1.5%;margin-left: 5%">
+
+                                <button type="submit" class="button_register_uncompleted" id="button_register">
+                                    Send inn <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
     {% include 'candidate/terms.html' %}
     <script>
 
@@ -103,17 +112,20 @@
             if($('#approved').is(":checked") && $(":file").val() != "") {
 
                 document.getElementById("upload_image").src="/static/candidate/100.svg";
-                $("#butt").show();
+
+                document.getElementById("button_register").style.opacity = "1.0";
+                $('#button_register').addClass('button_register_completed');
             }
             else if(!$('#approved').is(":checked") && $(":file").val() != "") {
 
                 document.getElementById("upload_image").src="/static/candidate/98.svg";
-                $("#butt").hide();
-            } else if($('#approved').is(":checked")) {
-                $("#butt").show();
+                document.getElementById("button_register").style.opacity = "0.5";
+                $('#button_register').removeClass("button_register_completed");
             }
-            else
-                $("#butt").hide();
+            else {
+                document.getElementById("button_register").style.opacity = "0.5";
+                $('#button_register').removeClass("button_register_completed");
+            }
         }
 
     </script>
