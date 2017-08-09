@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	{% extends 'hr/basefile-styling.html' %}
 	{% block base %}
 	<body>
-		<h2 id="home_reg_header" style="margin-left: 5%">Mine kandidater</h2>
-		<h3 id="home_reg_header" style="margin-left: 5%">Ikke behandlet</h3>
-		<br>
-		{% block first %}
-		{% endblock %}
-		<br>
-		<br>
-		<h3 id="home_reg_header" style="margin-left: 5%">Godkjente kandidater</h3>
-		<br>
-		<br>
-		{% block second %}
-		{% endblock %}
+        <div style="margin-left: 35px">
+            {% include 'candidate/base.html' %}
+        </div>
+        <br/>
+        <div class="modal-content" style="margin-left: 40px;margin-right: 40px;width: 70%;min-width: 500px" id="omriss_reg_candidate">
+            <br/>
+            <h2 id="home_reg_header" style="margin-left: 40px">Mine kandidater</h2>
+            <div style="margin-left: 40px;border-bottom: solid;border-width: 1px;border-color: #008789;"></div>
+            <br/>
+            {% if candidates %}
+                <h3 id="home_reg_header" style="margin-left: 40px">Ikke behandlet</h3>
+                <div style="margin-left: 40px;border-bottom: solid;border-width: 1px;border-color: #008789;width: 300px"></div>
+                <br>
+                <br>
+            {% endif %}
+
+
+            {% block first %}
+            {% endblock %}
+
+            {% if approved %}
+                <h3 id="home_reg_header" style="margin-left: 40px">Godkjente kandidater</h3>
+                <div style="margin-left: 40px;border-bottom: solid;border-width: 1px;border-color: #008789;width: 300px;"></div>
+            {% endif %}
+            <br>
+            <br>
+            {% block second %}
+            {% endblock %}
+        </div>
 	</body>
 	{% endblock %}
 </html>

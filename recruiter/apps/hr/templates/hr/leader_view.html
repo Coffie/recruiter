@@ -1,57 +1,58 @@
 {% extends 'hr/leader_base.html' %}
 {% block first %}
 {% for candidate in candidates %}
-<div class="candidateView">
-	<div class="container">
-		<div class="panel panel-default" style="border-radius: 12px;width: 60%" >
-			<div class="panel-body">
-				<h4>{{ candidate.user.get_full_name }}</h4>
-				<p>{{ candidate.hr_comment }}</p>
-				<form action="{% url 'hr:leaderCV' %}" method="get" style="display: inline">
-					{% csrf_token %}
-					<input type="hidden" name="candidate_cv" value="{{ candidate.cv }}">
-					<button type="submit" class="btn btn-default btn-sm" id="see_cv">
-						<span class="glyphicon glyphicon-download-alt"></span>
-						Se CV
-					</button>
-				</form>
-				<br/>
-				<br/>
-                <div id="container">
-
-                    <div id="left">
-                        <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <input id="id_candidate" type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
-                            <input style="width: 100%;height: 50px" id="comment" name="comment" type="text" placeholder="Kommentar">
-                            <br/>
-                            <br/>
-                            <button id="butt_green_leader" name="accept" type="submit" class="btn btn-success">Aktuell kandidat</button>
-                            <button id="butt_green_leader" name="other_leader" type="submit" class="btn btn-success">Aktuell for annen leder</button>
-                        </form>
-                    </div>
+    <div class="candidateView" style="margin-left: 10px">
+        <div class="container" style="margin-left: 10px">
+            <div class="panel panel-default" style="border-radius: 12px;width: 60%;margin-left: 10px;min-width: 400px" >
+                <div class="panel-body">
+                    <h4>{{ candidate.user.get_full_name }}</h4>
+                    <p>{{ candidate.hr_comment }}</p>
+                    <form action="{% url 'hr:leaderCV' %}" method="get" style="display: inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="candidate_cv" value="{{ candidate.cv }}">
+                        <button type="submit" class="btn btn-default btn-sm" id="see_cv">
+                            <span class="glyphicon glyphicon-download-alt"></span>
+                            Se CV
+                        </button>
+                    </form>
                     <br/>
-                    <div id="right">
+                    <br/>
+                    <div id="container">
 
-                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#leaderReject{{ candidate.user.id }}" style="display: inline;float: left" id="not_applicable">Ikke aktuell kandidat</button>
+                        <div id="left">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input id="id_candidate" type="hidden" name="id_candidate" value="{{ candidate.user.id }}">
+                                <input style="width: 100%;height: 50px;border-radius: 15px;border-width: 1px" id="comment" name="comment" type="text" placeholder="Kommentar">
+                                <br/>
+                                <br/>
+                                <button id="butt_green_leader" name="accept" type="submit" class="btn btn-success">Aktuell kandidat</button>
+                                &nbsp;
+                                <button id="butt_green_leader" name="other_leader" type="submit" class="btn btn-success">Aktuell for annen leder</button>
+                            </form>
+                        </div>
+                        <br/>
+                        <div id="right">
 
+                            <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#leaderReject{{ candidate.user.id }}" style="display: inline;float: left" id="not_applicable">Ikke aktuell kandidat</button>
+
+                        </div>
                     </div>
-                </div>
 
-			</div>
-		</div>
-	</div>
-</div>
-{% include 'hr/leader-reject-modal.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'hr/leader-reject-modal.html' %}
 {% endfor %}
 {% endblock %}
 
 {% block second %}
 
 {% for candidate in approved %}
-<div class="candidateProfile">
-	<div class="container">
-		<div class="panel panel-default">
+<div class="candidateProfile" style="margin-left: 10px">
+	<div class="container" style="margin-left: 10px">
+		<div class="panel panel-default" style="margin-left: 10px;border-radius: 12px;width: 60%;min-width: 400px">
 			<div class="panel-body">
 				<h4>{{ candidate.user.get_full_name }}</h4>
 				<p>{{ candidate.hr_comment }}</p>

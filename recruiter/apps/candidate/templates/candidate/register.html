@@ -17,7 +17,7 @@
 				<div class="panel-body" id="panel_body_register">
                     <form role="form" method="post" enctype="multipart/form-data">
 					<!-- UPPER HALF-->
-                        <img src="/static/candidate/75_prosent.png" id="upload_image">
+                        <img src="/static/candidate/75.svg" id="upload_image">
                         <hr id="mid_line">
                         <div id="registrer_interesse"><h3 >Kun CV gjenstår</h3></div>
 
@@ -129,7 +129,7 @@
             if($(":file").val() == "") {
 
                 document.getElementById("label_upload_cv").innerHTML = '<span class="glyphicon glyphicon-file" aria-hidden="true"></span>' + " Velg fil";
-                document.getElementById("upload_image").src="/static/candidate/75_prosent.png";
+                document.getElementById("upload_image").src="/static/candidate/75.svg";
             }
 
             if($(":file").val() != "" && $('#approved').is(":checked")) {
@@ -142,7 +142,7 @@
 
             if($(":file").val() == "" && $('#approved').is(":checked")) {
 
-                document.getElementById("upload_image").src="/static/candidate/75_prosent.png";
+                document.getElementById("upload_image").src="/static/candidate/75.svg";
                 document.getElementById("button_register").style.opacity = "0.5";
                 $('#button_register').removeClass("button_register_completed");
 
