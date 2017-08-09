@@ -5,14 +5,14 @@ from .models import CandidateProfile
 
 class UserForm(forms.ModelForm):
 
+    email = forms.CharField(label="E-post", widget=forms.TextInput(attrs={'id':'inputfield'}))
+    first_name = forms.CharField(label="Fornavn", widget=forms.TextInput(attrs={'id':'inputfield'}))
+    last_name = forms.CharField(label="Etternavn", widget=forms.TextInput(attrs={'id':'inputfield'}))
+
     class Meta:
         model = get_user_model()
         fields = ['email', 'first_name', 'last_name']
-        widgets = {
-        'email': forms.TextInput(attrs={'id':'inputfield'}), 
-        'first_name': forms.TextInput(attrs={'id':'inputfield'}),
-        'last_name': forms.TextInput(attrs={'id':'inputfield'}),
-         }
+
 
 class UserLoginForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'id':'inputfield'}))
@@ -23,13 +23,14 @@ class UserLoginForm(forms.ModelForm):
         fields = ['email', 'password']
 
 class CvForm(forms.ModelForm):
+
+    comment = forms.CharField(label="Kommentar", widget=forms.TextInput(attrs={'id':'inputfield'}))
+
     class Meta:
         model = CandidateProfile
         fields = ['cv', 'user', 'comment']
         exclude = ('user',)
-        widgets = {
-                'comment': forms.TextInput(attrs={'id':'inputfield'}),
-                }
+
     
 class EditForm(forms.ModelForm):
     class Meta: 
