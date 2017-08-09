@@ -67,6 +67,33 @@ body{
     margin-bottom: 20px;
 }
 
+#panel_body_finished {
+
+    background-color: #008789;
+    opacity: 0.9;
+    position: absolute;
+    left: 20vh;
+    right: 20vh;
+    top: 25vh;
+    float: right;
+    max-width: 90vh;
+    min-width: 60vh;
+    margin: auto;
+    display: block;
+    padding-top: 0;
+    color: #fcfcfc;
+    border-style: solid;
+    border-color: #C0C0C0;
+    border-width: 1px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#finished_text{
+    margin: 10% 5%;
+
+}
+
 #bottom_bar_top {
 
     margin-left: -15px;
