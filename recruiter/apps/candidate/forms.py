@@ -24,7 +24,7 @@ class UserLoginForm(forms.ModelForm):
 
 class CvForm(forms.ModelForm):
 
-    comment = forms.CharField(label="Kommentar", widget=forms.TextInput(attrs={'id':'inputfield'}))
+    comment = forms.CharField(label="Kommentar", required=False, widget=forms.TextInput(attrs={'id':'inputfield'}))
 
     class Meta:
         model = CandidateProfile
