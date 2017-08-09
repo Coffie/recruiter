@@ -189,7 +189,7 @@ def sendTo(request):
     text_candidate += request.POST["text_candidate"]
     text_candidate += "\n\n{0}{1}".format(url, email_to)
     text_candidate += "\n\nStatus: Du har {0} ubehandlede kandidater.".format(num_of_cand)
-    text_candidate += "\n\nHører fra deg,\nMed vennlig hilsen,\n{0} {1}".format(request.user.get_full_name())
+    text_candidate += "\n\nHører fra deg,\nMed vennlig hilsen,\n{0}".format(request.user.get_full_name())
 
     candidate_id = request.POST["candidate_id"]
     hr_comment = request.POST["hr_comment"]

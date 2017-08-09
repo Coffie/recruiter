@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from recruiter.apps.hr.models import CandidateRegistration
 from django.core.mail import send_mail
 from django.db import transaction
+from .signals import delete_files_on_model
 
 def register(request, mail):
     """ Get registrated for check and make context for prefill of fields """
@@ -55,7 +56,11 @@ def register(request, mail):
                 login(request, user)
                 profile = cv_form.save(commit=False)
                 profile.user = user
+                profile.is_proff = reg_mail.is_proff
+                profile.is_tips = reg_mail.is_tips
+                profile.tipser_mail = reg_mail.from_mail
                 profile.save()
+                reg_mail.delete()
 
             """ Send registration mail to the candidate with password """
             # EDIT VARIABLES FOR CORRECT DOMAIN WHEN SET IN PRODUCTION
@@ -135,8 +140,7 @@ def cv_view(request, user_id):
     return HttpResponse(pdf, content_type='application/pdf')
 
 def finished(request):
-    name = get_user_model().get_short_name()
-    context = {'name': name}
+    context = {}
     return render(request, 'candidate/finished_registration.html', context)
 
 def delete_profile(request):

@@ -20,7 +20,7 @@ body{
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif*/;
 	font-family: "Segoe UI",Arial,sans-serif;
 	font-size: 30px;
-	font-weight: 400
+	font-weight: 400;
 	color: #008789;
 	text-indent: 200px;
 }
@@ -33,7 +33,7 @@ body{
 }
 
 #fill{
-		font-family: "Segoe UI",Arial,sans-serif;
+    font-family: "Segoe UI",Arial,sans-serif;
 	font-size: 13px;
 	font-weight: 300;
 }
@@ -45,8 +45,10 @@ body{
 
 }
 
-#panel_body_register{
+#panel_body_register {
+
     background-color: #008789;
+    opacity: 0.9;
     float: left;
     position: absolute;
     left: 20vh;
@@ -64,7 +66,7 @@ body{
 
 
 #personvern{
-    padding-top: 15%;
+    padding-top: 5%;
 }
 
 #personvern a{
@@ -113,7 +115,7 @@ body{
     padding: 10px;
 }
 #usboks1{
-	content: center;
+
 	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 11px;
@@ -123,6 +125,7 @@ body{
     max-width: 90vh;
 
 }
+
 
 #login_candidate{
 
@@ -186,7 +189,7 @@ body{
 }
 
 #brukinf{
-	border: solid #C0C0C0 1px bottom;
+	border: solid #C0C0C0 1px;
 	background-color: #FFFFFF;
 }
 
@@ -204,7 +207,7 @@ body{
 
 #form_group_login {
 
-    margin-left: 30%;
+    margin-left: 5%;
 }
 
 div#wrapperHeader {
@@ -268,7 +271,6 @@ div#wrapperHeader div#header img {
     height: 25vh;
     display: block;
     margin: auto;
-    float: center;
     margin-top: 5vh;
 }
 
@@ -278,7 +280,7 @@ div#wrapperHeader div#header img {
 
 .input{
     color: black;
-    padding: 0px;
+    padding: 0;
     font-size: 12px;
 }
 

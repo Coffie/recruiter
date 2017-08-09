@@ -34,7 +34,11 @@ class CandidateProfile(models.Model):
     comment = models.CharField(max_length=500, default="", blank=True, null=True)
     fieldofwork = models.ManyToManyField(FieldofWork, blank=True)
 
+    is_proff = models.BooleanField(default=False)
+    is_tips = models.BooleanField(default=False)
+    tipser_mail = models.EmailField(max_length=100, default="", blank=True, null=True)
+    
+
     def __str__(self):
         return self.user.get_full_name()
-
 
