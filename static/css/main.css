@@ -1,27 +1,27 @@
 @font-face {
 	font-family: "FedraSansStd";
-	src: url('../fonts/static/FedraSansStd-Light.WOFF') format('woff');
-	/* src: local('../fonts/static/FedraSansStd-Light.otf'); */
+	src: url('../fonts/FedraSansStd-Light.WOFF') format('woff');
+	src: local('../fonts/FedraSansStd-Light.WOFF') format('woff');
 }
 
-/* @font-face { */
-/* 	font-family: "FedraSansStd"; */
-/* 	src: url('/static/fon/static/FedraSansStd-Bold.otf'); */
-/* 	src: local('/static/fon/static/FedraSansStd-Bold.otf'); */
-/* 	font-weight: bold; */
-/* } */
+@font-face {
+	font-family: "FedraSansStdBold";
+	src: url('../fonts/FedraSansStd-Bold.WOFF') format('woff');
+	src: local('../fonts/FedraSansStd-Bold.WOFF') format('woff');
+	font-weight: bold;
+}
 
-/* @font-face { */
-/* 	font-family: "FedraSansStd"; */
-/* 	src: url('/static/fon/static/FedraSansStd-BoldItalic.otf'); */
-/* 	src: local('/static/fon/static/FedraSansStd-BoldItalic.otf'); */
-/* 	font-weight: bold; */
-/* 	font-style: italic; */
-/* } */
+@font-face {
+	font-family: "FedraSansStdBoldItalic";
+	src: url('../fonts/FedraSansStd-BoldItalic.WOFF') format('woff');
+	src: local('../fonts/FedraSansStd-BoldItalic.WOFF') format('woff');
+	font-weight: bold;
+	font-style: italic;
+}
 
-/* @font-face { */
-/* 	font-family: "FedraSansStd"; */
-/* 	src: url('/static/fon/static/FedraSansStd-LightItalic.otf'); */
-/* 	src: local('/static/fon/static/FedraSansStd-LightItalic.otf'); */
-/* 	font-style: italic; */
-/* } */
+@font-face {
+	font-family: "FedraSansStdItalic";
+	src: url('../fonts/FedraSansStd-LightItalic.WOFF') format('woff');
+	src: local('../fonts/FedraSansStd-LightItalic.WOFF') format('woff');
+	font-style: italic;
+}

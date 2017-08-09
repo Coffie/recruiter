@@ -11,26 +11,26 @@
 
 .navbar-brand {
 
-     font-family: "Segoe UI",Arial,sans-serif;
+     font-family: FedraSansStd;
      color: #008789;
      font-size: 20px;
 }
 #send_til_leder, #send_paminnelse {
 
-     font-family: "Segoe UI",Arial,sans-serif;
+     font-family: FedraSansStd;
      color: #008789;
      font-size: 20px;
 }
 
 #fra_til{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
      color: #008789;
      font-size: 14px;   
 }
 #candidateInfo, #informasjonsfelt_mail, #paminnelse_kandidat{
 
     font-size: 12px;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     text-indent: 6px;
 }
@@ -82,7 +82,7 @@
     height: 30px;
     /*padding: 5px 20px;*/
     margin-top: 5px;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 12px;
 }
@@ -107,7 +107,7 @@
 }
 
 #candidateInfoDiv {
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 10px;
     overflow: scroll;
@@ -118,7 +118,7 @@
 }
 
 .candidateMailDiv {
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 200;
     font-size: 12px;
     overflow: scroll;
@@ -128,7 +128,7 @@
 }
 
 .candidateDetailWhyDiv {
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 200;
     font-size: 12px;
     overflow: scroll;
@@ -147,7 +147,7 @@
 #hr_login{
 
     width: 150%;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 30px;
     line-height: 0.1;
@@ -157,7 +157,7 @@
 }
 
 #butt_green{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 15px;
     line-height: 0.1;
@@ -172,7 +172,7 @@
 }
 
 #butt_green_leader{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 12px;
     line-height: 0.1;
@@ -218,7 +218,7 @@
     border-radius: 30px;
     padding: 5px 20px;
     border-width: 1px;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 12px;
 }
@@ -226,7 +226,7 @@
 #usboks1{
     content: center;
     width: 150%;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 15px;
     line-height: 0.1;
@@ -239,7 +239,7 @@
     border-radius: 50px;
     /*padding: 5px 20px;*/
     border-width: 1px;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 12px;
 }
@@ -249,13 +249,13 @@
     border-radius: 50px;
     /*padding: 5px 20px;*/
     border-width: 1px;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 10px;
 }
 
 #her_detaljer{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 12px;
     color: #008789;
@@ -263,13 +263,13 @@
 
 /*---------navigationbar---------*/
 #navigasjons_bar{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
      color: #008789;
      font-size: 15px;
 }
 
 #butt{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 13px;
     line-height: 0.1;
@@ -285,7 +285,7 @@
 
 #button_home_login {
 
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 13px;
     line-height: 0.1;
@@ -302,7 +302,7 @@
 
 #button_ok_regCand {
 
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 13px;
     line-height: 0.1;
@@ -327,7 +327,7 @@
     border: solid #C0C0C0 1px;
     border-radius: 50px;
     /*padding: 5px 20px;*/
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 12px;
     margin-top: 5px;
@@ -335,7 +335,7 @@
 
 #home_reg_header {
 
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     color: #008789;
 
 }
@@ -400,7 +400,7 @@
 
 
 /*#butt_paminnelse{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: FedraSansStd;
     font-weight: 400;
     font-size: 13px;
     line-height: 0.1;
