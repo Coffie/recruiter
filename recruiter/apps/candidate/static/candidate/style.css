@@ -1,5 +1,5 @@
 body{
-
+	font-family: "FedraSansStd";
 }
 
 #back_picture{
@@ -18,7 +18,7 @@ body{
 
 #regint{
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif*/;
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
 	font-size: 30px;
 	font-weight: 400;
 	color: #008789;
@@ -27,19 +27,19 @@ body{
 
 #inform{
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
 	font-size: 15px;
 	font-weight: 400;
 }
 
 #fill{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: 'FedraSansStd';
 	font-size: 13px;
 	font-weight: 300;
 }
 
 .panel-heading {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: 'FedraSansStd';
     font-size: 18px;
     font-weight: 400;
 
@@ -99,7 +99,7 @@ body{
 
 .button_register_uncompleted {
 
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 14px;
     height: 30px;
@@ -114,7 +114,7 @@ body{
 
 .button_register_completed {
 
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 14px;
     background-color: #008789;
@@ -146,7 +146,7 @@ body{
 
 #reg_label {
 
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: 'FedraSansStd';
     color: black;
     font-weight: 400;
     font-size: 14px;
@@ -169,7 +169,7 @@ input#id_cv-cv {
 
 .control-label{
     color: white;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: 'FedraSansStd';
     font-size: 12px;
     font-weight: 100;
 }
@@ -181,7 +181,7 @@ input#id_cv-cv {
 
 }
 /*#registrerknapp{
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;*/
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
 	/*font-size: 10px;
@@ -196,7 +196,7 @@ input#id_cv-cv {
     border-radius: 30px;
 }*/
 #registrer_interesse{
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 30px;
 	line-height: 0.1;
@@ -210,7 +210,7 @@ input#id_cv-cv {
 }
 #usboks1{
 
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.5;
@@ -243,7 +243,7 @@ input#id_cv-cv {
 
 #butt {
 
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.1;
@@ -258,7 +258,7 @@ input#id_cv-cv {
 }
 
 #butt_green{
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.1;
@@ -290,7 +290,7 @@ input#id_cv-cv {
 #login_kandidat{
 
 	width: 150%;
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 30px;
 	line-height: 0.1;

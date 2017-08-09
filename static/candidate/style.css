@@ -1,5 +1,5 @@
 body{
-
+	font-family: "FedraSansStd";
 }
 
 #back_picture{
@@ -18,7 +18,7 @@ body{
 
 #regint{
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif*/;
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
 	font-size: 30px;
 	font-weight: 400;
 	color: #008789;
@@ -27,19 +27,19 @@ body{
 
 #inform{
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
 	font-size: 15px;
 	font-weight: 400;
 }
 
 #fill{
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: 'FedraSansStd';
 	font-size: 13px;
 	font-weight: 300;
 }
 
 .panel-heading {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: 'FedraSansStd';
     font-size: 18px;
     font-weight: 400;
 
@@ -49,33 +49,127 @@ body{
 
     background-color: #008789;
     opacity: 0.9;
-    float: left;
     position: absolute;
     left: 20vh;
     right: 20vh;
     top: 10vh;
-    margin-bottom: 100px;
     float: right;
-    max-width: 80vh;
+    max-width: 90vh;
+    min-width: 60vh;
     margin: auto;
     display: block;
-    padding-top: 0px;
+    padding-top: 0;
     color: #fcfcfc;
+    border-style: solid;
+    border-color: #C0C0C0;
+    border-width: 1px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#bottom_bar_top {
+
+    margin-left: -15px;
+    margin-right: -15px;
+    height: 50px;
+    background-color: white;
+    border-color: #C0C0C0;
+    border-style: ridge;
+    border-width: 1px;
+    border-right: hidden;
+    border-left: hidden;
+    margin-bottom: -2px;
+}
+
+#bottom_bar_bottom {
+
+    margin-left: -15px;
+    margin-right: -15px;
+    height: 50px;
+    background-color: white;
+    border-color: #C0C0C0;
+    border-style: solid;
+    border-width: 1px;
+    border-right: hidden;
+    border-left: hidden;
+    margin-bottom: -16px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.button_register_uncompleted {
+
+	font-family: 'FedraSansStd';
+    font-weight: 400;
+	font-size: 14px;
+    height: 30px;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: solid #C0C0C0 1px;
+    border-radius: 30px;
+    padding-top: 3px;
+    padding-bottom: 20px;
+    width: 100px;
+}
+
+.button_register_completed {
+
+    font-family: 'FedraSansStd';
+    font-weight: 400;
+	font-size: 14px;
+    background-color: #008789;
+    color: #FFFFFF;
+    border: solid #008789 1px;
+    border-radius: 30px;
+    padding-top: 3px;
+    padding-bottom: 20px;
+    width: 100px;
+}
+
+#register_welcome_text {
+
+    margin-left: 40%;
+}
+
+#register_fields {
+
+    margin-left: 0;
+    padding-top: 6px;
+}
+
+#reg_label_fields {
+
+    margin-left: -4%;
+    font-weight: 100;
 
 }
 
+#reg_label {
 
-#personvern{
+    font-family: 'FedraSansStd';
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+input#id_cv-cv {
+
+    /*border-style: solid;
+    border-width: 1px;
+    border-radius: 30px;*/
+}
+
+#personvern {
     padding-top: 5%;
 }
 
-#personvern a{
+#personvern a {
     text-decoration: underline;
 }
 
 .control-label{
     color: white;
-    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: 'FedraSansStd';
     font-size: 12px;
     font-weight: 100;
 }
@@ -87,7 +181,7 @@ body{
 
 }
 /*#registrerknapp{
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;*/
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
 	/*font-size: 10px;
@@ -102,7 +196,7 @@ body{
     border-radius: 30px;
 }*/
 #registrer_interesse{
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 30px;
 	line-height: 0.1;
@@ -116,7 +210,7 @@ body{
 }
 #usboks1{
 
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.5;
@@ -139,8 +233,8 @@ body{
 	border-radius: 30px;
 	padding: 5px 20px;
 	border-width: 1px;
-}
 
+}
 
 .navbar-header, #topNavBar, #headtekst{
 	background-color: #FFFFFF;
@@ -149,7 +243,7 @@ body{
 
 #butt {
 
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.1;
@@ -164,7 +258,7 @@ body{
 }
 
 #butt_green{
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.1;
@@ -196,7 +290,7 @@ body{
 #login_kandidat{
 
 	width: 150%;
-	font-family: "Segoe UI",Arial,sans-serif;
+	font-family: 'FedraSansStd';
     font-weight: 400;
 	font-size: 30px;
 	line-height: 0.1;

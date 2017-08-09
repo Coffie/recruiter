@@ -1,0 +1,27 @@
+@font-face {
+	font-family: "FedraSansStd";
+	src: url('../fonts/static/FedraSansStd-Light.WOFF') format('woff');
+	/* src: local('../fonts/static/FedraSansStd-Light.otf'); */
+}
+
+/* @font-face { */
+/* 	font-family: "FedraSansStd"; */
+/* 	src: url('/static/fon/static/FedraSansStd-Bold.otf'); */
+/* 	src: local('/static/fon/static/FedraSansStd-Bold.otf'); */
+/* 	font-weight: bold; */
+/* } */
+
+/* @font-face { */
+/* 	font-family: "FedraSansStd"; */
+/* 	src: url('/static/fon/static/FedraSansStd-BoldItalic.otf'); */
+/* 	src: local('/static/fon/static/FedraSansStd-BoldItalic.otf'); */
+/* 	font-weight: bold; */
+/* 	font-style: italic; */
+/* } */
+
+/* @font-face { */
+/* 	font-family: "FedraSansStd"; */
+/* 	src: url('/static/fon/static/FedraSansStd-LightItalic.otf'); */
+/* 	src: local('/static/fon/static/FedraSansStd-LightItalic.otf'); */
+/* 	font-style: italic; */
+/* } */
