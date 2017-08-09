@@ -80,12 +80,8 @@ WSGI_APPLICATION = 'recruiter.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mhrga',
-        'USER': 'hr',
-        'PASSWORD': 'ladetvirke',
-        'HOST': 'localhost',
-        'PORT': '',
     }
 }
 
