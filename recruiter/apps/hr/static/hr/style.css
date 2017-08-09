@@ -414,10 +414,13 @@
     border-radius: 30px;
 }*/
 
+.is_proff_pic{
+    padding-top: 100px;
+}
 
-
-
-
+#is_proff{
+    width: 10%;
+}
 
 
 
