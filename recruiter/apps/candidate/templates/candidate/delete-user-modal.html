@@ -4,17 +4,19 @@
 		<div class="modal-content" id="omriss_mail">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h3 id="send_til_leder">Delete profile</h3>
+				<h3 id="send_til_leder">Slett profil</h3>
 			</div>
 			<div class="modal-body">
-				This will delete your profile. This action can not be undone.
-				Are you certain?
+				Dette vil slette din profil. Handlingen kan ikke tilbakestilles.
+				Er du sikker?
+                <br/>
+                <br/>
 				<form class="form-horizontal" action="{% url 'candidate:delete-profile' %}" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					<input type="hidden" name="id_user" value="{{ user.id }}">
 					<div class="form-group">
 						<div class="col-sm-offset-0 col-sm-10">
-							<button id="butt_green" type="submit" class="btn btn-success" name="delete">Delete profile</button>
+							<button id="butt_green" type="submit" class="btn btn-success" name="delete">Slett profil</button>
 						</div>
 					</div>
 				</form>
