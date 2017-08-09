@@ -1,5 +1,10 @@
-<label id="home_reg_header">{{ candidate.user.get_full_name }}</label>
-<h6 id="home_reg_header">{{ candidate.user.email }}</h6>
-<h6 id="home_reg_header">{{ candidate.user.phone }}</h6>
-<h6 id="home_reg_header">{{ candidate.text }}</h6>
+{% if candidate.is_proff %}
+<div><img id="is_proff" src="/static/hr/erfaring.svg"></div>
+{% else %}
+<div><img id="is_proff" src="/static/hr/nyutdannet.svg"></div>
+{% endif %}
+<h6 id="candidate_name">{{ candidate.user.get_full_name }}</h6>
+<h6 id="candidate_name">{{ candidate.user.email }}</h6>
+<h6 id="candidate_name">{{ candidate.user.phone }}</h6>
+<h6 id="candidate_name">{{ candidate.text }}</h6>
 <br/>

@@ -139,8 +139,9 @@
 
 #sent_to_leader, #sent_to_leader_date {
 
-    /*width: 50%;
-    margin: 0 auto;*/
+	font-family: FedraSansStd;
+    color: #008789;
+	text-align: center;
     font-weight: 400;
 }
 
@@ -259,6 +260,8 @@
     font-weight: 400;
     font-size: 12px;
     color: #008789;
+	/* min-width: 250px; */
+	/* max-width: 300px; */
 }
 
 /*---------navigationbar---------*/
@@ -414,10 +417,34 @@
     border-radius: 30px;
 }*/
 
+.is_proff_pic{
+    padding-top: 100px;
+}
 
+#is_proff{
+	padding: 10px;
+	max-height: 150px;
+	max-width: 150px;
+	min-height: 125px;
+	min-width: 125px;
+	margin-left: 22%;
+	margin-right: 25%;
+}
 
+#mid_line {
+}
 
+#candidate_name {
+	font-family: FedraSansStd;
+    color: #008789;
+	text-align: center;
+}
 
-
-
+#candidate_box {
+	min-width: 100px;
+	max-width: 300px;
+	border-radius: 15px;
+	max-height: 500px;
+	min-height: 400px;
+}
 
