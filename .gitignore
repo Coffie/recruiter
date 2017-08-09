@@ -15,4 +15,5 @@ __pycache__/
 00*
 media/
 .DS_Store
-
+./recruiter/settings.py
+mhrga
