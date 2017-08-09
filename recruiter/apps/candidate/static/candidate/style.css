@@ -60,9 +60,9 @@ body{
     display: block;
     padding-top: 0;
     color: #fcfcfc;
-    border-style: solid;
+    /*border-style: solid;
     border-color: #C0C0C0;
-    border-width: 1px;
+    border-width: 1px;*/
     border-radius: 8px;
     margin-bottom: 20px;
 }
@@ -103,8 +103,6 @@ body{
     border-color: #C0C0C0;
     border-style: ridge;
     border-width: 1px;
-    border-right: hidden;
-    border-left: hidden;
     margin-bottom: -2px;
 }
 
@@ -117,8 +115,6 @@ body{
     border-color: #C0C0C0;
     border-style: solid;
     border-width: 1px;
-    border-right: hidden;
-    border-left: hidden;
     margin-bottom: -16px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -179,11 +175,39 @@ body{
     font-size: 14px;
 }
 
-input#id_cv-cv {
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+
+}
+
+
+#id_cv-cv {
 
     /*border-style: solid;
     border-width: 1px;
     border-radius: 30px;*/
+
+    cursor: pointer;
+    /*opacity: 0;*/
+
 }
 
 #personvern {
