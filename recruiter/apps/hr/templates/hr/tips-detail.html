@@ -4,8 +4,9 @@
     {% else %}
         <div><img class="is_proff_pic" src="/static/hr/nyutdannet.svg"></div>
     {% endif %}
-    <label>{{ candidate.get_full_name }}</label>
-    <h6>{{ candidate.email }}</h6>
+    <h6 id="candidate_name">{{ candidate.get_full_name }}</h6>
+	<hr id="mid_line">
+    <h6 id="candidate_name">{{ candidate.email }}</h6>
     <h6>{{ candidate.phone }}</h6>
     <h6>{{ candidate.text }}</h6>
     
@@ -25,7 +26,7 @@
 
     <div id="sent_to_leader">
 
-        <h6 id="sent_to_leader">Sendt inn av: {{ candidate.from_mail }}</h6>
+        <h6 id="candidate_name">Sendt inn av: {{ candidate.from_mail }}</h6>
     </div>
 
     <button data-target="#regUser{{ candidate.id }}" type="submit" class="btn btn-default btn-sm" id="butt_paminnelse" data-toggle="modal">
