@@ -441,9 +441,9 @@
 }
 
 #candidate_box {
-	min-width: 100px;
+	min-width: 200px;
 	max-width: 300px;
-	border-radius: 15px;
+	border-radius: 30px;
 	max-height: 500px;
 	min-height: 400px;
 }
