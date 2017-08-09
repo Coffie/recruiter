@@ -1,5 +1,5 @@
 body{
-	font-family: "FedraSansStd";
+
 }
 
 #back_picture{
@@ -12,13 +12,17 @@ body{
    position: relative;
 }
 
+#mid_line_f{
+    margin-top: 15vh;
+}
+
 #wrap{
     position: relative;
 }
 
 #regint{
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif*/;
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
 	font-size: 30px;
 	font-weight: 400;
 	color: #008789;
@@ -27,19 +31,19 @@ body{
 
 #inform{
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
 	font-size: 15px;
 	font-weight: 400;
 }
 
 #fill{
-    font-family: 'FedraSansStd';
+    font-family: "Segoe UI",Arial,sans-serif;
 	font-size: 13px;
 	font-weight: 300;
 }
 
 .panel-heading {
-    font-family: 'FedraSansStd';
+    font-family: "Segoe UI", Arial, sans-serif;
     font-size: 18px;
     font-weight: 400;
 
@@ -60,11 +64,38 @@ body{
     display: block;
     padding-top: 0;
     color: #fcfcfc;
+    /*border-style: solid;
+    border-color: #C0C0C0;
+    border-width: 1px;*/
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#panel_body_finished {
+
+    background-color: #008789;
+    opacity: 0.9;
+    position: absolute;
+    left: 20vh;
+    right: 20vh;
+    top: 25vh;
+    float: right;
+    max-width: 90vh;
+    min-width: 60vh;
+    margin: auto;
+    display: block;
+    padding-top: 0;
+    color: #fcfcfc;
     border-style: solid;
     border-color: #C0C0C0;
     border-width: 1px;
     border-radius: 8px;
     margin-bottom: 20px;
+}
+
+#finished_text{
+    margin: 10% 5%;
+
 }
 
 #bottom_bar_top {
@@ -76,8 +107,6 @@ body{
     border-color: #C0C0C0;
     border-style: ridge;
     border-width: 1px;
-    border-right: hidden;
-    border-left: hidden;
     margin-bottom: -2px;
 }
 
@@ -90,8 +119,6 @@ body{
     border-color: #C0C0C0;
     border-style: solid;
     border-width: 1px;
-    border-right: hidden;
-    border-left: hidden;
     margin-bottom: -16px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -99,7 +126,7 @@ body{
 
 .button_register_uncompleted {
 
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 14px;
     height: 30px;
@@ -114,7 +141,7 @@ body{
 
 .button_register_completed {
 
-    font-family: 'FedraSansStd';
+    font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 14px;
     background-color: #008789;
@@ -146,17 +173,45 @@ body{
 
 #reg_label {
 
-    font-family: 'FedraSansStd';
+    font-family: "Segoe UI",Arial,sans-serif;
     color: black;
     font-weight: 400;
     font-size: 14px;
 }
 
-input#id_cv-cv {
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+
+}
+
+
+#id_cv-cv {
 
     /*border-style: solid;
     border-width: 1px;
     border-radius: 30px;*/
+
+    cursor: pointer;
+    /*opacity: 0;*/
+
 }
 
 #personvern {
@@ -169,7 +224,7 @@ input#id_cv-cv {
 
 .control-label{
     color: white;
-    font-family: 'FedraSansStd';
+    font-family: "Segoe UI",Arial,sans-serif;
     font-size: 12px;
     font-weight: 100;
 }
@@ -181,7 +236,7 @@ input#id_cv-cv {
 
 }
 /*#registrerknapp{
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;*/
 	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
 	/*font-size: 10px;
@@ -196,7 +251,7 @@ input#id_cv-cv {
     border-radius: 30px;
 }*/
 #registrer_interesse{
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 30px;
 	line-height: 0.1;
@@ -208,9 +263,24 @@ input#id_cv-cv {
     background-color: #008789;
     padding: 10px;
 }
+
+#ferdig_interesse{
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 0.1;
+    color: #fff;
+    position: absolute;
+    float: left;
+    top: 39vh;
+    left: 5vh;
+    background-color: #008789;
+    padding: 10px;
+}
+
 #usboks1{
 
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.5;
@@ -243,7 +313,7 @@ input#id_cv-cv {
 
 #butt {
 
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.1;
@@ -258,7 +328,7 @@ input#id_cv-cv {
 }
 
 #butt_green{
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 11px;
 	line-height: 0.1;
@@ -290,7 +360,7 @@ input#id_cv-cv {
 #login_kandidat{
 
 	width: 150%;
-	font-family: 'FedraSansStd';
+	font-family: "Segoe UI",Arial,sans-serif;
     font-weight: 400;
 	font-size: 30px;
 	line-height: 0.1;
@@ -304,24 +374,16 @@ input#id_cv-cv {
     margin-left: 5%;
 }
 
-div#wrapperHeader {
- width: 50%;
- height: 110px;
- background:url(dnblogo.png) no-repeat;
- text-align:right;
+#header {
+ height: 5vh;
+ padding-left: 5%;
 }
 
-div#wrapperHeader div#header {
- width: 100px;
- height: 80px;
+#header img {
+ height: 100%;
  margin: 0 auto;
 }
 
-div#wrapperHeader div#header img {
- width: 200%;
- height: 100px;
- margin: 0 auto;
-}
 
 #privacyPolicy {
     width: 110px;
@@ -336,10 +398,9 @@ div#wrapperHeader div#header img {
     max-height: 400px;
     display: table;
     text-align: left;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
+    margin: 1% 10%;
     line-height:1.5em;
+    font-weight: normal;
 }
 
 #kand_personalia {
@@ -380,4 +441,8 @@ div#wrapperHeader div#header img {
 
 .row{
     padding-top: 6px;
+}
+
+#terms_header{
+    margin-left: 10%
 }
