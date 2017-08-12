@@ -2,7 +2,7 @@
     {% if candidate.is_proff %}
         <div><img id="is_proff" src="/static/hr/erfaring.svg"></div>
     {% else %}
-        <div><img class="is_proff_pic" src="/static/hr/nyutdannet.svg"></div>
+        <div><img id="is_proff" src="/static/hr/nyutdannet.svg"></div>
     {% endif %}
     <h6 id="candidate_name">{{ candidate.get_full_name }}</h6>
 	<hr id="mid_line">
